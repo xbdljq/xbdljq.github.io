@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/check.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$("#submit").on("click", function() {
+
+					
+//					alert(form.length)
+					if(!isEmp(form.username.value)) {
+						msgBox("用户名不能为空", function() {})
+						return false;
+					}
+					if(!isIdCardNo(form.IDCard.value)){
+						msgBox("身份证号码格式不对",function() {});
+						return false
+					}
+					
+					//获取单选按钮的值
+					$("#sex").attr("value", $('input[name="sex"]:checked').val());
+					//获取复选框的值
+					
+					var cc = [];
+					$('input[name="cc"]:checked').each(function() {
+						cc.push($(this).val());
+					})
+					$("#cc").attr("value",cc);
+//					alert(chk_value)
+					
+					var d = {};
+					var t = $('#form1').serializeArray();
+					$.each(t, function() {
+						d[this.name] = this.value;
+					});
+					alert(JSON.stringify(d))
+					
+					var url = ""
+					
+					$.ajax({
+					type: "post",
+					async: false,
+					url: url,
+					dataType: "jsonp",
+					data:JSON.stringify(d),
+					success: function(msg) {
+						alert(msg);
+//						console.log(JSON.stringify(data))
+					},
+					error: function(a) {
+						alert('fail');
+					}
+				});
+
+				})
+			})
+
+			function checkFrom(n) {
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<form id="form1" name="form">
+			<div>
+				<label for="username">姓名</label>
+				<input type="text" name="username" id="" value="" />
+			</div>
+			<!--<div>
+				<label>年龄</label>
+				<input type="text" name="age" id="" value="" />
+			</div>
+			<div>
+				<label>地址</label>
+				<input type="text" name="address" id="" value="" />
+			</div>-->
+			<div>
+				<label>身份证号码</label>
+				<input type="text" name="IDCard" id="" value="" />
+			</div>
+			<div>
+				<label>电话</label>
+				<input type="text" name="phone" id="" value="" />
+			</div>
+			<div>
+				<label>性别</label>
+				<input type="hidden" name="sex" id="sex" value="" />
+				<input type="radio" name="sex" value="man" />男
+				<input type="radio" name="sex" value="women" />女
+			</div>
+			<div>
+				<label>职业</label>
+				<select name="job">
+					<option value="前端">前端</option>
+					<option value="后台">后台</option>
+					<option value="开发">开发</option>
+				</select>
+			</div>
+			<div>
+				<label>爱好</label>
+				
+				<input type="checkbox" name="cc" value="游泳" />游泳
+				<input type="checkbox" name="cc" value="打篮球" />打篮球
+				<input type="checkbox" name="cc" value="看书" />看书
+				<input type="checkbox" name="cc" value="画画" />画画
+				<input type="hidden" name="cc" id="cc" />
+			</div>
+			<div>
+				<label>个人简介</label><br />
+				<textarea name="other"></textarea>
+			</div>
+			<input type="submit" id="submit" value="确定" />
+			<input type="reset" />
+
+		</form>
+
+		<div id="div1"></div>
+
+	</body>
+
+</html>

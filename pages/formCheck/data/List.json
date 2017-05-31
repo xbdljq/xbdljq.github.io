@@ -1,0 +1,44 @@
+{
+	"pendingList": [
+		{
+			"message": "客户生日",
+			"custId": "wwwwwwwwwwwwwwwwww",
+			"time":"14:20",
+			"status":"0",
+			"managerId":"ccccccccccc",
+			"date":"05/11",
+			"type":"1",
+			"logType":"2"
+		},
+		{
+			"message": "新贷款申请",
+			"custId": "wwwwwwwwwwwwwwwwww",
+			"time":"14:20",
+			"status":"0",
+			"managerId":"ccccccccccc",
+			"date":"05/01",
+			"type":"4",
+			"logType":"1"
+		},
+		{
+			"message": "客户生日",
+			"custId": "wwwwwwwwwwwwwwwwww",
+			"time":"14:20",
+			"status":"0",
+			"managerId":"ccccccccccc",
+			"date":"05/11",
+			"type":"1",
+			"logType":"2"
+		},
+		{
+			"message": "新贷款申请",
+			"custId": "wwwwwwwwwwwwwwwwww",
+			"time":"14:20",
+			"status":"0",
+			"managerId":"ccccccccccc",
+			"date":"05/01",
+			"type":"4",
+			"logType":"1"
+		}
+	]
+}

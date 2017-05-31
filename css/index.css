@@ -1,0 +1,59 @@
+/*公共的头部尾部开始==========*/
+header,footer{height: 70px;width: 100%;color: #fff;background: #2c364f;}
+header{padding: 8px 15px;box-sizing: border-box;}
+h1{display: inline-block;}
+.product_name{display: inline-block;padding: 0 20px;border-left: 2px solid #fff;height: 24px;line-height: 24px;vertical-align: top;margin-left: 20px;margin-top: 5px;font-size: 16px;}
+.user_box{float: right;height: 40px;padding-top: 5px;box-sizing: border-box;}
+.user_login{display: inline-block;font-size: 14px;margin-right: 20px;}
+.message_center{display: inline-block;cursor: pointer;}
+.message_center:before{width: 24px;height: 28px;color: #e5ecfc;display: inline-block;font-size: 18px;}
+
+.user_login:before{display: inline-block;font-size: 18px;vertical-align: middle;color: #1eb6ff;}
+.exit{cursor: pointer;}
+
+
+/*公共的头部尾部结束=======*/
+.main_contain{position: absolute;width: 100%;bottom: 0px;top: 70px;}
+.main_contain:after {content: "";display: table;clear: both;}
+/*左侧菜单=========*/
+.main_contain_left{float: left;margin-top: 0px;position: relative;height: 100%; z-index: 20;background: #FF0707;overflow: hidden;width: 130px;}
+/*整个右边核心模块的最大盒子，注意这个类很重要，滚动条与之也有关*/
+.wrap_main{width: 100%;height: 100%;overflow-y: scroll;overflow-x: hidden;}
+/*右侧核心========*/
+.main_contain_right{
+height: 100%;
+margin: 0 auto;
+overflow: hidden;
+background-color: #fff;
+border-radius: 3px;
+background: #fff;
+}
+/*iframe窗口==========*/
+#body-right{
+width: 100%;
+box-sizing: border-box;
+}
+
+/*一级菜单开始==========*/
+.commonMenu_first{width: 150px;height: 100%;background: #2c364f;display: inline-block; overflow-y: auto;overflow-x: hidden;box-sizing: border-box;}
+/*折叠区开始=========*/
+.top_open{overflow: hidden;height: 30px;background: #727d99;color: #fff;box-sizing: border-box;padding-left: 53px;color: #2C364F;cursor: pointer;}
+.switch_dor:before{width: 20px;height: 20px;display: inline-block;vertical-align: middle;margin-top: 8px;}
+.switch_dor_off:before{width: 20px;height: 20px;display: inline-block;vertical-align: middle;margin-top: 8px;}
+
+.commonMenu_list{color: #98a4bd;}
+li.commonMenu_li_first p{cursor: pointer;}
+li.commonMenu_li_first i:before{width: 20px;height: 20px;display: inline-block;padding-right: 4px;}
+li.commonMenu_li_first ul{display: none;}
+li.commonMenu_li_first li{padding-left: 38px;box-sizing: border-box;}
+li.commonMenu_li_first p{width: 100%;height: 40px;line-height: 40px;background: #2c364f;box-sizing: border-box;padding-left: 15px;box-sizing: border-box;font-size: 16px;}
+li.commonMenu_li_first p:hover{background: #4a5370;color: #fff;}
+li.commonMenu_li_first li{cursor: pointer;font-size: 12px;}
+.commonMenu_on{background: #1db7ff;color: #fff;}
+li.commonMenu_li_first li{height: 40px;line-height: 40px;}
+
+
+/*面包屑开始==============*/
+.crumb{width:100%;height:30px;line-height:30px;background:#e5ecfc;padding-left: 20px;box-sizing: border-box;}
+.crumb i{padding: 0 5px;}
+/*面包屑结束==============*/

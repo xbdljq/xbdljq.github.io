@@ -1,0 +1,272 @@
+body {
+	padding: 0;
+	font-size: 14px;
+	/*为了兼容ie6而引入的，css不够灵活，具有一定的局限性。如果使用js控制的话就不用引入了*/
+	/*behavior: url(css/csshover.htc);*/
+}
+
+<!--[if IE 6]>body {
+	behavior: url(../css/csshover.htc);
+}
+
+<![endif]-->ul {
+	list-style: none;
+}
+
+.topmenu {
+	display: block;
+	width: 220px;
+	border: 2px solid #e4393c;
+	padding: 0;
+	margin: 20px 0 0 20px;
+}
+
+.toptitle {
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	font-size: 16px;
+	color: #ffffff;
+	background-color: #E4393C;
+	padding-left: 20px;
+}
+
+.topmenu li {
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	list-style-type: none;
+	padding-left: 8px;
+	z-index: 3;
+}
+
+
+/*鼠标移动到上面时应用的应用的样式*/
+
+.topmenu .lihover {
+	color: #E4393C;
+	border: 1px solid #ddd;
+	border-left: 4px solid #E4393C;
+	border-right: 0;
+	height: 60px;
+	box-shadow: 0 0 8px #DDDDDD;
+	-moz-box-shadow: 0 0 8px #DDDDDD;
+	-webkit-box-shadow: 0 0 8px #DDDDDD;
+}
+
+
+/*悬浮层*/
+
+.topmenu .lihover .submenu {
+	display: block;
+}
+
+
+/*白色遮挡框*/
+
+.topmenu .lihover .nullspan {
+	background-color: #FFFFFF;
+	display: inline-block;
+	z-index: 20;
+	width: 20px;
+	height: 60px;
+	float: right;
+	position: relative;
+	+top: -30px;
+}
+
+.topmenu li a {
+	text-decoration: none;
+	color: #313131;
+}
+
+.topmenu li a:hover {
+	color: #E4393C;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.righticon {
+	position: absolute;
+	left: 230px;
+	line-height: 30px;
+	color: #787D82;
+	font-size: 16px;
+	/*display: block;*/
+}
+
+.topmenu .lihover b {
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.submenu {
+	display: none;
+	width: 700px;
+	+width: 750px;
+	left: 240px;
+	position: absolute;
+	top: 40px;
+	border: 1px solid #dddddd;
+	z-index: 5;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 8px #DDDDDD;
+	/*火狐*/
+	-moz-box-shadow: 0 0 8px #DDDDDD;
+	/*谷歌*/
+	-webkit-box-shadow: 0 0 8px #DDDDDD;
+}
+
+.leftdiv {
+	float: left;
+	width: 480px;
+	padding: 0 8px;
+	margin: 5px;
+	hasLayout: true;
+	zoom: 1
+}
+
+.rigthdiv {
+	float: left;
+	width: 180px;
+	margin: 5px;
+}
+
+.leftdiv dl {
+	display: block;
+	border-bottom: 1px solid #EEEEEE;
+	padding-bottom: 8px;
+	padding-top: 8px;
+	overflow: hidden;
+	hasLayout: true;
+	zoom: 1
+}
+
+.leftdiv dl dt {
+	display: block;
+	float: left;
+	width: 60px;
+	text-align: right;
+	height: 22px;
+	line-height: 22px;
+	padding-right: 6px;
+	white-space: nowrap;
+	hasLayout: true;
+	zoom: 1
+}
+
+.leftdiv dl dt a {
+	color: #E4393C;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+.leftdiv dl dd {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	hasLayout: true;
+	zoom: 1
+}
+
+.leftdiv dl dd a {
+	display: block;
+	border-left: 1px solid #DDDDDD;
+	padding: 0 8px;
+	height: 14px;
+	line-height: 14px;
+	float: left;
+	color: #737373;
+	font-size: 12px;
+	margin: 4px 0;
+}
+
+.rigthdiv dl dd {
+	margin: 3px 0;
+}
+
+.rigthdiv dl dt {
+	color: #E4393C;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.rigthdiv dl dd a {
+	font-size: 12px;
+	color: #737373;
+	line-height: 22px;
+}
+
+.rigthdiv dl dd a:hover {
+	color: #737373;
+	font-weight: normal;
+}
+
+.topmenu li b {
+	display: none;
+}
+
+.rightPic {
+	position: relative;
+	right: -35px;
+	bottom: -40px;
+}
+
+
+/*hack  兼容ie6才会使用*/
+
+
+/*IE5.5+*/
+.submenu {
+	>/*IE only*/
+	top: -30px;
+	/*IE6*/
+	>/*IE only*/
+	top/*IE5.5*/
+	: -30px;
+}
+
+* html .topmenu .lihover .nullspan {
+	height: 30px;
+}
+
+* html .topmenu .lihover .nullspan {
+	background-color: #FFFFFF;
+	height: 60px;
+	top: 0px;
+	*z-index: 100;
+	position: absolute;
+	right: 0;
+}
+
+* html .topmenu .lihover {
+	position: relative;
+}
+
+* html .submenu {
+	-width: 840px;
+	left: 205px;
+	position: absolute;
+	/*border: 1px solid #dddddd;*/
+	_top: 20px;
+}
+
+* html .leftdiv {
+	width: 480px;
+	padding: 0 8px 0 8px;
+	margin: 5px 0;
+}
+
+* html .rigthdiv {
+	width: 200px;
+	padding-top: 5px;
+	margin: 5px 0;
+}
+
+* html .topmenu>li .righticon {
+	display: none;
+}

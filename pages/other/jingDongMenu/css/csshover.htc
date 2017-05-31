@@ -1,0 +1,88 @@
+﻿///*为了兼容ie6以下而引入的，css不够灵活，具有一定的局限性。如果使用js控制的话就不用引入了*/
+//behavior: url(css/csshover.htc);  注意引入路径
+<attach event=ondocumentready handler=parsestylesheets />
+<script>
+var csshoverreg = /(^|\s)(([^a]([^ ]+)?)|(a([^#.][^ ]+)+)):(hover|active)/i,
+currentsheet, doc = window.document, hoverevents = [], activators = {
+onhover:{on:'onmouseover', off:'onmouseout'},
+onactive:{on:'onmousedown', off:'onmouseup'}
+}
+function parsestylesheets() {
+if(!/msie (5|6)/.test(navigator.useragent)) return;
+window.attachevent('onunload', unhookhoverevents);
+var sheets = doc.stylesheets, l = sheets.length;
+for(var i=0; i<l; i++)
+parsestylesheet(sheets[i]);
+}
+function parsestylesheet(sheet) {
+if(sheet.imports) {
+try {
+var imports = sheet.imports, l = imports.length;
+for(var i=0; i<l; i++) parsestylesheet(sheet.imports[i]);
+} catch(securityexception){}
+}
+try {
+var rules = (currentsheet = sheet).rules, l = rules.length;
+for(var j=0; j<l; j++) parsecssrule(rules[j]);
+} catch(securityexception){}
+}
+function parsecssrule(rule) {
+var select = rule.selectortext, style = rule.style.csstext;
+if(!csshoverreg.test(select) || !style) return;
+var pseudo = select.replace(/[^:]+:([a-z-]+).*/i, 'on$1');
+var newselect = select.replace(/(\.([a-z0-9_-]+):[a-z]+)|(:[a-z]+)/gi, '.$2' + pseudo);
+var classname = (/\.([a-z0-9_-]*on(hover|active))/i).exec(newselect)[1];
+var affected = select.replace(/:(hover|active).*$/, '');
+var elements = getelementsbyselect(affected);
+if(elements.length == 0) return;
+currentsheet.addrule(newselect, style);
+for(var i=0; i<elements.length; i++)
+new hoverelement(elements[i], classname, activators[pseudo]);
+}
+function hoverelement(node, classname, events) {
+if(!node.hovers) node.hovers = {};
+if(node.hovers[classname]) return;
+node.hovers[classname] = true;
+hookhoverevent(node, events.on, function() { node.classname += ' ' + classname; });
+hookhoverevent(node, events.off, function() { node.classname = node.classname.replace(new regexp('\\s+'+classname, 'g'),''); });
+}
+function hookhoverevent(node, type, handler) {
+node.attachevent(type, handler);
+hoverevents[hoverevents.length] = {
+node:node, type:type, handler:handler
+};
+}
+function unhookhoverevents() {
+for(var e,i=0; i<hoverevents.length; i++) {
+e = hoverevents[i];
+e.node.detachevent(e.type, e.handler);
+}
+}
+function getelementsbyselect(rule) {
+var parts, nodes = [doc];
+parts = rule.split(' ');
+for(var i=0; i<parts.length; i++) {
+nodes = getselectednodes(parts[i], nodes);
+} return nodes;
+}
+function getselectednodes(select, elements) {
+var result, node, nodes = [];
+var identify = (/\#([a-z0-9_-]+)/i).exec(select);
+if(identify) {
+var element = doc.getelementbyid(identify[1]);
+return element? [element]:nodes;
+}
+var classname = (/\.([a-z0-9_-]+)/i).exec(select);
+var tagname = select.replace(/(\.|\#|\:)[a-z0-9_-]+/i, '');
+var classreg = classname? new regexp('\\b' + classname[1] + '\\b'):false;
+for(var i=0; i<elements.length; i++) {
+result = tagname? elements[i].all.tags(tagname):elements[i].all;
+for(var j=0; j<result.length; j++) {
+node = result[j];
+if(classreg && !classreg.test(node.classname)) continue;
+nodes[nodes.length] = node;
+}
+}
+return nodes;
+}
+</script>

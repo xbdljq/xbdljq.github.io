@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var url = "http://192.168.8.102:7070/sdplatform/front/manager/visitList?loginEmp=8a8088a046a23c2e0146a23c51fd0000&dataJson={\"so\":\"\"}";
+
+				$.ajax({
+					type: "get",
+					async: false,
+					url: url,
+					dataType: "jsonp",
+					success: function(data) {
+						alert(data);
+						console.log(JSON.stringify(data))
+					},
+					error: function(a, b, c) {
+						alert('fail');
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
