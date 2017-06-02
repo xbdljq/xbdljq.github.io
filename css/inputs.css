@@ -1,0 +1,94 @@
+.align_top {
+			vertical-align: top;
+		}
+		
+		.input_box {
+			margin-bottom: 10px;
+			color: #333333;
+			font-size: 14px;
+			font-family: Microsoft YaHei,Tahoma,Arial,sans-serif;
+		}
+		
+		.input_box label {
+			font-size: 14px;
+			width: 100px;
+			display: inline-block;
+			box-sizing: border-box;
+			padding-right: 15px;
+			text-align: right;
+		}
+		
+		.input_box input[type="text"],
+		.input_box select {
+			height: 30px;
+			width: 150px;
+			box-sizing: border-box;
+			padding: 0 5px;
+			border: 1px solid #cccccc;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			line-height: 30px;
+			font-family: Microsoft YaHei,Tahoma,Arial,sans-serif;
+			outline: none;
+			color: #333333;
+		}
+		.input_box input[type="radio"]{
+			margin-right: 5px;
+			margin-left: 30px;
+		}
+		.input_box input[type="radio"]:nth-of-type(1){
+			margin-left: 0;
+		}
+		.input_box input[type="checkbox"]{
+			margin-right: 5px;
+			margin-left: 30px;
+		}
+		.input_box input[type="checkbox"]:nth-of-type(1){
+			margin-left: 0;
+		}
+		
+		.input_box textarea {
+			width: 300px;
+			height: 80px;
+			box-sizing: border-box;
+			padding: 5px;
+			border: 1px solid #cccccc;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			outline: none;
+			resize:none;
+		}
+		/*时间控件*/
+		
+		.chose_time {
+			cursor: pointer;
+			background: url(../img/icon-date.png) no-repeat right center #fff !important;
+		}
+		
+		.time_dot {
+			padding: 0 10px;
+		}
+		.btn_box{
+			margin-left: 100px;
+		}
+		.btn{
+			height: 30px;
+			line-height: 30px;
+			padding: 0 15px;
+			background-color: #1DB7FF;
+			border: 1px solid #1DB7FF;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			font-size: 14px;
+			color: #FFFFFF;
+			font-family: Microsoft YaHei,Tahoma,Arial,sans-serif;
+		}
+		.center_title{
+			text-align: center;
+			margin-bottom: 20px;
+			font-size: 16px;
+			
+		}

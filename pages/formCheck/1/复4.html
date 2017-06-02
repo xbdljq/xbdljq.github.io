@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<style type="text/css">
+			li {
+				/*padding: 10px 15px 20px;*/
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 14px;
+				float: left;
+				width: 45%;
+				min-height: 150px;
+				padding-bottom: 20px;
+			}
+			
+			li p {
+				line-height: 40px;
+				font-weight: bold;
+			}
+			
+			.input_box label {
+				width: 80px;
+			}
+			
+			.btn_box {
+				margin-bottom: 10px;
+				margin-left: 85px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul>
+				<li>
+					<p>去掉字符串的左右空格</p>
+					<div class="input_box">
+						<input type="text" id="input1" value="[  夏天的风      ]" />
+					</div>
+					<!--<div class="btn_box">-->
+						<button class="btn" id="btn1">确定</button>
+					<!--</div>-->
+
+				</li>
+				<li>
+					<p>禁止用户输入</p>
+					<div class="input_box">
+						<label>用户名</label>
+						<input type="text" id="" value="" disabled="disabled" placeholder="用户名" />
+					</div>
+
+				</li>
+				<li>
+					<p>限制字符串长度（最多只能输入10个字符串）</p>
+					<div class="input_box">
+						<label>用户名</label>
+						<input type="text" id="" value="" placeholder="用户名" maxlength="10" />
+					</div>
+
+				</li>
+
+				<li>
+					<p>关闭用户中文输入法</p>
+					<form id="form1">
+						<div class="input_box">
+							<label>用户</label>
+							<input type="text" id="" value="" placeholder="请输入用户名" data-ime="1" />
+						</div>
+						<div class="input_box">
+							<label>密码</label>
+							<input type="text" id="" value="" placeholder="请输入密码" />
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn2">确定</button>
+						</div>
+
+					</form>
+				</li>
+				<li>
+					<p>禁止用户复制粘贴</p>
+					<form id="form2">
+						<div class="input_box">
+							<label>用户</label>
+							<input type="text" id="" value="" placeholder="请输入用户名" data-ime="1" />
+						</div>
+						<div class="input_box">
+							<label>密码</label>
+							<input type="text" id="" value="" placeholder="请输入密码" />
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn3">确定</button>
+						</div>
+
+					</form>
+				</li>
+				<li>
+					<p>限制只能输入数字</p>
+					<form id="form3">
+						<div class="input_box">
+							<label>用户</label>
+							<input type="text" id="" value="" placeholder="请输入用户名" data-ime="1" />
+						</div>
+						<div class="input_box">
+							<label>密码</label>
+							<input type="text" id="" value="" placeholder="请输入密码" />
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn4">确定</button>
+						</div>
+
+					</form>
+				</li>
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+				//去掉字符串空格
+				var input1 = getId("input1")
+				getId("btn1").onclick = function() {
+					input1.value = input1.value.replace(/(\s|\u00A0)+|(\s|\u00A0)+/g, '');
+				}
+
+				//关闭中文输入法
+				var form1 = getId("form1");
+				var inputs = form1.getElementsByTagName('input');
+				for(var i = 0; i < inputs.length; i++) {
+					inputs[i].onfocus = function() {
+						if(this.getAttribute('data-ime')) {
+							cancel(this);
+						}
+					}
+					if(inputs[i].style.imeMode == undefined) {
+						inputs[i].onkeyup = inputs[i].onblur = function() {
+							clear(this);
+						}
+					}
+				}
+				//禁止用户复制粘贴
+				var form2 = getId('form2');
+				var inputs2 = form2.getElementsByTagName('input');
+				for(var i = 0; i < inputs2.length; i++) {
+					inputs2[i].oncopy = inputs2[i].onpaste = function() {
+						return false;
+					}
+				}
+
+				//限制只能输入数字
+				var form3 = getId('form3');
+				var inputs3 = form3.getElementsByTagName('input');
+				for(var i = 0; i < inputs3.length; i++) {
+					inputs3[i].onfocus = inputs3[i].onblur = inputs3[i].onkeyup = function() {
+						this.value = this.value.replace(/\D/g, '');
+					}
+				}
+
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+			//关闭输入法
+			function cancel(o) {
+				o.style.imeMode = 'disabled';
+
+			}
+			//清空字符串
+			function clear(o) {
+				o.value = o.value.replace(/[\u4e00-\u9fa5]/g, '');
+			}
+		</script>
+	</body>
+
+</html>

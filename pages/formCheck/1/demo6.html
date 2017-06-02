@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css"/>
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul class="ul1">
+
+				<li>
+					<p>文本内容进行关键字过滤</p>
+					<form id="form2">
+						<div class="input_box">
+							<label style="vertical-align: top;">简介</label>
+							<textarea placeholder="女、美少妇、日本等敏感字眼将被过滤掉" id="msg"></textarea>
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn1">确定</button>
+						</div>
+					</form>
+					
+					<div id="div1"></div>
+
+				</li>
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+
+				//文本内容进行关键字过滤
+				var msg = getId('msg');
+				var div1 = getId("div1")
+				var msg2 = document.getElementById('msg2');
+				var btn1 = getId('btn1');
+				var key = /女|美少妇|日本/g;
+				var v = '';
+				btn1.onclick = function() {
+					v = msg.value;
+					div1.innerHTML = v.replace(key, function(str) {
+						var r = '';
+						for(var i = 0; i < str.length; i++) {
+							r += '*';
+						}
+						return r;
+					});
+					return false;
+				}
+
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+		</script>
+	</body>
+
+</html>

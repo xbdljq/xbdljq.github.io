@@ -46,7 +46,7 @@
 
 		<script src="js/check.js" type="text/javascript"></script>
 		<!--<script src="js/getJson.js" type="text/javascript"></script>-->
-		<link rel="stylesheet" type="text/css" href="../../css/itemPage.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css"/>
 		<script type="text/javascript">
 			// 弹框
 			$(function() {
@@ -116,22 +116,6 @@
 							alert('fail');
 						}
 					});
-
-//								var sex=$('input[name="sex"]:checked').val();
-//								$('#custSex').val(sex);
-//								ajaxSg.sg_ajaxClick({url:'${pageContext.request.contextPath}/front/applyLoan/savePersonApply'},function(data){
-//									if (data.succ) {
-//										$('.layer').fadeIn(100);        
-//										$('.layer-bg').fadeTo(100,0)  // 半透明
-//										$("#main-wrapper").hide();
-//									}else{
-//										$("#ishave").text("您有一笔贷款申请正在处理中，请勿重复提交");
-//										$('.layer').fadeIn(100);        
-//										$('.layer-bg').fadeTo(100,0)  // 半透明
-//										$("#main-wrapper").hide();
-//									}
-//					//				setTimeout("wx.closeWindow()", 3000);
-//								});
 				});
 			});
 			function check(){
@@ -139,17 +123,34 @@
 			}
 		</script>
 		<style>
-			@media only screen and (min-width: 480px) {
+			@media only screen and (min-width: 400px) {
 				.main_content{
-					width: 480px;
+					width: 400px;
 					margin: 0 auto;
 				}
+			}
+			.info{
+				border: 1px solid #CCCCCC;
+				padding: 10px;
+				width: 280px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 14px;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="wrap_main">
+			<div class="info">
+				这是一个对表单进行验证，然后获取其输入值进行提交的完整示例，<br />
+				对输入框进行的验证有<br />
+				1、验证文本框的值是否为非空<br />
+				2、验证文本框的值格式是否为身份证号<br />
+				3、验证文本框的值格式是否为手机号码等
+				
+			</div>
 			<div class="main_content">
 				<!-- 表单    -->
 				<form action="" name="form" id="form1">

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>动态操作下拉选项</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css" />
+		<style type="text/css">
+			.demo1 {
+				width: 220px;
+				text-align: left;
+			}
+			
+			.demo1 input {
+				margin-right: 5px;
+			}
+			
+			.mb10 a {
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<div>
+				<div class="input_box">
+					<input type="text" name="" id="txt" />
+				</div>
+				<button class="btn" id="add">添加</button>
+				<div class="input_box" style="margin-top: 20px;">
+					<label>添加后的选项</label>
+					<select name="" id="country">
+						<option value="">中国人</option>
+						<option value="">蒙古人</option>
+						<option value="">朝鲜人</option>
+					</select>
+				</div>
+				<button class="btn" id="del">删除</button>
+			</div>
+		</div>
+		<script>
+			(function() {
+				var txt = getId('txt');
+				var add = getId('add');
+				var del = getId('del');
+				var country = getId('country');
+				add.onclick = function() {
+					var v = checkTxt(txt);
+					if(v) {
+						country.options.add(new Option(v, v));
+						alert("选项添加成功")
+						txt.value = "";
+					}
+				}
+				//获取select选中的索引
+//				alert(country.selectedIndex);
+				//获取select选中的索引的值
+//				alert(country.options[1].text)
+//				alert(country.options[country.selectedIndex].text);
+				del.onclick = function() {
+					var c = country.options[country.selectedIndex].text
+					var i = country.selectedIndex.innerText;
+					
+					country.options.remove(i);
+					alert("你删除了"+ c +"这个选项");
+				}
+
+				function checkTxt(obj) {
+					if(obj.value.length < 1) {
+						alert('选项不能为空!');
+						return false;
+					}
+					return obj.value;
+				}
+
+			}());
+			function getId(n){
+				return document.getElementById(n)
+			}
+		</script>
+	</body>
+
+</html>

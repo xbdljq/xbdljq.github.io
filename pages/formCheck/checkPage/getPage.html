@@ -34,60 +34,39 @@
 		<title>列表</title>
 		<link rel="stylesheet" type="text/css" href="css/bath.css" />
 		<link rel="stylesheet" type="text/css" href="css/reviewList.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/itemPage.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
 		<script src="js/jquery-1.11.0.js" type="text/javascript"></script>
 		<script src="js/loadData.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(function() {
-				//				var url = "http://192.168.8.102:7070/sdplatform/front/manager/pengdingList?loginEmp=8a8088a046a23c2e0146a23c51fd0000&dataJson={\"so\":\"\"}";
-				//				var url = "data/List.json"
+				//var url = "data/List.json"
 				$.ajax({
 					type: "get",
 					async: false,
 					url: "data/List.json",
 					dataType: "json",
 					success: function(data) {
-						//						var data = JSON.stringify(data.pendingList);
+						//var data = JSON.stringify(data.pendingList);
 						var data = data.pendingList;
 						for(var i = 0; i < data.length; i++) {
 							var $li = $("<li></li>");
-
 							var temp = "";
-							//							alert(typeof data[i].logType)
+							//alert(typeof data[i].logType)
 							switch(data[i].logType) {
-
 								//审核
 								case "0":
-									if(data[i].status == "30") {
-
-										//										$li.onclick(function(){
-
-										//										})
-									} else {
-										if(data[i].clientType == "2") {
-											//											$li.onclick(function(){
-											//												window.location.href =  "index.html?managerId="+data[i].managerId
-											//											})
-										} else {
-											//											temp+='<li>';
-										}
-									}
 									temp += '<span class="title_p">审核</span>';
 									break;
 									//回访
 								case "1":
-									//									temp+='<li>';
 									temp += '<span class="title_p">回访</span>';
 									break;
 									//生日
 								case "2":
-									//									alert("这里开始判断");
-									//									temp+='<li>';
 									temp += '<span class="title_p">生日</span>';
 									break;
 									//大额
 								case "3":
-									//									temp+='<li>';
 									temp += '<span class="title_p">大额</span>';
 									break;
 									//待抢
@@ -102,7 +81,6 @@
 							}
 							temp += '<i>' + data[i].message + '</i>';
 							temp += '<em class="time">' + data[i].date + ' ' + data[i].time + '</em>';
-							//       		  			temp+='</li>';
 							$li.html(temp);
 
 							$("#undo").append($li)
@@ -114,14 +92,7 @@
 				});
 			})
 		</script>
-		<style>
-			@media only screen and (min-width: 480px) {
-				.main_content {
-					width: 480px;
-					margin: 0 auto;
-				}
-			}
-		</style>
+
 	</head>
 
 	<body>

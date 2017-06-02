@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul>
+				<li>
+					<p>禁止用户复制粘贴</p>
+					<form id="form1">
+						<div class="input_box">
+							<label>用户</label>
+							<input type="text" id="" value="" placeholder="请输入用户名" />
+						</div>
+						<div class="input_box">
+							<label>密码</label>
+							<input type="text" id="" value="" placeholder="请输入密码" />
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn1">确定</button>
+						</div>
+
+					</form>
+				</li>
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+				var form = getId('form1');
+				var input = form.getElementsByTagName('input');
+				
+				var btn = getId('btn1');				
+				btn.onclick = function() {
+					return false;
+				}
+				document.onkeydown = function(e) {
+					e = e || window.event;
+					var keycode = e.keyCode || e.which;
+					if(e.ctrlKey && keycode == 13) {
+						alert('表单已提交');
+					}
+					return false;
+				}
+			}());
+			function getId(n){
+				return document.getElementById(n);
+			}
+			
+		</script>
+	</body>
+
+</html>

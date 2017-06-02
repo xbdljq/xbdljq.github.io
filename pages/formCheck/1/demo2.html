@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>关闭用户中文输入法</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<style type="text/css">
+			li {
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 14px;
+				/*float: left;*/
+				/*width: 45%;*/
+				min-height: 150px;
+				padding-bottom: 20px;
+			}
+			
+			li p {
+				line-height: 40px;
+				font-weight: bold;
+			}
+			
+			.input_box label {
+				width: 80px;
+			}
+			
+			.btn_box {
+				margin-bottom: 10px;
+				margin-left: 85px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul>
+				<li>
+					<p>关闭用户中文输入法</p>
+					<form id="form1">
+						<div class="input_box">
+							<label>用户</label>
+							<input type="text" id="" value="" placeholder="请输入用户名" data-ime="1" />
+						</div>
+						<div class="input_box">
+							<label>密码</label>
+							<input type="text" id="" value="" placeholder="请输入密码" />
+						</div>
+						<div class="btn_box">
+							<button class="btn" id="btn2">确定</button>
+						</div>
+
+					</form>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+
+				var form1 = getId('form1');
+				var inputs1 = form1.getElementsByTagName('input');
+				for(var i = 0; i < inputs1.length; i++) {
+					inputs1[i].onfocus = function() {
+						if(this.getAttribute('data-ime')) {
+							cancel(this);
+						}
+					}
+					if(inputs1[i].style.imeMode == undefined) {
+						inputs1[i].onkeyup = inputs1[i].onblur = function() {
+							clear(this);
+						}
+					}
+				}
+
+				function cancel(o) {
+					o.style.imeMode = 'disabled';
+
+				}
+
+				function clear(o) {
+					o.value = o.value.replace(/[\u4e00-\u9fa5]/g, '');
+				}
+				
+
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+		</script>
+	</body>
+
+</html>

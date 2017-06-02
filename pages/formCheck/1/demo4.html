@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css"/>
+		<style type="text/css">
+			.red {
+				color: red;
+				font-size: 16px;
+			}
+			
+
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul class="ul1">
+				<li>
+					<p>仿微博提示可输入剩余字数</p>
+					<form id="form1">
+						<div class="input_box">
+							<label class="align_top">简介</label>
+							<textarea placeholder="请输入文本" maxlength="140"></textarea>
+							<div>还能输入<span class="red" id="maxNum">140</span>字</div>
+						</div>
+						
+					</form>
+					
+
+				</li>
+			
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+				//仿微博提示可输入剩余字数			
+				var form1 = getId('form1');
+				var textarea1 = form1.getElementsByTagName('textarea')[0];
+				var maxNum = getId("maxNum")
+				var btn1 = getId('btn1');
+
+				textarea1.oninput = textarea1.onpropertychange = function() {
+					change(this);
+				}
+				var m = 140;
+
+				function change(o) {
+					var l = len(o.value);
+					if(l <= m) {
+						maxNum.innerHTML = m - l;
+					}
+				}
+				//匹配非双字节的字符。小写字母和汉字都会被匹配出来。
+				function len(s) {
+					return String(s).replace('^\x00-\xff', 'aa').length;
+				}
+
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+
+			//获取非行间样式
+			function css(obj, attr) {
+				if(obj.currentStyle) {
+					return obj.currentStyle[attr];
+				} else {
+					return getComputedStyle(obj, null)[attr];
+				}
+			}
+		</script>
+	</body>
+
+</html>

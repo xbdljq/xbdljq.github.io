@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<style type="text/css">
+			.ul1 {
+				/*border: 1px solid red;*/
+				/*margin: 20px;*/
+				/*padding: 20px;*/
+			}
+			
+			.ul1>li {
+				padding: 10px 15px 20px;
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 14px;
+				float: left;
+				width: 47%;
+				height: 200px;
+			}
+			
+			.ul1>li p {
+				line-height: 40px;
+				font-weight: bold;
+				/*font-size: 16px;*/
+			}
+			
+			.ul1>li label {
+				margin-right: 20px;
+				/*display: inline-block;*/
+			}
+			
+			.ul1>li input {
+				border: 1px solid #CCCCCC;
+				height: 30px;
+				line-height: 30px;
+				width: 180px;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				padding: 0 5px;
+				margin-right: 30px;
+			}
+			
+			button {
+				background-color: #1DB7FF;
+				color: #FFFFFF;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				padding: 0 15px;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.input_ground {
+				margin-bottom: 10px;
+			}
+			
+			textarea {
+				width: 300px;
+				height: 80px;
+				box-sizing: border-box;
+				padding: 5px;
+				border: 1px solid #cccccc;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				outline: none;
+				resize: none;
+			}
+			
+			.red {
+				color: red;
+				font-size: 16px;
+			}
+			
+			.roll {
+				height: 95px;
+				overflow: hidden;
+			}
+			
+			.list {
+				margin: 0;
+			}
+			
+			.list li {}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul class="ul1">
+
+				<li>
+					<p>文本框中的文字自动滚动</p>
+					<div class="demo1">
+						<!--<h3>文本框中的文字自动滚动</h3>-->
+						<div id="roll" data-rwidth="100" data-rheight="100" class="roll">
+							<ul id="ul2" class="list" style="">
+								<li>滟滟随波千万里，何处春江无月明！</li>
+								<li>江流宛转绕芳甸，月照花林皆似霰。</li>
+								<li>空里流霜不觉飞，汀上白沙看不见。</li>
+								<li>江天一色无纤尘，皎皎空中孤月轮。</li>
+								<li>江畔何人初见月？江月何年初照人？</li>
+								<li>人生代代无穷已，江月年年望相似。</li>
+								<li>不知江月待何人，但见长江送流水。</li>
+								<li>白云一片去悠悠，青枫浦上不胜愁。</li>
+								<li>谁家今夜扁舟子？何处相思明月楼？</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+
+				//文本框中的文字自动滚动
+				var ul2 = getId('ul2');
+				var lis = ul2.getElementsByTagName('li');
+				var len = lis.length;
+
+				function auto() {
+					act(ul2, 'marginTop', -20, function() {
+						ul2.appendChild(ul2.children[0]);
+						ul2.style.marginTop = 0;
+						setTimeout(function() {
+							auto();
+						}, 800);
+					});
+				}
+				auto();
+
+				function act(obj, attr, target, fn) {
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function() {
+						var cur = parseInt(css(obj, attr));
+						var speed = (target - cur) / 8;
+						var stop = true;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						if(target != cur) {
+							stop = false;
+						}
+						obj.style[attr] = speed + cur + 'px';
+						if(stop) {
+							clearInterval(obj.timer);
+							obj.timer = null;
+							fn && fn.call(obj);
+						}
+					}, 20);
+				}
+
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+
+			//获取非行间样式
+			function css(obj, attr) {
+				if(obj.currentStyle) {
+					return obj.currentStyle[attr];
+				} else {
+					return getComputedStyle(obj, null)[attr];
+				}
+			}
+		</script>
+	</body>
+
+</html>

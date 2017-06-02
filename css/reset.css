@@ -59,6 +59,17 @@ outline: none;
 }
 select::-ms-expand { display: none; }
 
+button {
+	background-color: #1DB7FF;
+	color: #FFFFFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 0 15px;
+	height: 30px;
+	line-height: 30px;
+}
+
 
 
 

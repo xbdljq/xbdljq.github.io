@@ -28,14 +28,14 @@
 				$(".top_open").on("click",function(){
 					if(flag == 1){
 						
-						$(".main_contain_left").animate({width:"-=80px"},100,function(){});
+						$(".main_contain_left").animate({width:"-=140px"},100,function(){});
 						$(".commonMenu_list li").hide();
-						$(".commonMenu_first").animate({width:"-=80px"},100,function(){});
+						$(".commonMenu_first").animate({width:"-=140px"},100,function(){});
 						flag = 0;
 					}else if(flag == 0){
-						$(".main_contain_left").animate({width:"+=80px"},30,function(){});
+						$(".main_contain_left").animate({width:"+=140px"},30,function(){});
 						
-						$(".commonMenu_first").animate({width:"+=80px"},30,function(){});
+						$(".commonMenu_first").animate({width:"+=140px"},30,function(){});
 						$(".commonMenu_list li").show(50);
 						flag = 1;
 					}
@@ -52,7 +52,7 @@
     	.head_img{
     		width:50px;
     		height: 50px;
-    		border: 1px solid red;
+    		/*border: 1px solid red;*/
     		-webkit-border-radius: 50%;
     		-moz-border-radius: 50%;
     		border-radius: 50%;
@@ -62,13 +62,28 @@
     		width: 100%;
     		height: 100%;
     	}
+    	header div{
+    		float: left;
+    		/*vertical-align: middle;*/
+    		
+    	}
+    	.head_info{
+    		float: left;
+    		/*border: 1px solid red;*/
+    		height: 50px;
+    		line-height: 50px;
+    		padding-left: 15px;
+    	}
     </style>
 </head>
 <body>
     <!-- 头部开始==== -->
-    <header>
+    <header class="clearfix">
         <div class="head_img">
-            <img src="img/init_img.png" alt="" />
+            <img src="img/headimg.jpg" alt="" />
+        </div>
+        <div class="head_info">
+        	嗨
         </div>
         <!--<span class="product_name">管理控制台</span>-->
         <!--<div class="user_box">
@@ -112,7 +127,7 @@
         <!-- 右侧跳转内容区 -->
         <div class="main_contain_right clearfix" >
             <div style="height:100% ;"> 
-            <iframe src="pages/UIdemo/c.html" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" id="body-right" name="body-right"  height="100%" style="box-sizing:border-box;"></iframe>
+            <iframe src="pages/UIdemo/input/input.html" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" id="body-right" name="body-right"  height="100%" style="box-sizing:border-box;"></iframe>
             </div>
         </div>
     </div>
@@ -126,22 +141,46 @@
            var data = [
            		[
            			{title:"简单的UI组件"},
-           			{title:"tab选项",url:"pages/UIdemo/c.html"},
-           			{title:"按钮",url:"pages/demo/c.html"},
-           			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"},
-           			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"}
+           			{title:"表单UI",url:"pages/UIdemo/input/input.html"}
+//         			{title:"按钮",url:"pages/demo/c.html"},
+//         			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"},
+//         			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"}
            		],
            		[
-           			{title:"表单"},
-           			{title:"表单提交前的验证",url:"pages/formCheck/postPage.html"},
-           			{title:"表单获取数据",url:"pages/formCheck/getPage.html"}
+           			{title:"表单常用代码"},
+//         			{title:"表单提交前的验证",url:"pages/formCheck/checkPage/postPage.html"},
+//         			{title:"表单获取数据",url:"pages/formCheck/checkPage/getPage.html"},
+           			{title:"去掉字符串左右的空格",url:"pages/formCheck/1/demo1.html"},
+           			{title:"禁止用户输入",url:"pages/formCheck/1/demo1.html"},
+           			{title:"限制字符串长度",url:"pages/formCheck/1/demo1.html"},
+           			{title:"关闭用户中文输入法",url:"pages/formCheck/1/demo2.html"},
+           			{title:"禁止用户复制粘贴",url:"pages/formCheck/1/demo3.html"},
+           			{title:"限制只能输入数字",url:"pages/formCheck/1/demo3.html"},
+           			
+           			{title:"仿微博提示可输入剩余字数",url:"pages/formCheck/1/demo4.html"},
+           			{title:"换行文本自动滚动",url:"pages/formCheck/1/demo5.html"},
+           			{title:"Ctrl+Enter提交表单",url:"pages/formCheck/1/demo7.html"},
+           			{title:"文本内容进行关键字过滤",url:"pages/formCheck/1/demo6.html"},
+           			{title:"全选反选少选复选框",url:"pages/formCheck/1/demo8.html"},
+           			{title:"动态操作下拉选项",url:"pages/formCheck/1/demo9.html"},
+           		
+           			{title:"可添加的下拉选项",url:"pages/formCheck/1/demo11.html"},
+      
+           		], 
+           		[
+           			{title:"图片常用代码"},           			
+//         			{title:"图片放大境效果",url:"pages/other/demo1/index.html"},
+           			{title:"鼠标移入移出改变透明度",url:"pages/other/demo2.html"},
+      
+      
            		], 
            		[
            			{title:"其他"},
-           			{title:"仿京东导航菜单",url:"pages/other/jingDongMenu/index.html"},
-           			{title:"商城的锚点1",url:"pages/other/anchor/demo1.html"},
-           			{title:"商城的锚点2",url:"pages/other/anchor/demo2.html"},
-           			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"}
+//         			{title:"其他小实例",url:"pages/demo/贪吃蛇.html"}
+//         			{title:"仿京东导航菜单",url:"pages/other/jingDongMenu/index.html"},
+           			{title:"其他实例",url:"pages/other/menu.html"},
+//         			{title:"商城的锚点2",url:"anchor/demo2.html"},
+//         			{title:"我是子菜单1",url:"pages/demo/贪吃蛇.html"}
            		], 
             ];
             window.onload = function(){

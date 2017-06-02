@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>去掉字符串左右的空格</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/inputs.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/itemPage.css" />
+		<style type="text/css">
+			li {
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 14px;
+				/*float: left;*/
+				/*width: 45%;*/
+				min-height: 150px;
+				padding-bottom: 20px;
+			}
+			
+			li p {
+				line-height: 40px;
+				font-weight: bold;
+			}
+			
+			.input_box label {
+				width: 80px;
+			}
+			
+			.btn_box {
+				margin-bottom: 10px;
+				margin-left: 85px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap_main">
+			<ul>
+				<li>
+					<p>去掉字符串的左右空格</p>
+					<div class="input_box">
+						<input type="text" id="input1" value="[  夏天的风      ]" />
+					</div>
+						<button class="btn" id="btn1">确定</button>
+
+				</li>
+				<li>
+					<p>禁止用户输入</p>
+					<div class="input_box">
+						<label>用户名</label>
+						<input type="text" id="" value="" disabled="disabled" placeholder="用户名" />
+					</div>
+
+				</li>
+				<li>
+					<p>限制字符串长度（最多只能输入10个字符串）</p>
+					<div class="input_box">
+						<label>用户名</label>
+						<input type="text" id="" value="" placeholder="用户名" maxlength="10" />
+					</div>
+
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function() {
+				//去掉字符串空格
+				var input1 = getId("input1")
+				getId("btn1").onclick = function() {
+					input1.value = input1.value.replace(/(\s|\u00A0)+|(\s|\u00A0)+/g, '');
+				}
+			})()
+			//获取ID值
+			function getId(n) {
+				return document.getElementById(n)
+			}
+		</script>
+	</body>
+
+</html>

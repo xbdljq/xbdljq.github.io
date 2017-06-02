@@ -66,12 +66,15 @@ body {
 
 .topmenu .lihover .nullspan {
 	background-color: #FFFFFF;
+	/*background-color: red;*/
 	display: inline-block;
 	z-index: 20;
 	width: 20px;
 	height: 60px;
 	float: right;
 	position: relative;
+	/*left: -20px;*/
+	top: 0;
 	+top: -30px;
 }
 
@@ -107,7 +110,7 @@ body {
 	display: none;
 	width: 700px;
 	+width: 750px;
-	left: 240px;
+	left: 280px;
 	position: absolute;
 	top: 40px;
 	border: 1px solid #dddddd;
@@ -222,17 +225,16 @@ body {
 
 /*IE5.5+*/
 .submenu {
-	>/*IE only*/
+	/*IE only*/
 	top: -30px;
 	/*IE6*/
-	>/*IE only*/
-	top/*IE5.5*/
-	: -30px;
+	/*IE only*//*IE5.5*/
+	top: -30px;
 }
 
-* html .topmenu .lihover .nullspan {
+/** html .topmenu .lihover .nullspan {
 	height: 30px;
-}
+}*/
 
 * html .topmenu .lihover .nullspan {
 	background-color: #FFFFFF;
