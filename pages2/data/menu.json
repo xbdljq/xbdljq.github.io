@@ -1,0 +1,35 @@
+[
+	{"menuId":1,"menuName":"主页","menuIcon":"","menuHref":""},
+	{	
+		"menuId":2,"menuName":"统计图表","menuIcon":"","menuHref":"",
+		"itemMenu":[
+			{"itemMenuId":1,"itemMenuName":"百度Echart","itemMenuHref":""},
+			{"itemMenuId":1,"itemMenuName":"其他","itemMenuHref":""}
+		]
+	},
+	{	
+		"menuId":2,"menuName":"表单","menuIcon":"","menuHref":"",
+		"itemMenu":[
+			{"itemMenuId":1,"itemMenuName":"基本表单","itemMenuHref":""},
+			{"itemMenuId":1,"itemMenuName":"表单验证","itemMenuHref":""},
+			{"itemMenuId":1,"itemMenuName":"pc日期选择器layer","itemMenuHref":""},
+			{"itemMenuId":1,"itemMenuName":"移动日期选择器","itemMenuHref":""},
+			{"itemMenuId":1,"itemMenuName":"百度编辑器","itemMenuHref":""}
+		]
+	},
+	{	
+		"menuId":2,"menuName":"UI","menuIcon":"","menuHref":"",
+		"itemMenu":[
+			
+		]
+	},
+	{	
+		"menuId":2,"menuName":"表格","menuIcon":"","menuHref":"",
+		"itemMenu":[
+			
+		]
+	}
+
+
+
+]
