@@ -1,3 +1,5 @@
+/*清除浮动*/
+
 .clearfix:after {
 	content: "";
 	display: block;
@@ -11,15 +13,36 @@
 }
 
 
+/*表单样式*/
+
+
 /*flex盒子*/
 
-.flex_box {
+.flexBox {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
 	-webkit-align-items: center;
+}
+
+.flexCenter {
+	align-items: center;
+	-webkit-align-items: center;
+}
+
+.flexWarp {
+	flex-wrap: wrap;
+}
+
+.flexStrat {
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+}
+
+.paddingTop8 {
+	padding-top: 8px;
 }
 
 .flex1 {
@@ -29,29 +52,52 @@
 	flex: 1;
 }
 
+.bothLi {
+	padding-top: 20px;
+}
+
+.bothLi li {
+	float: left;
+	width: 50%;
+}
+
 .formUl {
-	margin-top: 20px;
+	padding-top: 20px;
 }
 
-.formli {
-	margin-bottom: 15px;
+.formLi {
+	padding: 10px 0;
+	box-sizing: border-box;
+	color: #696969;
+	font-family: "microsoft yahei";
+	font-size: 14px;
+	color: #696969;
 }
 
-.formli label {
-	width: 130px;
+.formLi>label {
+	width: 120px;
 	text-align: right;
-	margin-right: 15px;
+	margin-right: 20px;
+	margin-bottom: 0px;
 }
 
-.formli select {
+.lineHeight34 {
+	line-height: 34px;
+}
+
+select {
 	border: 1px solid #E7EAEC;
 	width: 192px;
 	height: 34px;
 	line-height: 34px;
 	box-sizing: border-box;
+	color: #696969;
+	font-family: "microsoft yahei";
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="password"],
+input[type="number"] {
 	border: 1px solid #E7EAEC;
 	width: 192px;
 	height: 34px;
@@ -61,6 +107,20 @@ input[type="text"], input[type="number"] {
 	background-color: #FFFFFF !important;
 	font-size: 14px;
 	font-family: "microsoft yahei";
+	outline: none;
+	margin-right: 5px;
+	color: #696969;
+	border-radius: 3px;
+}
+
+.formLi input[type="radio"],
+.formLi input[type="checkbox"] {
+	margin-left: 30px;
+}
+
+.formLi input[type="radio"]:nth-of-type(1),
+.formLi input[type="checkbox"]:nth-of-type(1) {
+	margin-left: 0;
 }
 
 input[type="radio"],
@@ -74,11 +134,96 @@ textarea {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	width: 350px;
+	width: 400px;
 	outline: none;
 	box-sizing: border-box;
-	padding: 10px 5px;
+	padding: 8px 5px;
+	color: #696969;
 }
+
+
+/*button {
+    height: 34px;
+    padding: 0 15px;
+    background-color: #3399ff;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+}*/
+
+.saveBtn {
+	margin: 20px 0;
+}
+
+
+/*错误提示的样式*/
+
+input.error {
+	border: 1px solid red;
+}
+
+form label.error {
+	background: url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+	padding-left: 1px;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	font-weight: bold;
+	color: #EA5200;
+	font-size: 12px;
+	display: none;
+}
+
+
+/*//校验成功时的class值必须为valid*/
+
+label.valid {
+	background: url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+
+.minInfo {
+	color: red;
+	font-size: 12px;
+}
+
+
+/*面包屑*/
+
+.crumbs {
+	background-color: #F0F3F4;
+	/*margin-bottom: 10px;*/
+	font-family: "microsoft yahei";
+	font-size: 14px;
+	box-sizing: border-box;
+	margin-left: 0;
+	padding: 20px 0 10px 0;
+	margin-bottom: 0;
+}
+
+.crumbs li {
+	margin: 0 5px;
+	display: inline-block;
+}
+
+
+/*面包屑结束*/
+
+
+/*子页面大体使用的类*/
+
+.leWrapper {
+	overflow: auto;
+	box-sizing: border-box;
+	margin-top: 20px;
+	margin-left: 20px;
+	padding-right: 20px;
+}
+
+
+/*子页面大体使用的类结束*/
+
+
+/*弹框*/
 
 .leLayer {
 	position: fixed;
@@ -112,26 +257,6 @@ fieldset[disabled] .form-control {
 	font-size: 14px;
 }
 
-.example-wrap {
-	background-color: #FFFFFF;
-}
-
-.crumbs {
-	/*height: 40px;*/
-	/*background-color: #FFFFFF;*/
-	margin-bottom: 10px;
-	font-family: "microsoft yahei";
-	/*line-height: 40px;*/
-	font-size: 14px;
-	box-sizing: border-box;
-	/*padding-left: 10px;*/
-	margin-left: 0;
-}
-
-.crumbs li {
-	margin: 0 5px;
-}
-
 .row {
 	margin-left: 0;
 	margin-right: 0;
@@ -141,6 +266,7 @@ fieldset[disabled] .form-control {
 	margin: 0;
 	line-height: 1.8;
 }
+
 .imgTd img {
 	width: 50px;
 	height: 50px;
@@ -152,19 +278,68 @@ fieldset[disabled] .form-control {
 	height: 50px;
 }
 
-.fixed-table-toolbar {
-	margin-bottom: 10px;
+
+/*列表相关自定义样式*/
+
+
+/*列表头部的搜索模块*/
+
+.searchFormUl {
+	flex-wrap: wrap;
+	font-size: 14px;
 }
 
-.fixed-table-toolbar input[type="text"] {
+.searchFormUl label {
+	margin-right: 10px;
+	color: #363636;
+	font-size: 14px;
+	font-weight: initial;
+}
+
+.searchFormUl input[type="text"],
+.searchFormUl select {
 	height: 30px;
 	line-height: 30px;
-	vertical-align: middle;
+}
+
+.searchFormUl li {
+	margin: 0 30px 20px 0;
+}
+
+
+/*列表头部的搜索模块结束*/
+
+
+/*.fixed-table-toolbar {
+    margin-bottom: 10px;
+}*/
+
+
+/*.fixed-table-toolbar input[type="text"] {
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+    }*/
+
+.fixed-table-pagination .pagination-detail {
+	display: none;
 }
 
 .tableList a {
-	margin-right: 10px;
+	margin-right: 15px;
 }
-.hid{
-	display: none;
+
+
+/*表单样式结束*/
+
+
+/*面包屑与大体内容框*/
+
+.breadcrumb {
+	background-color: transparent;
+	padding: 20px 0 10px;
+}
+
+.Lwrap {
+	background-color: #FFFFFF;
 }

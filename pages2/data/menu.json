@@ -1,33 +1,37 @@
 [
-	{"menuId":1,"menuName":"主页","menuIcon":"","menuHref":""},
+	{"menuName":"主页","menuIcon":"","menuHref":"","itemMenu":[]},
 	{	
-		"menuId":2,"menuName":"统计图表","menuIcon":"","menuHref":"",
+		"menuName":"统计图表","menuIcon":"","menuHref":"",
 		"itemMenu":[
-			{"itemMenuId":1,"itemMenuName":"百度Echart","itemMenuHref":""},
-			{"itemMenuId":1,"itemMenuName":"其他","itemMenuHref":""}
+			{"itemMenuName":"百度Echart","itemMenuHref":"","minItem":[]},
+			{"itemMenuName":"其他","itemMenuHref":"","minItem":[]}
 		]
 	},
 	{	
-		"menuId":2,"menuName":"表单","menuIcon":"","menuHref":"",
+		"menuName":"表单","menuIcon":"","menuHref":"",
 		"itemMenu":[
-			{"itemMenuId":1,"itemMenuName":"基本表单","itemMenuHref":""},
-			{"itemMenuId":1,"itemMenuName":"表单验证","itemMenuHref":""},
-			{"itemMenuId":1,"itemMenuName":"pc日期选择器layer","itemMenuHref":""},
-			{"itemMenuId":1,"itemMenuName":"移动日期选择器","itemMenuHref":""},
-			{"itemMenuId":1,"itemMenuName":"百度编辑器","itemMenuHref":""}
+			{"itemMenuName":"基本表单","itemMenuHref":"","minItem":[]},
+			{
+				"itemMenuName":"表单验证jquery.validate.js","itemMenuHref":"",
+				"minItem":[
+					{"itemMenuName":"demo1","itemMenuHref":"pages2/js/plugin/jquery.validate.js/demo1.html"},
+					{"itemMenuName":"demo2","itemMenuHref":"pages2/js/plugin/jquery.validate.js/demo2.html"},
+					{"itemMenuName":"demo3","itemMenuHref":"pages2/js/plugin/jquery.validate.js/demo3.html"},
+					{"itemMenuName":"demo4","itemMenuHref":"pages2/js/plugin/jquery.validate.js/demo4.html"}
+				]
+			},
+			{"itemMenuName":"pc日期选择器layer","itemMenuHref":"","minItem":[]},
+			{"itemMenuName":"移动日期选择器","itemMenuHref":"","minItem":[]},
+			{"itemMenuName":"百度编辑器","itemMenuHref":"","minItem":[]}
 		]
 	},
 	{	
-		"menuId":2,"menuName":"UI","menuIcon":"","menuHref":"",
-		"itemMenu":[
-			
-		]
+		"menuName":"UI","menuIcon":"","menuHref":"",
+		"itemMenu":[]
 	},
 	{	
-		"menuId":2,"menuName":"表格","menuIcon":"","menuHref":"",
-		"itemMenu":[
-			
-		]
+		"menuName":"表格bootstrapTable","menuIcon":"","menuHref":"",
+		"itemMenu":[]
 	}
 
 

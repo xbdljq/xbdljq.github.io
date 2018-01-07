@@ -1,0 +1,123 @@
+{  
+    "page": 1,  
+    "rows": [  
+        {  
+            "dept": {   "deptDesc": "",  "deptno": 10,  "dname": "销售部"  },  
+            "loginName": "lisi",  "loginPwd": "456",  "realName": "李四",   "userId": 1,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 2,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 3,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 4,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 5,  "userStatus": "0"  
+        }  ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 6,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 7,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 8,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 9,  "userStatus": "0"  
+        }  ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 10,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 11,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 12,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 13,  "userStatus": "0"  
+        }  ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 14,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 15,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 16,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 17,  "userStatus": "0"  
+        }   ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 14,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 15,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 16,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 17,  "userStatus": "0"  
+        }   ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 18,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 19,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId":20,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 21,  "userStatus": "0"  
+        }   ,  
+        {  
+            "dept": {  "$ref": "$.rows[0].dept"  },  
+            "loginName": "wangwu",  "loginPwd": "789",  "realName": "王五",   "userId": 22,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {   "$ref": "$.rows[0].dept"   },  
+            "loginName": "zhaoliu",  "loginPwd": "111",  "realName": "赵六",  "userId": 23,  "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "deptno": 20,  "dname": "华南区域"  },  
+            "loginName": "fanqi",  "loginPwd": "222",  "realName": "范七",  "userId": 24,   "userStatus": "0"  
+        },  
+        {  
+            "dept": {  "$ref": "$.rows[3].dept"   },  
+            "loginName": "maoba",  "loginPwd": "333",  "realName": "毛八",  "userId": 25,  "userStatus": "0"  
+        }  
+        
+    ],  
+    "total": 30
+}  
