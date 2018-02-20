@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../js/plugins/layui-2.2.45/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="../css/index.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/plugins/layui-2.2.45/layui.js" type="text/javascript" charset="utf-8"></script>
+
+		<link rel="stylesheet" type="text/css" href="../css/mall-home.css" />
+	</head>
+
+	<body>
+
+		<!--头部-->
+		<div class="header">
+			<a href="/Home/Index" class="logo"></a>
+			<div class="search-box">
+				<form id="serachForm">
+					<input name="serachText" class="search-input" autocomplete="off" />
+					<button type="submit" class="search-btn">搜索</button>
+				</form>
+				<div class="hotwords">
+					<a>拉菲珍酿法国原装红酒</a>
+					<a>锦蚕享生活沙发垫套组</a>
+					<a>福鼎白茶</a>
+					<a>百财俱来</a>
+				</div>
+			</div>
+			<div class="hotline"></div>
+		</div>
+		<!--导航菜单-->
+		<div class="header-menu">
+			<ul>
+				<li class="folded">
+					<a>全部商品分类</a>
+					<ul id="oneMenu" class="one-menu"></ul>
+				</li>
+				<li>
+					<a href="/Home/Index" class="active">商城首页</a>
+				</li>
+				<li>
+					<a href="/Product/ProductList?type=0">百业惠商城</a>
+				</li>
+				<li>
+					<a href="/Product/ProductList?type=1">惠万家商城</a>
+				</li>
+				<li class="bg-image palmar-mall"></li>
+			</ul>
+		</div>
+		<!--轮播-->
+		<div id="index_carousel" class="layui-carousel">
+			<!--<div carousel-item>-->
+			<!--<a href="#" class="bg-image carousel-item" style="background-image: url(/static/image/exp/banner.jpg)"></a>-->
+			<!--<a href="#" class="bg-image carousel-item" style="background-image: url(/static/image/exp/banner.jpg)"></a>-->
+			<!--<a href="#" class="bg-image carousel-item" style="background-image: url(/static/image/exp/banner.jpg)"></a>-->
+			<!--</div>-->
+		</div>
+		<!--内容-->
+		<div class="content">
+			<!--今日推荐-->
+			<!--<div class="today">-->
+			<!--<div class="today-r">-->
+			<!--<a><img src=""></a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<div class="banner-gg"><img src="/static/image/buyear/gg.jpg"></div>
+			<!--商品分类列表-->
+			<div class="lazy-fn-wrap">
+				<ul id="flc" class="flc"></ul>
+			</div>
+		</div>
+
+		<script>
+			layui.extend({
+				tips: '../js/export/tips',
+				http: '../js/export/http'
+			}).use(['jquery', 'carousel', 'http', 'laytpl'], function($, carousel, http, laytpl) {
+				// 轮播
+				http.get('../data/GetHomeImg.json', function(data) {
+					if(data.length > 0) {
+						var item = $('<div carousel-item>')
+						$.each(data, function() {
+							item.append($('<a>').attr({
+								'href': this.redirect || '#',
+								'class': 'bg-image carousel-item',
+								'style': 'background-image: url(' + this.url + ')'
+							}))
+						})
+						$('#index_carousel').append(item)
+						carousel.render({
+							elem: '#index_carousel',
+							width: '100%',
+							height: '445px',
+							arrow: 'always'
+						})
+					}
+				})
+				// 商品列表
+				http.get('../data/GetCategoryProductList.json', function(data) {
+					laytpl($('#tpl_goods_list').html()).render(data, function(html) {
+						$('#flc').html(html)
+					})
+				})
+				// 商品分类菜单
+				http.get('../data/GetCategoryList.json', function(data) {
+					laytpl($('#tpl_menu_list').html()).render(data.list, function(html) {
+						$('#oneMenu').html(html)
+					})
+				})
+				// 搜索
+				$('#serachForm').on('submit', function() {
+					location.href = '/Product/ProductList' + (this.elements.serachText.value ? '?name=' + this.elements.serachText.value : '')
+					return false
+				})
+			})
+		</script>
+		<script id="tpl_guessLike_list" type="text/html">
+			<div class="mt">
+				<span>{{ d.tag_name }}</span>
+				<a href="/Product/ProductList?tagId={{ d.tag_id }}">更多>></a>
+			</div>
+			<div class="mc">
+				{{# layui.each(d.product, function(){ }}
+				<div class="fore1">
+					<a href="/Product/ProductDetail?id={{ this.product_id }}" class="f-img"><img src="{{ this.product_icon }}"></a>
+					<div class="f-info">
+						<a href="/Product/ProductDetail?id={{ this.product_id }}" class="f-desc">{{ this.product_name }}</a>
+						<div class="f-price">
+							<span class="l">¥{{ this.product_min_price }}</span>
+							<span class="r">积分{{ this.product_s_intergral }}</span>
+						</div>
+					</div>
+				</div>
+				{{# }) }}
+			</div>
+		</script>
+		<script id="tpl_goods_list" type="text/html">
+			{{# layui.each(d, function(i){ }}
+			<li>
+				<div class="mt">
+					<span><a href="/Product/ProductList?type={{ this.category_type }}&categoryId={{ this.category_id }}">{{ (i + 1) + 'F · ' + this.category_name }}</a></span>
+					<a href="/Product/ProductList?type={{ this.category_type }}&categoryId={{ this.category_id }}">更多>></a>
+				</div>
+				<div class="mc">
+					{{# layui.each(this.product, function () { }}
+					<div class="fore1">
+						<a href="/Product/ProductDetail?id={{ this.product_id }}" class="f-img"><img src="{{ this.product_icon }}"></a>
+						<div class="f-info">
+							<a href="/Product/ProductDetail?id={{ this.product_id }}" class="f-desc">{{ this.product_name }}</a>
+							<div class="f-price">
+								<span class="l">¥{{ this.product_min_price }}</span>
+								<span class="r">积分{{ this.product_s_intergral }}</span>
+							</div>
+						</div>
+					</div>
+					{{# }) }}
+				</div>
+			</li>
+			{{# }) }}
+		</script>
+		<script id="tpl_menu_list" type="text/html">
+			{{# layui.each(d, function(){ }}
+			<li>
+				<a href="/Product/ProductList?categoryId={{ this.category_id }}">{{ this.category_name }}</a>
+				{{# if(this.sub_category.length > 0){ }}
+				<ul class="two-menu">
+					{{# layui.each(this.sub_category, function(){ }}
+					<li>
+						<a href="/Product/ProductList?categoryId={{ this.category_id }}">{{ this.category_name }}</a>
+					</li>
+					{{# }) }}
+				</ul>
+				{{# } }}
+			</li>
+			{{# }) }}
+		</script>
+
+	</body>
+
+</html>

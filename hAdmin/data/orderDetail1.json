@@ -1,0 +1,49 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"orderid": "180130111558352",
+		"status": "WaitSend",
+		"status_code": 1,
+		"username": "王威",
+		"mobile": "13562587458",
+		"createdate": "2018/1/30 11:15:59",
+		"address": "北京北京市648朝阳区朝阳派出所",
+		"paymode": "现金积分",
+		"express_name": "圆通快递",
+		"express_order": "710458406499",
+		"ship_channel": 0,
+		"pay_money_integral": 20045.00,
+		"pay_shopping_integral": 0.00,
+		"pay_picking_integral": 0.00,
+		"pya_total": 20045.00,
+		"s_integral": 20045.00,
+		"products": [
+			{
+				"product_name": "耳坠银好看的耳坠爆款",
+				"product_price": 20045.00,
+				"product_icon": "../img/erzhui.jpg",
+				"quantity": 1,
+				"sku_name": "",
+				"pid": 52,
+				"status_code": 0,
+				"status": "",
+				"total": 20045.00,
+				"item_id": 71
+			}
+		],
+		"history_info": [
+			{
+				"datetime": "2018/1/30 11:15:59",
+				"status": "已建立订单待付款",
+				"userid": "00308987",
+				"username": "王威"
+			}, {
+				"datetime": "2018/1/30 11:16:15",
+				"status": "已支付订单待发货",
+				"userid": "00308987",
+				"username": "王威"
+			}
+		]
+	}
+}

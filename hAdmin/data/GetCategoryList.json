@@ -1,0 +1,206 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"page": 1,
+		"page_size": 10,
+		"count": 14,
+		"page_count": 2,
+		"list": [
+			{
+				"category_id": 20,
+				"category_name": "个护化妆",
+				"category_icon": "../img/a8.jpg",
+				"category_image": "../img/a8.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 59,
+						"category_name": "温碧泉",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 67,
+						"category_name": "SK-II",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 84,
+						"category_name": "洗面奶",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					},  {
+						"category_id": 87,
+						"category_name": "润肤霜",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 88,
+						"category_name": "面膜",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 90,
+						"category_name": "身体乳",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					},  {
+						"category_id": 94,
+						"category_name": "精华乳",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 95,
+						"category_name": "BB霜",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 96,
+						"category_name": "CC霜",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 97,
+						"category_name": "素颜霜",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 98,
+						"category_name": "粉底液",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 99,
+						"category_name": "粉饼",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 100,
+						"category_name": "腮红",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 101,
+						"category_name": "睫毛膏",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 102,
+						"category_name": "眼影",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 103,
+						"category_name": "眉笔",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 21,
+				"category_name": "鞋镜箱包",
+				"category_icon": "../img/a8.jpg",
+				"category_image": "../img/a8.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 25,
+						"category_name": "鞋子",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 26,
+						"category_name": "鞋子",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 22,
+				"category_name": "服装",
+				"category_icon": null,
+				"category_image": null,
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 68,
+						"category_name": "UNIQLO",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 69,
+						"category_name": "ochery",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 70,
+						"category_name": "ONLY",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 35,
+				"category_name": "餐厨日用",
+				"category_icon": "../img/a8.jpg",
+				"category_image": "../img/a8.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 74,
+						"category_name": "lumimarc",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 75,
+						"category_name": "Glasslock",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 76,
+						"category_name": "lock",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 38,
+				"category_name": "项链",
+				"category_icon": "../img/a8.jpg",
+				"category_image": "../img/a8.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 42,
+						"category_name": "9千足金",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 43,
+						"category_name": "9.5铂金",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 44,
+						"category_name": "周生生",
+						"category_image": "../img/a8.jpg",
+						"category_sort": 0
+					}
+				]
+			},  {
+				"category_id": 62,
+				"category_name": "鞋镜箱包",
+				"category_icon": "../img/a8.jpg",
+				"category_image": "../img/a8.jpg",
+				"category_type": 0,
+				"category_sort": 2,
+				"sub_category": []
+			}
+		]
+	}
+}

@@ -1,0 +1,21 @@
+[
+	{
+		"text": "父节点 1",
+		"id":"001",
+		"tags": ["available","er"],
+		"nodes": [
+			{
+				"text": "子节点 1",
+				"id":"0011",
+				"tags": ["available","er"],
+				"nodes": [
+					{"text": "孙子节点 1","id":"00111"},
+					{"text": "孙子节点 2","id":"00112"}
+				]
+			}, 
+			{"tags": ["available","er"],"text": "子节点 2","id":"0012"}
+		]
+	},  
+	{"tags": ["available","er"],"text": "父节点 4"}, 
+	{"tags": ["available","er"],"text": "父节点 5"}
+]

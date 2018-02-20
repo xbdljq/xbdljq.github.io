@@ -1,0 +1,17 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": [
+		{
+			"id": 2,
+			"url": "http://www.buyear.com/byh/files/5a/5aa5c051-d195-4170-aaf6-011852515d23.jpg",
+			"text": "轮播图1",
+			"redirect": "http://buyear.elevo.cn/Product/ProductList?type=0"
+		}, {
+			"id": 3,
+			"url": "http://www.buyear.com/byh/files/7a/7ab5dd67-93a7-4906-8c2b-fe9d8aaf7726.jpg",
+			"text": "轮播图2",
+			"redirect": "http://buyear.elevo.cn/Product/ProductList?type=1"
+		}
+	]
+}

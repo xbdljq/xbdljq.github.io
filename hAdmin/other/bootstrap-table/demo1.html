@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title> - Bootstrap Table</title>
+
+		<link href="../bootstarap/bootstrap.min.css" rel="stylesheet">
+		<link href="js/bootstrap-table.css" rel="stylesheet">
+
+		<!-- 全局js -->
+		<script src="../../../../js/jquery.min.js"></script>
+		<script src="../bootstarap/bootstrap.min.js"></script>
+		<!-- Bootstrap table -->
+		<script src="js/bootstrap-table.min.js"></script>
+		<script src="js/locale/bootstrap-table-zh-CN.js"></script>
+		<style>
+			.marginRight10 {
+				margin-right: 15px;
+			}
+			/*css3设置滚动条样式*/
+			
+			::-webkit-scrollbar-track {
+				background-color: #F5F5F5;
+			}
+		
+			::-webkit-scrollbar {
+				width: 6px;
+				background-color: #F5F5F5;
+			}
+			
+			::-webkit-scrollbar-thumb {
+				background-color: #999;
+			}
+		</style>
+		<script>
+			$(function() {
+				var t = $("#table_server").bootstrapTable({
+					url: 'demo1.json',
+					height:600,
+					method: 'get',
+					dataType: "json",
+					striped: true, //设置为 true 会有隔行变色效果  
+					undefinedText: "---", //当数据为 undefined 时显示的字符  
+					pagination: true, //分页  
+					// paginationLoop:true,//设置为 true 启用分页条无限循环的功能。  
+					//showToggle: "true", //是否显示 切换试图（table/card）按钮  
+					//showColumns: "true", //是否显示 内容列下拉框  
+					pageNumber: 1, //如果设置了分页，首页页码  
+					// showPaginationSwitch:true,//是否显示 数据条数选择框  
+					//pageSize: 5, //如果设置了分页，页面数据条数  
+					//pageList: [5, 20, 40], //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
+					paginationPreText: '‹', //指定分页条中上一页按钮的图标或文字,这里是<  
+					paginationNextText: '›', //指定分页条中下一页按钮的图标或文字,这里是>  
+					// singleSelect: false,//设置True 将禁止多选  
+					//search: false, //显示搜索框  
+					data_local: "zh-US", //表格汉化  
+					sidePagination: "server", //服务端处理分页  
+					queryParams: function(params) { 
+						//自定义参数，这里的参数是传给后台的，我这是是分页用的
+						//console.log(params);
+						return { //这里的params是table提供的
+							//cp: (params.offset/5), //从数据库第几条记录开始  						
+							//ps: params.limit //找多少条  
+							rows: params.limit, //页面大小
+							page: (params.offset / params.limit) + 1, //页码
+							sort: params.sort, //排序列名  
+							sortOrder: params.order //排位命令（desc，asc） 
+						};
+					},
+					//idField: "userId", //指定主键列  
+					columns: [{
+							title: '#', //表的列名  
+							field: 'userId', //json数据中rows数组中的属性名   
+						},
+						{
+							title: '账号',
+							field: 'loginName',
+						},
+						{
+							title: '真实姓名',
+							field: 'realName',
+						},
+						{
+							title: '邮箱',
+							field: 'email',
+							//align: 'center'
+						},
+						{
+							//部门名字  
+							title: '部门',
+							field: 'dept.dname', //可以直接取到属性里面的属性，赞  
+							//align: 'center'
+						},
+						{
+							title: '状态',
+							field: 'userStatus',
+							formatter: function(value, row, index) { //自定义显示，这三个参数分别是：value该行的属性，row该行记录，index该行下标  
+								return row.userStatus == 0 ? "正常" : row.userStatus == 1 ? "请假" : "离职";
+							}
+
+						},
+						{
+							title: '操作',
+							field: 'userId',
+							//							align: 'center',
+							formatter: function(value, row, index) { //自定义显示可以写标签哦~  
+								var str = "";
+								str += '<a href="#" onclick="edit(\'' + row.userId + '\')" class="marginRight10">编辑</a>';
+								str += '<a href="#" onclick="del(\'' + row.userId + '\')">删除</a> ';
+								return str;
+							}
+						}
+
+					]
+				});
+
+				t.on('load-success.bs.table', function(data) { //table加载成功后的监听函数  
+					//console.log("load success");
+					//$(".pull-right").css("display", "block");
+				});
+			})
+
+			function edit() {
+				alert("我点击编辑了")
+			}
+
+			function del() {
+				alert("我删除了")
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="row" style="margin: 20px;">
+			<div class="col-sm-12">
+				<table id="table_server"></table>
+			</div>
+		</div>
+
+	</body>
+
+</html>

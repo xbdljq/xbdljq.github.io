@@ -1,0 +1,39 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": [
+		{
+			"userid": "00709666",
+			"signid": 90,
+			"username": "向阳",
+			"sign_total": 300000.00,
+			"sign_type_name": "体验店",
+			"sign_type": 2,
+			"child_count": 0
+		}, {
+			"userid": "00709666",
+			"signid": 89,
+			"username": "向阳",
+			"sign_total": 300000.00,
+			"sign_type_name": "体验店",
+			"sign_type": 2,
+			"child_count": 0
+		}, {
+			"userid": "00709666",
+			"signid": 61,
+			"username": "向阳",
+			"sign_total": 300000.00,
+			"sign_type_name": "体验店",
+			"sign_type": 2,
+			"child_count": 0
+		}, {
+			"userid": "00709666",
+			"signid": 60,
+			"username": "向阳",
+			"sign_total": 300000.00,
+			"sign_type_name": "体验店",
+			"sign_type": 2,
+			"child_count": 0
+		}
+	]
+}

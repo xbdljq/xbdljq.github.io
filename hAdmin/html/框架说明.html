@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.divs {
+				float: left;
+				width: 50%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>框架说明</li>
+			</ul>
+
+			<div class="leWrapper">
+				<div class="clearfix">
+					<h3>框架主要构成</h3>
+					<div class="divs">
+						1、该框架主要采用hAmin框架，主要以bootstrap-3.0，jquery.js为主
+						<p> 2、表格/表格分页---bootstrapTable.js
+						<p> 3、表单验证---jquery.validate.js,提交时用jquery的ajax方法，自己封装了一层
+						<p> 4、弹框---layer.js
+						<p> 5、日期---layerDate.js
+						<p> 6、富文本---百度编辑器
+						<p> 7、图表---echart.js
+						<p>
+					</div>
+					<div class="divs">
+						8、针对个性页面的插件：独立的分页插件---paging.js
+						<p> 9、图片上传---jquery里的方法，自己封装了一个
+						<p> 10、关于规格模块
+						<p>11、其他
+						<div>
+							<p>网页自动加载进度条插件 ---pace.js
+							<p>模拟传统的浏览器滚动条(竖向) --- jquery.slimscroll.js
+							<p>左边菜单 ---jquery.metisMenu.js
+							<p>某些地方：如记住密码 ---jquery.cookie.js
+						</div>
+
+					</div>
+
+				</div>
+				<hr />
+				<div>
+					<h3>框架的优缺点</h3>
+
+					<div class="divs">
+						<p>优点</p>
+						<p> 1、适用于大量表格的后台，个性化的页面不多的项目
+						<p> 2、关于form表单的样式是有自己写的一套，样式调控自由
+						<p> 3、表单验证以完善，可自由添加验证
+						<p> 4、在tab、button、panel等可以直接使用bootstrap里的样式
+						<p>5、能快速构造一个后台架构
+					</div>
+					<div class="divs">
+						<p>缺点</p>
+						<p> 1、遇到字段多的编辑页面，或者个性化的页面就暴露了短版，数据绑定逐个字段来绑定，方式原始，效率不高
+						<p> 2、每个页面要引入的插件多，显得繁重冗余
+						<p> 3、不对低版本的浏览器做兼容
+						<p> 4、对后台给出的数据格式有要求，必须按照一定的数据格式来给，否则表格插件无法用
+						<p>5、使用iframe嵌套，无法在浏览器上对当页进行刷新(优化：由后台将左边菜单与头部部分以参数的方式引入每个子页面去即可)
+						<p>6、左边的导航菜单在指向的样式上有点问题
+						<p>7、表单验证时，某些错误提示必须是在输入框旁边提示，介意这点的不适用这个框架
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

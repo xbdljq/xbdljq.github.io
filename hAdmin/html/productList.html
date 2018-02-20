@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/paging.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品管理</li>
+				<li>/</li>
+				<li>商品列表</li>
+			</ul>
+
+			<div class="leWrapper">
+
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#tab1" data-toggle="tab" data-id="0">出售宝贝(11)</a>
+					</li>
+					<li>
+						<a href="#tab2" data-toggle="tab" data-id="1">仓库宝贝(11)</a>
+					</li>
+					<li>
+						<a href="#tab3" data-toggle="tab" data-id="3">售馨宝贝(11)</a>
+					</li>
+					<li>
+						<a href="#tab4" data-toggle="tab" data-id="2">回收站(11)</a>
+					</li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<form id="searchForm" style="margin-top:20px" onkeydown="if(event.keyCode==13)return false;" class="clearfix">
+						<ul class="flexBox searchFormUl ">
+							<li>
+								<label>商品名称</label>
+								<input type="text" name="name" id="" value="" placeholder="请输入" />
+							</li>
+							<li>
+								<label>商品分类</label>
+								<select name="categoryId">
+									<option value="">请选择</option>
+									<option value="0">分类1</option>
+									<option value="1">分类2</option>
+								</select>
+							</li>
+							<li>
+								<button type="button" class="btn btn-default" onclick="searchFun()">搜索</button>
+							</li>
+						</ul>
+						<div class="">
+							<a href="#" class="btn btn-default conBtn">批量删除</a>
+							<a href="addProduct1.html?id=0" class="btn btn-default">添加商品</a>
+						</div>
+
+					</form>
+					<div class="tab-pane fade in active" id="tab1">
+						<table id="table_server0" data-height="500" class="tableList"></table>
+					</div>
+					<div class="tab-pane fade" id="tab2"> </div>
+					<div class="tab-pane fade" id="tab3"> </div>
+					<div class="tab-pane fade" id="tab4"> </div>
+				</div>
+
+			</div>
+		</div>
+		<script>
+			var status;
+			$(function() {
+				status = GetQueryString("status");
+				console.log(status);
+				if(typeof status == "undifined" || status == "null") {
+					status = 0;
+				}
+				console.log(status)
+				tabFun("#tab1", status)
+
+				//tab 跳转
+				$("#myTab > li").on("click", function() {
+					var ele = $(this).find("a").attr("href");
+					status = $(this).find("a").attr("data-id");
+					tabFun(ele, status)
+
+				})
+
+			})
+
+			function tabFun(ele, id) {
+				$(".tab-pane").empty();
+				$(ele).append('<table id="table_server" data-height="500" class="tableList"></table>')
+				var datas;
+				switch(parseInt(id)) {
+
+					case 0: //出售宝贝
+						$(".conBtn").hide();
+						var datas = [{
+								title: '商品信息',
+								field: '',
+								formatter: function(value, row, index) { //自定义显示可以写标签哦~
+									var str = "";
+									str += '<img src="' + row.product_icon + '" style="width:60px;height:auto"/>';
+									str += row.product_name;
+									return str;
+								}
+							},
+							{title: '编号',field: 'product_number'},
+							{title: '分类',field: 'product_category_name'},
+							{
+								title: '价格',
+								field: 'product_min_price'
+							},
+							{
+								title: 'S积分',
+								field: 'product_s_intergral'
+							},
+							{
+								title: '库存',
+								field: 'product_stock'
+							},
+							{
+								title: '前台显示顺序',
+								field: 'product_sort'
+							},
+							{
+								title: '操作',
+								field: '',
+								formatter: function(value, row, index) { //自定义显示可以写标签哦~
+									var str = "";
+									str += '<a href="/Admin/Order/AddProductTwo?pid=' + row.product_id + '&type=' + row.product_type + '">编辑</a>';
+									str += '<a href="#" onclick="del(' + row.product_id + ',\'/ProductApi/ApiProduct/DeleteProduct\')">删除</a> ';
+									return str;
+								}
+							}
+						]
+
+						break;
+					case 1: //仓库宝贝
+						$(".conBtn").show()
+						datas = [
+							{title: '',field: '',checkbox: true},
+							{
+								title: '商品信息',
+								field: '',
+								formatter: function(value, row, index) { //自定义显示可以写标签哦~
+									var str = "";
+									str += '<img src="' + row.product_icon + '"  style="width:60px;height:auto" />';
+									str += row.product_name;
+									return str;
+								}
+							},
+							{title: '价格',field: 'product_min_price'},
+							{
+								title: '库存',
+								field: 'product_stock'
+							},
+							{
+								title: '商家编码',
+								field: 'product_number',
+							},
+							{
+								title: '排序',
+								field: 'product_sort'
+							},
+							{
+								title: '创建时间',
+								field: 'product_date'
+							},
+							{
+								title: '操作',
+								field: '',
+								formatter: function(value, row, index) { //自定义显示可以写标签哦~
+									var str = "";
+									str += '<a href="/Admin/Order/AddProductTwo?pid=' + row.product_id + '&type=' + row.product_type + '">编辑</a>';
+									str += '<a href="#" onclick="">上架</a> ';
+									str += '<a href="#" onclick="del(' + row.product_id + ',\'/ProductApi/ApiProduct/DeleteProduct\')">删除</a> ';
+									return str;
+								}
+							}
+						]
+						break;
+					case 3: //售馨宝贝
+						$(".conBtn").show()
+						datas = [{
+								title: '',
+								field: '',
+								checkbox: true
+							},
+							{
+								title: '商品信息',
+								field: '',
+								formatter: function(value, row, index) { //自定义显示可以写标签哦~
+									var str = "";
+									str += '<img src="' + row.product_icon + '" class="tableImg"/>';
+									str += row.product_name;
+									return str;
+								}
+							},
+							{
+								title: '价格',
+								field: 'product_min_price'
+							},
+							{
+								title: '库存',
+								field: 'product_stock'
+							},
+							{
+								title: '商家编码',
+								field: 'product_number'
+							},
+							{
+								title: '排序',
+								field: 'product_sort'
+							},
+							{
+								title: '创建时间',
+								field: 'product_date'
+							},
+							{
+								title: '操作',
+								field: '',
+								formatter: function(value, row, index) {
+									var str = "";
+									str += '<a href="/Admin/Order/AddProductTwo?pid=' + row.product_id + '&type=' + row.product_type + '">编辑</a>';
+									str += '<a href="#" onclick="del(' + row.product_id + ',\'/ProductApi/ApiProduct/DeleteProduct\')">删除</a> ';
+									return str;
+								}
+							}
+						]
+						break;
+					case 2: //回收站
+						$(".conBtn").show()
+						datas = [{
+								title: '',
+								field: '',
+								checkbox: true
+							},
+							{
+								title: '商品信息',
+								field: '',
+								formatter: function(value, row, index) {
+									var str = "";
+									str += '<img src="' + row.product_icon + '" class="tableImg"/>';
+									str += row.product_name;
+									return str;
+								}
+							},
+							{
+								title: '价格',
+								field: 'product_min_price'
+							},
+							{
+								title: '库存',
+								field: 'product_stock'
+							},
+							{
+								title: '商家编码',
+								field: 'product_number'
+							},
+							{
+								title: '排序',
+								field: 'product_sort'
+							},
+							{
+								title: '创建时间',
+								field: 'product_date'
+							},
+							{
+								title: '操作',
+								field: '',
+								formatter: function(value, row, index) {
+									var str = "";
+									str += '<a href="#" onclick="del(' + row.product_id + ',\'/ProductApi/ApiProduct/ThoroughDeleteProduct\')">彻底删除</a> ';
+
+									str += '<a href="#" mce_href="#" onclick="tabFun(\'拒绝\',\'/AdminApi/Audit/AProfitReject\',' + row.id + ')">还原到出售中</a> ';
+									str += '<a href="#" mce_href="#" onclick="tabFun(\'拒绝\',\'/AdminApi/Audit/AProfitReject\',' + row.id + ')">还原到仓库里</a> ';
+									return str;
+								}
+							}
+						]
+						break;
+				}
+				createTable("table_server", "../data/productList.json?status=" + id, true, queryParams, datas)
+
+			}
+
+			//列表搜索条件
+			function queryParams(params) {
+				var temp = $("#searchForm").serializeJsonObject();
+				temp["page"] = params.offset / params.limit + 1;
+				return temp;
+			}
+			//列表搜索条件
+			function queryParams2(params) {
+				var temp = $("#searchForm").serializeJsonObject();
+				temp["page"] = params.offset / params.limit + 1;
+				temp["status"] = status;
+				return temp;
+			}
+
+			function searchFun() {
+				$('#table_server').bootstrapTable('refresh');
+			}
+			//删除
+			function del(id, url) {
+				layer.confirm('您确定要删除该项吗', {
+					btn: ['确定', '取消'] //按钮
+				}, function() {
+					commonPost(url, {id: id}, function(result) {
+						layer.alert(result.msg, function() {
+							location.href = "/Admin/Order/ProductManaged?status=" + status;
+						})
+					})
+				}, function() {});
+			}
+		</script>
+
+	</body>
+
+</html>

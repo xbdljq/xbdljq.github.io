@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+/* 取消链接高亮  */
+
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,
+button,form,table,th,tr,td,tbody,article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 设置HTML5元素为块 */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,
+section {
+	display: block;
+}
+
+
+/* 图片自适应 */
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto\9;
+	/* ie8 */
+	-ms-interpolation-mode: bicubic;
+	/*为了照顾ie图片缩放失真*/
+}
+
+
+/* 初始化 */
+
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,
+a,img,button,form,table,th,tr,td,tbody,article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+* {padding: 0;margin: 0;}
+body {
+	font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;
+	color: #525252;
+	background-color: #fff;
+	font-size: 18px;
+}
+em,i {font-style: normal;}
+strong {font-weight: normal;}
+a {
+	text-decoration: none;
+	color: #676767;
+	font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;
+}
+
+ul,ol {	list-style: none;}
+h1,h2,h3,h4,h5,h6 {	font-size: 100%;font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;}
+img {border: none;display: block;/*img底部空白*/}
+textarea {resize: none;}
+input,area {outline: none;border: 0 none;font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;}
+/* 谷歌浏览器表单元素外框 */
+table {border-collapse: collapse;}
+
+/*table的重叠边框合并*/
+

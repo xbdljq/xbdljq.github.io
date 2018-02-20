@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link href="../js/plugins/layui-2.2.45/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="../css/index.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/plugins/layui-2.2.45/layui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<div class="crumbs">
+			<span class="layui-breadcrumb">
+        <a><cite>用户管理</cite></a>
+        <a><cite>用户管理</cite></a>
+    </span>
+		</div>
+		<div class="container">
+			<div class="header-btn">
+				<form id="serchForm" class="left-box layui-form">
+					<input type="text" name="name" class="layui-input serch" placeholder="请输入用户名称" />
+					<input type="text" name="startTime" class="layui-input serch" placeholder="请输入开始时间" />
+					<input type="text" name="endTime" class="layui-input serch" placeholder="请输入结束时间" lay-verify="searchTime" lay-verType="tips" />
+					<button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit lay-filter="form-serch">搜索</button>
+					<button id="resetBtn" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+				</form>
+			</div>
+			<div class="content">
+				<table id="tableUser" lay-filter="user"></table>
+			</div>
+		</div>
+		<script>
+			layui.config({
+				base: '../js/export'
+			}).extend({
+				http: '/http',
+				dialog: '/dialog',
+				tips: '/tips',
+			})
+			layui.use(['element', 'table', 'form', 'laydate', 'http'], function() {
+				var $ = layui.$,
+					table = layui.table,
+					form = layui.form,
+					laydate = layui.laydate,
+					tips = layui.tips,
+					http = layui.http,
+					tableUser = table.render({
+						elem: '#tableUser',
+						url: '../../data/GetUserList.json',
+						request: {
+							limitName: 'pageSize'
+						},
+						page: {
+							limits: [10, 15, 20]
+						},
+						cols: [
+							[{
+									field: 'Id',
+									type: 'numbers',
+									title: '序号',
+									align: 'center',
+									width: 40
+								},
+								{
+									field: 'RegisterDate',
+									title: '注册时间'
+								},
+								{
+									field: 'Name',
+									title: '姓名'
+								},
+								{
+									field: 'Phone',
+									title: '手机号'
+								},
+								{
+									field: 'CardCount',
+									title: '信用卡数'
+								},
+								{
+									field: 'LevelName',
+									title: '级别'
+								},
+								{
+									field: 'RefUserName',
+									title: '上一级'
+								},
+								{
+									field: 'HistoryCommission',
+									title: '历史总佣金'
+								},
+								{
+									field: 'oper',
+									title: '操作',
+									align: 'center',
+									width: 180,
+									toolbar: '<div><a class="layui-btn-link" lay-event="view">详情</a><a class="layui-btn-link" lay-event="commission">佣金</a><a class="layui-btn-link" lay-event="disable">禁用</a></div>'
+								}
+							]
+						]
+					})
+				// table操作栏
+				table.on('tool(user)', function(obj) {
+					if(obj.event === 'view')
+						location.href = '/Admin/AdminUser/UserDetail?uid=' + obj.data.Id
+					else if(obj.event === 'commission')
+						location.href = '/Admin/AdminUser/UserCommission?uid=' + obj.data.Id
+					else if(obj.event === 'disable')
+						disableEvent(obj.data.Id)
+				})
+				// 初始日期组件
+				laydate.render({
+					elem: '#serchForm [name="startTime"]'
+				})
+				laydate.render({
+					elem: '#serchForm [name="endTime"]'
+				})
+				// 禁用
+				function disableEvent(id) {
+					tips.confirm('确定要禁用用户吗？', function(ok) {
+						if(ok) {
+							http.post('/Admin/AdminUser/DisableUser', {
+								uid: id
+							}, function(resp) {
+								tips.msg(resp.msg)
+								ins_reload(tableUser)
+							})
+						}
+					})
+				}
+				// 搜索
+				form.on('submit(form-serch)', function(data) {
+					ins_reload(tableUser, data.field)
+					return false
+				})
+				// 重置
+				$('#resetBtn').on('click', function() {
+					$('#serchForm')[0].reset()
+					$(this).prev().click()
+					return false
+				})
+			});
+		</script>
+	</body>
+
+</html>

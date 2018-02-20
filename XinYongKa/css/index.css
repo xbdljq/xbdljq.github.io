@@ -1,0 +1,218 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 518897 */
+  src: url('//at.alicdn.com/t/font_518897_8vkygef6fp52vs4i.eot');
+  src: url('//at.alicdn.com/t/font_518897_8vkygef6fp52vs4i.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_518897_8vkygef6fp52vs4i.woff') format('woff'),
+  url('//at.alicdn.com/t/font_518897_8vkygef6fp52vs4i.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_518897_8vkygef6fp52vs4i.svg#iconfont') format('svg');
+}
+[class*="iconfont"] {
+	font-family:"iconfont" !important;
+	font-size:16px;font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+/***布局***/
+.layout-side, .layout-container {
+	height: 100%;
+	overflow: hidden;
+}
+.layout-side {
+	position: absolute;
+    left: 0;
+    overflow-y: auto;
+}
+.layout-container {
+    margin-left: 200px;
+    position: relative;
+	background: #f0f3f4;
+}
+.layout-side .layout-logo, .layout-container .layout-header {
+	position: absolute;
+    width: 100%;
+	background: #1e9fff;
+	z-index: 99;
+    user-select: none;	
+}
+.layout-logo {
+    position: fixed!important;
+    width: 200px!important;
+}
+.layout-side .layout-logo {
+	height: 90px;
+}
+.layout-container .layout-header {
+    height: 50px;
+}
+.layout-side .layout-menu, .layout-container .layout-content {
+	height: 100%;
+    box-sizing: border-box;
+}
+.layout-side .layout-menu {
+    padding-top: 90px;
+}
+.layout-container .layout-content {
+    padding-top: 50px;
+}
+/***布局***/
+.logo {
+	position: absolute;
+	left: 70px;
+    top: 10px;
+    width: 60px;
+    height: 60px;
+    background: url(../image/logo_index.png) no-repeat center;
+    background-size: contain;
+}
+.user {
+	position: absolute;
+    right: 36px;
+    padding: 11px;
+    user-select: none;
+}
+.user .icon-user {
+    font-size: 26px;
+    color: #fff;
+    cursor: pointer;
+}
+.user .user-oper {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 2px;
+    top: 14px;
+    right: 48px;
+    transition: width .3s;
+    width: 0;
+    font-size: 0;
+}
+.user .active {
+   width: 139px; 
+}
+.user .oper {
+   width: 139px; 
+}
+.user .oper>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+.user .user-oper span {
+    font-size: 14px;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 20px;
+    padding: 0 10px;
+    border-radius: 2px;
+    border: 1px dashed #1e9fff;
+    cursor: pointer;
+}
+.user .user-oper span:hover {
+    border-color: #fff;
+}
+.user .user-oper i {
+    background: #fff;
+    width: 1px;
+    height: 16px;
+    margin: 0 5px;
+}
+iframe {
+	border: none;
+	width: 100%;
+	height: 100%;
+}
+.layui-nav-tree a>i {
+	margin-right: 10px;
+}
+.layui-nav-tree li {
+	cursor: pointer;
+}
+.layui-nav-child {
+	display:block;
+	padding:0;
+	height: 0;
+	overflow: hidden;
+	transition: height .5s;
+}
+.layui-nav-tree a, .layui-nav-tree .layui-nav-more {
+	pointer-events: none;
+}
+.layui-nav-tree .layui-nav-child a {
+	transition: border .3s;
+}
+.layui-nav-tree .layui-this>a, .layui-nav-tree .layui-nav-itemed>a {
+	border-left: 5px solid #1e9fff;
+}
+/*修改密码*/
+
+/*必填项*号*/
+.layui-form .icon-star:before {
+    content: '*';
+    color: red;
+    padding-right: 4px;
+}
+/*dialog*/
+.dialog-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.3;
+    z-index: 2000;
+    display: none;
+}
+.dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    padding: 5px 15px 10px;
+    z-index: 2999;
+    background-color: #fff;
+    height: 420px;
+    margin-top: -270px;
+    margin-left: -450px;
+    box-sizing: border-box;
+}
+.dialog-box .dialog-header {
+    position: relative;
+    padding: 5px;
+}
+.dialog-box .dialog-title {
+    font-size: 18px;
+    color: #757575;
+}
+.dialog-box .dialog-close {
+    position: absolute;
+    right: -8px;
+    top: 2px;
+    cursor: pointer;
+}
+.dialog-box .dialog-content {
+    height: 371px;
+    position: relative;
+    padding-top: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.dialog-box .dialog-content form{
+    height: 100%;
+}
+.dialog-box .layui-form-btns {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: right;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.layui-form-btns a {
+    padding: 0 8px;
+}

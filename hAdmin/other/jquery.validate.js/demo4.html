@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+
+		<link href="../../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../../css/plugins/style.css" rel="stylesheet">
+		<link href="../../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<!-- 全局js -->
+
+		<script src="../../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../../../pages/js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+
+			.saveBtn {
+				margin: 20px 0;
+			}
+			/*错误提示的样式*/
+			
+			input.error {
+				border: 1px solid red;
+			}
+			
+			form label.error {
+				background: url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+				padding-left: 1px;
+				padding-bottom: 2px;
+				font-weight: bold;
+				color: #EA5200;
+				font-size: 12px;
+				display: none;
+				/*display: inline-block;*/
+			}
+			/*//校验成功时的class值必须为valid*/
+			
+			label.valid {
+				background: url("./demo/images/checked.gif") no-repeat 0px 0px;
+			}
+		</style>
+		<script>
+			$(function() {
+				$("#signupForm").validate({
+
+					submitHandler: function(form) {
+						console.log($("#signupForm").serialize());
+						//						$.ajax({
+						//							type:"post",
+						//							url:"",
+						//							data:$("#signupForm").serialize(),
+						//							async:true,
+						//							success:function(result){
+						//								
+						//							},
+						//							error:function(result){
+						//								
+						//							}
+						//						});
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>验证插件</li>
+				<li>/</li>
+				<li>demo4</li>
+			</ul>
+
+			<div class="leWrapper">
+				<form id="signupForm">
+						<div>这是对demo3的样式改良版</div>
+						<ul class="formUl">
+							<li class="flexBox formLi">
+								<label for="myname">用户名：</label>
+								<div>
+									<input type="text" id="myname" name="myname" class="{required:true}" maxlength="15" placeholder="必填，不超过15个字符" />
+									<div>
+										<label for="myname" class="error"></label>
+									</div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="tel">电话：</label>
+								<div>
+									<input type="text" id="" name="tel" class="{isPhone:true,required:true}" maxlength="11" placeholder="必填，电话验证" />
+									<div>
+										<label for="tel" class="error"></label>
+									</div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="price">价钱：</label>
+								<div>
+									<input type="text" id="" name="price" class="{isFloat2:true,required:true,max:100}" placeholder="必填,可带2位小数，最大100" maxlength="10"/>
+									<div>
+										<label for="price" class="error"></label>
+									</div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="pwd">密码：</label>
+								<div>
+									<input type="text" id="" name="pwd" placeholder="只能输入字母和数字" class="{isPwd:true,required:true}" />%
+									<div>
+										<label for="pwd" class="error"></label>
+									</div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="email">E-Mail：</label>
+								<div>
+									<input type="text" id="email" name="email" class="required email" />
+									<div><label for="email" class="error"></label></div>
+								</div>
+								
+							</li>
+
+							<li class="flexBox formLi">
+								<label for="gender">性别：</label>
+								<!-- 表示必须选中一个 -->
+								<div>
+									<input type="radio" id="gender_male" value="m" name="gender" checked/>男
+									<input type="radio" id="gender_female" value="f" name="gender" />女
+									<div>
+										<label for="gender" class="error"></label>
+									</div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="confirm_password">爱好：</label>
+								<!-- checkbox的minlength表示必须选中的最小个数,maxlength表示最大的选中个数,rangelength:[2,3]表示选中个数区间  -->
+								<div>
+
+									<input type="checkbox" id="spam_email" value="email" name="spam[]" class="{required:true, minlength:2}" />游泳
+									<input type="checkbox" id="spam_phone" value="phone" name="spam[]" />跑步
+									<input type="checkbox" id="spam_mail" value="mail" name="spam[]" />看书
+									<div><label for="spam[]" class="error"></label></div>
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="jungle">城市：</label>
+								<div>
+									<select id="jungle" name="jungle" title="Please select something!" class="{required:true}">
+										<option value="">请选择</option>
+										<option value="1">厦门</option>
+										<option value="2">泉州</option>
+										<option value="3">Oi</option>
+									</select>
+									<div><label for="jungle" class="error">请输入</label></div>
+								</div>
+
+							</li>
+							<li class="flexBox formLi">
+								<label for="confirm_password"></label>
+								<div>
+									<button type="submit" class="btn btn-w-s btn-white saveBtn">保存</button>
+								</div>
+							</li>
+
+						</ul>
+
+						<div class="btnBox">
+
+						</div>
+					</form>
+			</div>
+		</div>
+
+	</body>
+
+</html>

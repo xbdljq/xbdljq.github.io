@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.menu_list li:nth-last-of-type(1) .item_hd {
+				border-bottom: 1px solid #CCCCCC;
+			}
+			
+			.item_hd {
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+				position: relative;
+				font-size: 14px;
+				border: 1px solid #CCCCCC;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				border-bottom: none;
+				cursor: pointer;
+			}
+			
+			.item_hd:hover,
+			.menu_list li:nth-last-of-type(1) .item_hd:hover {
+				border-bottom: 1px solid #0497AC;
+				border-left: 8px solid #0497AC;
+				box-sizing: border-box;
+			}
+			
+			.item_bd {
+				padding: 10px 15px 20px 30px;
+				font-size: 12px;
+				border: none;
+				/*display: none;*/
+			}
+			
+			.min-input {
+				width: 50px;
+			}
+			
+			.border-bottom1 {
+				border-bottom: 1px solid #CCCCCC;
+			}
+		</style>
+		<script>
+			$(function() {
+				//菜单下拉收起的js
+				$(".item_hd").on("click", function() {
+					$(this).toggleClass("border-bottom1")
+					$(this).siblings(".item_bd").slideToggle();
+				})
+
+				//综合积分
+				submitFun("form1");
+
+				//获取短信验证码
+				$(".checkUser").on("click", function() {
+					var phone = $("[name='phone']").val().trim();
+					console.log(phone)
+					if(!isPhone(phone)) {
+						layer.alert("请正确填写电话号码");
+						return false;
+					}
+					new invokeSettime(".checkUser");
+					//commonPost("/Api/Sms/Send", { userno: userno }, function (result) {
+					//	 new invokeSettime(".checkUser");
+					//	})
+
+				})
+				$("#form2").validate({
+					submitHandler: function(form) {
+						if(!$(".agreeBox").is(":checked")) {
+							layer.alert("请阅读并同意《注册协议》")
+							return false;
+						}
+						console.log($("#form2").serialize());
+						var data = $("#form2").serializeArray();
+						commonPost(url, data, function(result) {
+							layer.alert(result.msg, function() {
+								location.href = location.href;
+							})
+						})
+					}
+				});
+			})
+
+			function submitFun(ele, checkFun) {
+				$("#" + ele).validate({
+					submitHandler: function(form) {
+
+						typeof checkFun === "function" && checkFun();
+						console.log($("#form1").serialize());
+						var data = $("#" + ele).serializeArray();
+						commonPost(url, data, function(result) {
+							layer.alert(result.msg, function() {
+								location.href = location.href;
+							})
+						})
+					}
+				});
+			}
+			//倒数
+			function invokeSettime(obj) {
+				var countdown = 60;
+				settime(obj);
+
+				function settime(obj) {
+					if(countdown == 0) {
+						$(obj).attr("disabled", false);
+						$(obj).text("获取验证码");
+						countdown = 60;
+						return;
+					} else {
+						$(obj).attr("disabled", true);
+						$(obj).text("" + countdown + " s ");
+						countdown--;
+					}
+					setTimeout(function() {
+						settime(obj)
+					}, 1000)
+				}
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品列表</li>
+				<li>/</li>
+				<li>添加商品</li>
+			</ul>
+
+			<div class="leWrapper">
+				<ul class="menu_list">
+					<li>
+						<div class="item_hd">
+							登录
+							<i></i>
+						</div>
+						<div class="item_bd">
+							<form id="form1">
+								<ul class="formUl">
+									<li class="flexBox formLi">
+										<label for="cash">账号</label>
+										<div>
+											<input type="text" id="" name="account" class="{required:true}" maxlength="11" placeholder="请输入" />
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for="password">密码</label>
+										<div>
+											<input type="password" id="" name="password" class="{required:true}" maxlength="20" placeholder="请输入" />
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for=""></label>
+										<div>
+											<button type="submit" class="btn btn-default">保存</button>
+										</div>
+									</li>
+								</ul>
+							</form>
+
+						</div>
+					</li>
+					<li>
+						<div class="item_hd">
+							忘记密码
+							<i></i>
+						</div>
+						<div class="item_bd">
+							<form id="form2">
+								<ul class="formUl">
+									<li class="flexBox formLi">
+										<label for="phone">手机号</label>
+										<div>
+											<input type="text" id="" name="phone" class="{required:true,isPhone:true}" maxlength="11" placeholder="请输入" />
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for="userno">短信验证码</label>
+										<div>
+											<input type="text" id="" name="userno" class="{required:true}" maxlength="10" placeholder="请输入" />
+											<button class="btn btn-default checkUser" type="button">获取短信验证码</button>
+											<div><label for="userno" class="error"></label></div>
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for="pwd">密码</label>
+										<div>
+											<input type="password" id="pwd" name="pwd" class="{required:true,rangelength:[6,20],isPwd:true}" maxlength="20" placeholder="请输入" />
+											<label for="pwd" class="error"></label>
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for="againPwd">确认密码</label>
+										<div>
+											<input type="password" id="" name="againPwd" class="{required:true,rangelength:[6,20],equalTo:'#pwd',isPwd:true}" maxlength="20" placeholder="请输入" />
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for=""></label>
+										<div>
+											<input type="checkbox" value="1" class="agreeBox">
+											<span>
+                            					我已阅读并同意
+                            					<a href="/Help/RegistrationAgreement" style="color: #e4393c;">《注册协议》</a>
+                        					</span>
+										</div>
+									</li>
+									<li class="flexBox formLi">
+										<label for=""></label>
+										<div>
+											<button type="submit" class="btn btn-default">保存</button>
+										</div>
+									</li>
+								</ul>
+							</form>
+
+						</div>
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/common/productCategory.css" rel="stylesheet">
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/laytpl.js"></script>
+		<script src="../js/plugins/paging.js"></script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品管理</li>
+				<li>/</li>
+				<li>商品分类</li>
+			</ul>
+
+			<div class="leWrapper">
+
+				<form id="searchForm" onkeydown="if(event.keyCode==13)return false;">
+					<ul class="flexBox searchFormUl ">
+						<li>
+							<label>分类名称</label>
+							<input type="text" name="name" id="" value="" placeholder="请输入" />
+						</li>
+						<li>
+							<button type="button" class="btn btn-default" onclick="searchFun()">搜索</button>
+						</li>
+						<li>
+							<a href="/Admin/Order/AddProductType?cid=0" class="btn btn-default">添加分类</a>
+						</li>
+						<li>
+							<a href="javascript: collapse(true);" class="btn btn-default">全部展开</a>
+						</li>
+						<li>
+							<a href="javascript: collapse(false);" class="btn btn-default">全部收缩</a>
+						</li>
+					</ul>
+				</form>
+				<div id="VTable" class="v-table"></div>
+				<div id="page" class="page_div"></div>
+
+				<div class="layerForm">
+					<form id="signupForm">
+						<input type="hidden" id="" name="parentId" />
+						<input type="hidden" id="" name="id" />
+						<ul class="formUl">
+							<li class="flexBox formLi">
+								<label for="">子分类名称</label>
+								<div>
+									<input type="text" id="" name="name" maxlength="20" class="{required:true}" placeholder="请输入" />
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">子分类图片</label>
+								<div class="flexBox">
+									<div class="fileImg">
+										<input type="hidden" id="" name="iconUrl" />
+										<img src="" />
+										<div class="delImg">×</div>
+									</div>
+									<div id="uploadForm" class="btn btn-default">
+										<span>点击上传图片</span>
+										<input id="file" type="file" />
+									</div>
+								</div>
+
+							</li>
+
+						</ul>
+					</form>
+				</div>
+				
+				<script>
+					var layerFormHtml;
+					var page;
+					$(function() {
+						layerFormHtml = $(".layerForm").html();
+						$(".layerForm").empty();
+						page = GetQueryString("page");
+						if(page == null) {
+							page = 1
+						}
+
+						commonGet('../data/GetCategoryList.json?page=' + page + '&pageSize=10', function(resp) {
+							//分页
+							$("#page").paging({
+								pageNo: page, //默认加载页
+								totalPage: resp.data.page_count, //总页数
+								totalSize: resp.data.count, //总条数
+								callback: function(num) { //点击页数后的回调函数
+									//alert(num)
+									window.location.href = "/Admin/Order/ProductType?pageSize=10&page=" + num
+									//console.log(num)
+								}
+							})
+
+							laytpl($('#tpl_product_list').html()).render(resp.data.list, function(html) {
+								$('#VTable').html(html).find('.v-table-body').on('click', function(e) {
+									if($(e.target).hasClass('icon-collapse')) {
+										$(e.target).toggleClass('active')
+										if($(e.target).hasClass('active')) {
+											$(e.target).parents('.v-table-item').find('.group-item').show()
+										} else {
+											$(e.target).parents('.v-table-item').find('.group-item').hide()
+										}
+									}
+								})
+							})
+						})
+					})
+
+					//删除
+					function del(id) {
+						layer.confirm('您确定要删除该项吗', {
+							btn: ['确定', '取消'] //按钮
+						}, function() {
+							commonPost("DeleteCategory", {id: id}, function(result) {
+								layer.alert(result.msg, function() {
+									location.href = "/Admin/Order/ProductType"
+								})
+							})
+						}, function() {});
+					}
+					//添加二级分类
+					function add(parentId) {
+						layerShow("/ProductApi/ApiProductCategory/EditCategory", "添加二级分类", parentId);
+						$("[name='parentId']").val(parentId);
+						$("[name='id']").val("0");
+					}
+					//编辑二级分类
+					function edit(id, parentId) {
+						layerShow("/ProductApi/ApiProductCategory/EditCategory", "编辑二级分类", parentId);
+
+						$("[name='parentId']").val(parentId);
+						$("[name='id']").val(id);
+
+						commonGet("/ProductApi/ApiProductCategory/GetCategoryById?cid=" + id, function(result) {
+							$("[name='name']").val(result.data.category_name)
+							$("[name='iconUrl']").val(result.data.category_image);
+							$(".fileImg").show().find("img").attr("src", result.data.category_image);
+						})
+					}
+
+					function layerShow(url, title, id) {
+						layer.open({
+							type: 1,
+							area: ['550px', '500px'],
+							title: title,
+							content: layerFormHtml,
+							offset: "15%",
+							btn: ['保存', '取消'],
+							yes: function() {
+								//提交表单
+								$("#signupForm").validate({
+									submitHandler: function(form) {
+										var data = $("#signupForm").serializeArray();
+										commonPost(url, data, function(result) {
+											layer.closeAll();
+											layer.alert(result.msg, function() {
+												location.href = "/Admin/Order/ProductType"
+											})
+										})
+									}
+								});
+								$("#signupForm").submit();
+								//layer.closeAll();
+							},
+							btn2: function() {
+								layer.closeAll();
+							}
+						});
+						$("#file").on("change", function() {
+							console.log("wowoowow")
+							var formData = new FormData();
+							formData.append('file', $('#file')[0].files[0]);
+							formData.append('type', 1);
+
+							commonPostImg(formData, function(result) {
+								$(".fileImg").show();
+								$(".fileImg img").attr("src", result.data);
+								$("[name='iconUrl']").val(result.data);
+							})
+						});
+						//删除上传的图片
+						$(".delImg").on("click", function() {
+							$(".fileImg").hide();
+							$(".fileImg img").attr("src", "");
+							$("[name='iconUrl']").val("");
+						})
+					}
+
+					// 全部展开或收缩   true: 展开
+					function collapse(type) {
+						var list = $('.v-table-body .icon-collapse')
+						type
+							?
+							$.each(list, function() {
+								if(!$(this).hasClass('active')) {
+									$(this).click()
+								}
+							}) :
+							$.each(list, function() {
+								if($(this).hasClass('active')) {
+									$(this).click()
+								}
+							})
+					}
+				</script>
+				<script id="tpl_product_list" type="text/html">
+					<div class="v-table-head v-table-tr">
+						<span class="v-table-image">分类图片</span>
+						<span class="v-table-name">分类名称</span>
+						<span class="v-table-sort">排序</span>
+						<span class="v-table-oper">操作</span>
+					</div>
+					<div class="v-table-body">
+						{{# $.each(d, function(i, v){ }}
+						<div class="v-table-item">
+							<div class="v-table-tr">
+								<span class="v-table-image"><i class="icon-collapse"></i><img src="{{ this.category_image }}"/></span>
+								<span class="v-table-name">{{ this.category_name }}</span>
+								<span class="v-table-sort">{{ this.category_sort }}</span>
+								<span class="v-table-oper">
+                    <a href="javascript:;">编辑</a>
+                    <a href="javascript: del({{ this.category_id }})">删除</a>
+                    <a href="javascript: add({{ this.category_id }})">添加二级分类</a>
+                </span>
+							</div>
+							<div class="group-item">
+								{{# $.each(this.sub_category, function(){ }}
+								<div class="v-table-tr">
+									<span class="v-table-image"><img src="{{ this.category_image }}"/></span>
+									<span class="v-table-name">{{ this.category_name }}</span>
+									<span class="v-table-sort">{{ this.category_sort }}</span>
+									<span class="v-table-oper">                     
+                        <a href="javascript: edit({{ this.category_id }},{{ v.category_id }})">编辑</a>
+                        <a href="javascript: del({{ this.category_id }})">删除</a>
+                    </span>
+								</div>
+								{{# }) }}
+							</div>
+						</div>
+						{{# }) }}
+					</div>
+				</script>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

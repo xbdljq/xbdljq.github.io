@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link href="../js/plugins/layui-2.2.45/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="../css/index.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/plugins/layui-2.2.45/layui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<div class="crumbs">
+			<span class="layui-breadcrumb">
+        <a><cite>佣金管理</cite></a>
+        <a><cite>提现申请</cite></a>
+    </span>
+		</div>
+		<div class="container">
+			<div class="header-btn">
+				<form id="serchForm" class="left-box layui-form">
+					<input type="text" name="name" class="layui-input serch" placeholder="请输入用户名称" />
+					<input type="text" name="startTime" class="layui-input serch" placeholder="请输入开始时间" />
+					<input type="text" name="endTime" class="layui-input serch" placeholder="请输入结束时间" lay-verify="searchTime" lay-verType="tips" />
+					<button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit lay-filter="form-serch">搜索</button>
+					<button id="resetBtn" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+				</form>
+				<div class="right">
+					<button id="auditBtn" class="layui-btn layui-btn-primary layui-btn-sm">批量审核</button>
+					<button id="issueBtn" class="layui-btn layui-btn-primary layui-btn-sm">批量发放</button>
+					<button id="rejectBtn" class="layui-btn layui-btn-primary layui-btn-sm">批量驳回</button>
+				</div>
+			</div>
+			<div class="content">
+				<table id="tableWithdraw" lay-filter="withdraw"></table>
+			</div>
+		</div>
+		<script>
+			layui.config({
+				base: '../js/export'
+			}).extend({
+				http: '/http',
+				dialog: '/dialog',
+				tips: '/tips',
+			})
+			layui.use(['element', 'table', 'form', 'laydate', 'dialog','http'], function() {
+				var $ = layui.$,
+					table = layui.table,
+					form = layui.form,
+					laydate = layui.laydate,
+					tips = layui.tips,
+					dialog = layui.dialog,
+					http = layui.http,
+					tableWithdraw = table.render({
+						elem: '#tableWithdraw',
+						url: '../../data/WithdrawalsList.json',
+						request: {
+							limitName: 'pageSize'
+						},
+						page: {
+							limits: [10, 15, 20]
+						},
+						cols: [
+							[{
+									field: 'check',
+									type: 'checkbox',
+									width: 40
+								},
+								{
+									field: 'Id',
+									type: 'numbers',
+									title: '序号',
+									align: 'center',
+									width: 40
+								},
+								{
+									field: 'CreateDate',
+									title: '时间'
+								},
+								{
+									field: 'UserName',
+									title: '姓名'
+								},
+								{
+									field: 'Phone',
+									title: '手机号'
+								},
+								{
+									field: 'Commission',
+									title: '金额'
+								},
+								{
+									field: 'StatusName',
+									title: '状态'
+								},
+								{
+									field: 'oper',
+									title: '操作',
+									align: 'center',
+									toolbar: '#tool_withdraw'
+								}
+							]
+						]
+					});
+				// table操作栏
+				table.on('tool(withdraw)', function(obj) {
+					if(obj.event === 'audit') {
+						auditEvent(obj.data.Id)
+					} else if(obj.event === 'issue') {
+						issueEvent(obj.data.Id)
+					} else if(obj.event === 'reject') {
+						rejectEvent(obj.data.Id)
+					}
+				})
+				// 初始日期组件
+				laydate.render({
+					elem: '#serchForm [name="startTime"]'
+				})
+				laydate.render({
+					elem: '#serchForm [name="endTime"]'
+				})
+				// 审核
+				function auditEvent(id) {
+					getDetail(id, function(resp) {
+						dialog.open('tpl_auditpage', resp.data, '审核', 600, 380)
+					})
+				}
+				// 批量审核
+				$('#auditBtn').on('click', function() {
+					var ids = checkSatae(1, '选中项存在已审核数据，不能审核')
+					if(ids.length > 0) {
+						tips.confirm('是否确认全部审核？', function(ok) {
+							if(ok) {
+								submitAudit({
+									ids: ids
+								})
+							}
+						})
+					}
+				})
+				// 提交通过数据
+				form.on('submit(form_pass)', function(data) {
+					data.elem.disabled = true
+					submitAudit(data.field, function() {
+						dialog.close('tpl_auditpage')
+					}, function() {
+						data.elem.disabled = false
+					})
+					return false
+				})
+
+				function submitAudit(data, success, complete) {
+					http.post('/Admin/AdminCommission/WithdrawalsVerifyPass', data, function(resp) {
+						tips.msg(resp.msg)
+						ins_reload(tableWithdraw)
+						success && success()
+					}, function() {
+						complete && complete()
+					})
+				}
+
+				// 驳回
+				function rejectEvent(id) {
+					dialog.open('tpl_rejectpage', {
+						Id: id
+					}, '驳回', 600, 240);
+				}
+				// 批量驳回
+				$('#rejectBtn').on('click', function() {
+					var ids = checkSatae([1, 2], '选中项存在已驳回数据，不能驳回')
+					if(ids.length > 0) {
+						dialog.open('tpl_rejectpage', {
+							Id: ids
+						}, '批量驳回', 600, 240);
+					}
+				})
+				// 提交驳回数据
+				form.on('submit(form_reject)', function(data) {
+					data.elem.disabled = true;
+					http.post('/Admin/AdminCommission/WithdrawalsVerifyUnPass', data.field, function(resp) {
+						tips.msg(resp.msg)
+						dialog.close(data.elem.name)
+						ins_reload(tableWithdraw)
+					}, function() {
+						data.elem.disabled = false
+					})
+					return false
+				})
+
+				// 发放
+				function issueEvent(id) {
+					getDetail(id, function(resp) {
+						dialog.open('tpl_issuepage', resp.data, '发放', 600, 270);
+					})
+				}
+				// 批量发放
+				$('#issueBtn').on('click', function() {
+					var ids = checkSatae(2, '选中项存在已发放数据，不能发放')
+					if(ids.length > 0) {
+						tips.confirm('是否确认全部发放？', function(ok) {
+							if(ok) {
+								submitIssue({
+									ids: ids
+								})
+							}
+						})
+					}
+				})
+				// 提交发放数据
+				form.on('submit(form_issue)', function(data) {
+					data.elem.disabled = true
+					submitIssue(data.field, function() {
+						dialog.close('tpl_issuepage')
+					}, function() {
+						data.elem.disabled = false
+					})
+					return false
+				})
+
+				function submitIssue(data, success, complete) {
+					http.post('/Admin/AdminCommission/WithdrawalsGrant', data, function(resp) {
+						tips.msg(resp.msg)
+						ins_reload(tableWithdraw)
+						success && success()
+					}, function() {
+						complete && complete()
+					})
+				}
+
+				// 搜索
+				form.on('submit(form-serch)', function(data) {
+					ins_reload(tableWithdraw, data.field)
+					return false
+				})
+				// 重置
+				$('#resetBtn').on('click', function() {
+					$('#serchForm')[0].reset()
+					$(this).prev().click()
+					return false
+				})
+
+				// 获取提现详情
+				function getDetail(id, success) {
+					console.log(http)
+					http.get('../../data/GetWithdrawalsById.json?id=' + id, function(resp) {
+						success && success(resp)
+					})
+				}
+				// 检查选中项状态
+				function checkSatae(state, msg) {
+					var ids = [],
+						checkedlist = table.checkStatus('tableWithdraw').data
+					if(checkedlist.length == 0) {
+						tips.msg('请至少选择一条记录进行操作')
+						return ids
+					}!$.isArray(state) && (state = [state])
+					layui.each(checkedlist, function() {
+						if($.inArray(this.Status, state) == -1) {
+							tips.msg(msg)
+							ids = []
+							return false
+						}
+						ids.push(this.Id)
+					})
+					return ids
+				}
+			});
+		</script>
+		<script id="tool_withdraw" type="text/html">
+			{{# if(d.Status == 2){ }}
+			<a class="layui-btn-link" lay-event="issue">发放</a>
+			<a class="layui-btn-link" lay-event="reject">驳回</a>
+			{{# }else if(d.Status == 3){ }} - {{# }else if(d.Status == 4){ }} 备注：{{ d.Remark }} {{# }else{ }}
+			<a class="layui-btn-link" lay-event="audit">审核</a>
+			<a class="layui-btn-link" lay-event="reject">驳回</a>
+			{{# } }}
+		</script>
+		<script id="tpl_auditpage" type="text/html">
+			<form class="layui-form">
+				<input type="hidden" name="ids" value="{{ d.Id }}">
+				<div class="layui-form-item">
+					<label class="layui-form-label">时间</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.CreateDate }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">金额</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.Commission }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">收款人</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.UserName }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label icon-star">备注</label>
+					<div class="layui-input-block">
+						<textarea name="remark" class="layui-textarea" placeholder="请输入备注" lay-verify="required" lay-verType="tips" maxlength="100">{{ d.Remark }}</textarea>
+					</div>
+				</div>
+				<div class="layui-form-btns">
+					<a class="layui-btn layui-btn-primary layui-btn-sm" onclick="layui.dialog.close('tpl_auditpage');">取消</a>
+					<button name="tpl_auditpage" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit lay-filter="form_reject">驳回</button>
+					<button class="layui-btn layui-btn-normal layui-btn-sm" lay-submit lay-filter="form_pass">通过</button>
+				</div>
+			</form>
+		</script>
+		<script id="tpl_issuepage" type="text/html">
+			<form class="layui-form">
+				<input type="hidden" name="ids" value="{{ d.Id }}">
+				<div class="layui-form-item">
+					<label class="layui-form-label">时间</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.CreateDate }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">金额</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.Commission }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">收款人</label>
+					<div class="layui-input-block">
+						<input type="text" value="{{ d.UserName }}" class="layui-input" readonly>
+					</div>
+				</div>
+				<div class="layui-form-btns">
+					<a class="layui-btn layui-btn-primary layui-btn-sm" onclick="layui.dialog.close('tpl_issuepage');">取消</a>
+					<button class="layui-btn layui-btn-normal layui-btn-sm" lay-submit lay-filter="form_issue">确定</button>
+				</div>
+			</form>
+		</script>
+		<script id="tpl_rejectpage" type="text/html">
+			<form class="layui-form">
+				<input type="hidden" name="ids" value="{{ d.Id }}">
+				<div class="layui-form-item">
+					<label class="layui-form-label icon-star">理由</label>
+					<div class="layui-input-block">
+						<textarea name="remark" class="layui-textarea" placeholder="请输入备注" lay-verify="required" lay-verType="tips" maxlength="100"></textarea>
+					</div>
+				</div>
+				<div class="layui-form-btns">
+					<a class="layui-btn layui-btn-primary layui-btn-sm" onclick="layui.dialog.close('tpl_rejectpage');">取消</a>
+					<button name="tpl_rejectpage" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit lay-filter="form_reject">确定</button>
+				</div>
+			</form>
+		</script>
+	</body>
+
+</html>

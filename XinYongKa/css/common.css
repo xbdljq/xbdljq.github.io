@@ -1,0 +1,185 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+body {
+    /*padding: 10px;*/
+    /*box-sizing: border-box;*/
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+.container {
+    /*padding: 10px 5px;*/
+    /*background: #fff;*/
+    padding: 49px 5px 10px;
+    background: #fff;
+    margin: 0 10px;
+}
+.container:after, .container .header-btn:after {
+	content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+.container .serch {
+	width: 200px;
+    height: 30px;
+	margin-right: 5px;
+}
+.container .left {
+	float: left;
+}
+.container .right {
+	float: right;
+}
+.container .left-box, .container .left-box * {
+	float: left;
+}
+.container .left-box .layui-btn + .layui-btn {
+    margin-left: 2px;
+}
+.container .right-box, .container .right-box * {
+	float: right;
+}
+.crumbs {
+	/*margin-bottom: 10px;*/
+    position: fixed;
+    z-index: 999999;
+    padding: 10px 10px;
+    width: inherit;
+    background: #f0f3f4;
+    box-sizing: border-box;
+}
+.container .header-btn {
+	margin-top: 20px;
+}
+.container .content {
+	margin: 0;
+	padding: 0;
+}
+/*必填项*号*/
+.layui-form .icon-star:before {
+    content: '*';
+    color: #ff0000;
+    padding-right: 4px;
+}
+.layui-btn-link {
+    border: none;
+    text-decoration: none;
+    color: #1e9fff;
+    cursor: pointer;
+    font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;
+    background-color: transparent;
+    padding: 2px 5px;
+    margin: 0 2px;
+    transition: all .5s;
+}
+.layui-btn-link:hover {
+    background-color: #1e9fff;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.layui-table .image {
+    height: 50px;
+    width: 100%;
+    background: no-repeat left;
+    background-size: contain;
+}
+
+/*上传按钮样式*/
+.upload-img {
+    width: 80px;
+    height: 80px;
+    border: 1px #e6e6e6 solid;
+    text-align: center;
+    background: url(../image/icon-add.png) no-repeat center;
+    background-size: contain;
+}
+.upload-img input {
+    display: none;
+}
+
+/*dialog*/
+.dialog-bg {
+	position: fixed;
+	top: 0;
+    left: 0;
+    width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+    opacity: 0.3;
+	z-index: 2000;
+	display: none;
+}
+.dialog-box {
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    padding: 5px 15px 10px;
+    z-index: 2999;
+    background-color: #fff;
+    height: 420px;
+    margin-top: -270px;
+    margin-left: -450px;
+    box-sizing: border-box;
+}
+.dialog-box .dialog-header {
+	position: relative;
+    padding: 5px;
+}
+.dialog-box .dialog-title {
+    font-size: 18px;
+	color: #757575;
+}
+.dialog-box .dialog-close {
+	position: absolute;
+    right: -8px;
+    top: 2px;
+    cursor: pointer;
+}
+.dialog-box .dialog-content {
+    height: 371px;
+    position: relative;
+    padding-top: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.dialog-box .dialog-content form{
+    height: 100%;
+}
+.dialog-box .layui-form-btns {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: right;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.layui-form-btns a {
+    padding: 0 8px;
+}
+/* 三角形*/
+.icon-triangle {
+    width: 0;
+    height: 0;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 20px solid #FF0000;
+    display: inline-block;
+    position:  relative;
+    margin: 0 10px;
+}
+.icon-triangle:before {
+    content: '！';
+    position:  absolute;
+    transform: translateX(-50%);
+    color: #fff;
+    font-style: normal;
+}

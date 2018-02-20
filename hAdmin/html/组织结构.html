@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.rightArr {
+				float: right;
+			}
+			
+			.rightArr label {
+				background-color: #d1dade;
+				color: #5e5e5e;
+				font-size: 12px;
+				font-weight: 600;
+				padding-left: 7px;
+				padding-right: 7px;
+				text-shadow: none;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				line-height: 1.5;
+			}
+			
+			.treeLi {
+				/*border-bottom: 1px solid #e7eaec;*/
+			}
+			
+			.treeLi>.treetitle {
+				/*border: 1px solid red;*/
+				border-bottom: 1px solid #e7eaec;
+				height: 34px;
+				line-height: 34px;
+				box-sizing: border-box;
+				padding: 0 10px;
+				width: 100%;
+				display: ;
+			}
+			
+			.treeAll {
+				border: 1px solid #e7eaec;
+				border-bottom: 0;
+			}
+			
+			.treeUl {
+				width: 100%;
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品列表</li>
+				<li>/</li>
+				<li>添加商品</li>
+			</ul>
+
+			<div class="leWrapper">
+
+				<button type="button" class="btn btn-default conBtn" style="margin-bottom:20px" onclick="openAll()">全部展开</button>
+				<button type="button" class="btn btn-default conBtn" style="margin-bottom:20px" onclick="closeAll()">全部收起</button>
+				<ul class="treeAll" style="">
+					<li data-rank="0" class="treeLi">
+						<div class="clearfix treetitle">
+							<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>
+							<span>父节点1</span>
+							<div class="rightArr">
+								<label>50</label>
+								<label>3</label>
+							</div>
+							<!--<span class="icon"><i class="click-expand glyphicon glyphicon-plus"></i></span>-->
+						</div>
+						<ul class="treeUl">
+							<li data-rank="1" class="treeLi">
+								<div class="clearfix treetitle">
+									<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>
+									<span>子节点1.1</span>
+									<div class="rightArr">
+										<label>50</label>
+										<label>3</label>
+									</div>
+								</div>
+
+							</li>
+
+							<li data-rank="1" class="treeLi">
+								<div class="clearfix treetitle">
+									<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>
+									<span>子节点1.3</span>
+									<div class="rightArr">
+										<label>50</label>
+										<label>3</label>
+									</div>
+								</div>
+								<ul class="treeUl">
+									<li data-rank="2" class="treeLi">
+										<div class="clearfix treetitle">
+											<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>
+											<span>子节点1.1</span>
+											<div class="rightArr">
+												<label>50</label>
+												<label>3</label>
+											</div>
+										</div>
+
+									</li>
+
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+		<script>
+			var rank
+			$(function() {
+				rank = 1;
+				$(".treeAll").empty();
+
+				commonGet("../data/GetSignStructure.json?userid=" + GetQueryString("userid") + "&signid=" + GetQueryString("signid"), function(result) {
+					var lis = $('<li class="treeLi"></li>');
+					var str = "";
+					str += '<div class="clearfix treetitle down ' + result.data.parent_userid + result.data.parent_signid + '" data-rank="0" data-signid="' + result.data.parent_signid + '" data-userid="' + result.data.parent_userid + '"  style="padding-left: 15px;">';
+					str += '<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>';
+					str += '<span>' + result.data.parent_sign_type_name + ":" + result.data.parent_username + '(' + result.data.parent_userid + ')</span>';
+					str += '</div>';
+					str += '<ul class="treeUl">';
+					str += ' <li  class="treeLi">';
+					str += '<div class="clearfix treetitle down ' + result.data.current_userid + result.data.current_signid + '" data-rank="1" data-signid="' + result.data.current_signid + '" data-userid="' + result.data.current_userid + '"  style="padding-left: ' + (rank * 25 + 15) + 'px;">';
+					str += '<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>';
+					str += '<span>' + result.data.current_sign_type_name + ":" + result.data.current_username + '(' + result.data.current_userid + ')</span>';
+					// str += '<div class="rightArr"><label>' + result.data.child_count + '</label></div>';
+					str += '</div>';
+					if(result.data.childs.length > 0) {
+
+						str += '<ul class="treeUl">';
+						var _data = result.data.childs;
+						str += htmlFun(_data, 1)
+
+						str += '</ul>';
+					}
+
+					str += '</li>';
+					str += '</ul>';
+
+					lis.html(str);
+					$(".treeAll").append(lis);
+				})
+				$("body").on("click", ".treetitle", function() {
+					var _this = $(this);
+					var childs = _this.attr("data-childs");
+					var userid = _this.attr("data-userid");
+					var signid = _this.attr("data-signid");
+					var ranks = _this.attr("data-rank");
+					//先判断是否有子列表
+					if(_this.find(".icon").length > 0) {
+						//判断是否有已加载的列表
+						if(_this.siblings(".treeUl").length > 0) {
+							//判断列表的显示状态
+							if(_this.hasClass("down")) {
+								//列表已显示
+								_this.siblings(".treeUl").hide();
+								_this.removeClass("down");
+								_this.find(".icon").html('<i class="click-expand glyphicon glyphicon-plus"></i>')
+
+							} else {
+								_this.siblings(".treeUl").show();
+								_this.addClass("down");
+								_this.find(".icon").html('<i class="click-collapse glyphicon glyphicon-minus">')
+							}
+
+						} else {
+							console.log("我要加载")
+							_this.addClass("down").attr("disabled", "disabled")
+							_this.find(".icon").html('<i class="click-collapse glyphicon glyphicon-minus">')
+							commonGet("../data/GetSignStructure2.json?userid=" + userid + "&signid=" + signid, function(result) {
+								var _data = result.data;
+								var _ul = $('<ul class="treeUl"></ul>');
+								_ul.html(htmlFun(_data, parseInt(ranks)));
+								_this.after(_ul).removeAttr("disabled");
+							})
+						}
+					}
+				})
+
+			})
+
+			function htmlFun(_data, ranks) {
+				console.log(ranks)
+				ranks++;
+				var str = "";
+				for(var i = 0; i < _data.length; i++) {
+					str += ' <li  class="treeLi">';
+					str += '<div class="clearfix treetitle ' + _data[i].userid + _data[i].signid + '" data-rank="' + ranks + '" data-signid="' + _data[i].signid + '" data-userid="' + _data[i].userid + '" data-childs="' + _data[i].child_count + '" style="padding-left: ' + (ranks * 25 + 15) + 'px;">';
+					if(_data[i].child_count > 0) {
+						str += '<span class="icon"><i class="click-expand glyphicon glyphicon-plus"></i></span>';
+					}
+					str += '<span>' + _data[i].sign_type_name + ":" + _data[i].username + '(' + _data[i].userid + ')</span>';
+					str += '<div class="rightArr"><label>' + _data[i].child_count + '</label></div>';
+					str += '</div>';
+					str += '</li>';
+				}
+				return str;
+			}
+
+			// 展开全部
+			function openAll() {
+				$(".conBtn").attr("disabled", "disabled")
+				setTimeout(function() {
+					$(".conBtn").removeAttr("disabled")
+				}, 3000)
+				$("body").find(".treetitle").each(function(i, ele) {
+					var _this = $(ele);
+					var userid = _this.attr("data-userid");
+					var signid = _this.attr("data-signid");
+					var range = _this.attr("data-rank");
+					// 是否有下级
+					if(_this.find(".icon").length > 0) {
+						// 是否有加载下级
+						if(_this.siblings(".treeUl").length > 0) {
+							//判断是否有已加载的列表
+							if(_this.siblings(".treeUl").length > 0) {
+								// 没有打开则打开该项
+								if(!_this.hasClass("down")) {
+									_this.siblings(".treeUl").show();
+									_this.addClass("down");
+									_this.find(".icon").html('<i class="click-collapse glyphicon glyphicon-minus">');
+								}
+							}
+						}
+						// 去加载下级
+						else if(_this.attr("data-childs") > 0) {
+							_this.addClass("down");
+							_this.find(".icon").html('<i class="click-collapse glyphicon glyphicon-minus">')
+							commonGet("../data/GetSignStructure2.json?userid=" + userid + "&signid=" + signid, function(result) {
+								var _data = result.data;
+								openHtmlFun(_this, _data, parseInt(range));
+							})
+						}
+					}
+				})
+
+			}
+
+			// 展开全部加HTML
+			function openHtmlFun(_this, _data, ranks) {
+				ranks++;
+				var str = "";
+				for(var i = 0; i < _data.length; i++) {
+					str += ' <li  class="treeLi">';
+					str += '<div class="clearfix treetitle ' + (_data[i].child_count > 0 ? 'down ' : '' + ' ') + _data[i].userid + _data[i].signid + '" data-rank="' + ranks + '" data-signid="' + _data[i].signid + '" data-userid="' + _data[i].userid + '" data-childs="' + _data[i].child_count + '" style="padding-left: ' + (ranks * 25 + 15) + 'px;">';
+					if(_data[i].child_count > 0) {
+						str += '<span class="icon"><i class="click-collapse glyphicon glyphicon-minus"></i></span>';
+					}
+					str += '<span>' + _data[i].sign_type_name + ":" + _data[i].username + '(' + _data[i].userid + ')</span>';
+					str += '<div class="rightArr"><label>' + _data[i].child_count + '</label></div>';
+					str += '</div>';
+					str += '</li>';
+					// 加载下级
+					if(_data[i].child_count > 0) {
+						var sub = _data[i].userid + _data[i].signid;
+						commonGet("../data/GetSignStructure2.json?userid=" + _data[i].userid + "&signid=" + _data[i].signid, function(result) {
+							var _datas = result.data;
+							openHtmlFun($("." + sub), _datas, parseInt(ranks));
+						})
+					}
+				}
+				var _ul = $('<ul class="treeUl"></ul>');
+				_ul.html(str);
+				_this.after(_ul);
+			}
+			//关闭全部
+			function closeAll() {
+				$("body").find(".treeUl").each(function(i, ele) {
+					if(i > 1) {
+						$(ele).hide().siblings(".treetitle").removeClass("down").find("i").attr("class", "click-expand glyphicon glyphicon-plus");
+					}
+				})
+
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,51 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"tag_id": 4,
+		"tag_name": "新品",
+		"product": [
+			{
+				"product_id": 57,
+				"product_name": "收纳箱1收纳盒收纳储存箱储存盒",
+				"product_icon": "http://buyear.elevo.cn/Upload/Image/ProductBrand/180127105817612.jpg",
+				"product_max_price": 5620.00,
+				"product_min_price": 5620.00,
+				"product_s_intergral": 5620.00,
+				"product_type": 0
+			}, {
+				"product_id": 70,
+				"product_name": "项链周生生耳坠送女友送老婆送妈妈送婆婆",
+				"product_icon": "http://buyear.elevo.cn/Upload/Image/ProductBrand/180129115807329.jpg",
+				"product_max_price": 50152.00,
+				"product_min_price": 20152.00,
+				"product_s_intergral": 20152.00,
+				"product_type": 0
+			}, {
+				"product_id": 75,
+				"product_name": "衣服裙子6可爱的裙子好看的裙子裙子名字好长好长好长好长好长1",
+				"product_icon": "http://buyear.elevo.cn/Upload/Image/ProductBrand/180131121639749.jpg",
+				"product_max_price": 5544.00,
+				"product_min_price": 5544.00,
+				"product_s_intergral": 5544.00,
+				"product_type": 0
+			}, {
+				"product_id": 76,
+				"product_name": "裙子7好看的裙子可爱的裙子",
+				"product_icon": "http://buyear.elevo.cn/Upload/Image/ProductBrand/180130165551758.jpeg",
+				"product_max_price": 2652.00,
+				"product_min_price": 2650.00,
+				"product_s_intergral": 2650.00,
+				"product_type": 0
+			}, {
+				"product_id": 77,
+				"product_name": "几何镂空纯银耳钉82",
+				"product_icon": "http://buyear.elevo.cn/Upload/Image/ProductBrand/180130171608765.jpg",
+				"product_max_price": 10232.00,
+				"product_min_price": 5230.00,
+				"product_s_intergral": 5230.00,
+				"product_type": 0
+			}
+		]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"id": 19,
+		"username": "王威",
+		"is_default": 1,
+		"mobile": "13562587458",
+		"province_id": 1944,
+		"city_id": 1945,
+		"region_id": 1951,
+		"address": "朝阳派出所"
+	}
+}

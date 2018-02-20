@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title> - 树形视图</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<link href="../css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+		<!-- 自定义js -->
+		<!--<script src="../js/content.js?v=1.0.0"></script>-->
+
+		<!-- Bootstrap-Treeview plugin javascript -->
+		<script src="../js/plugins/treeview/bootstrap-treeview.js"></script>
+		<!--<script src="../js/demo/treeview-demo.js"></script>-->
+		<script>
+			$(function() {
+				$.ajax({
+					type: "get",
+					url: "../js/demo/tree-view.json",
+					async: true,
+					success: function(result) {
+						$('#treeview12').treeview({
+							data: result,
+							showTags:true,
+							nodeIcon: ""
+						});
+						$('#treeview12').on('nodeSelected', function(event, node) {
+							$(".selectBox-bd").hide();
+							$(".productInp").val(node.id);
+							$(".productType").text(node.text)
+							console.log("你单击了" + node.text + "，" + node.id)
+						});
+					}
+				});
+				
+				$(".productType").on("click",function(){
+					$(".selectBox-bd").show();
+				})
+
+			})
+		</script>
+		<style>
+			.selectBox {
+				
+				position: relative;
+			}
+			.selectBox-bd{
+				background-color: #FFFFFF;
+				position: absolute;
+				left: 0;
+				top: 28px;
+				width: 300px;
+				/*display: none;*/
+			}
+			.productType{
+				/*border: 1px solid red;*/
+				height: 30px;
+				width: 192px;
+				line-height: 30px;
+				border: 1px solid #E7EAEC;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				background-color: #FFFFFF;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+
+	<body class="gray-bg">
+		<div class="row wrapper wrapper-content animated fadeInRight">
+
+			<!--<div id="treeview1" class="test"></div>-->
+
+			<!--<div class="ibox-content">
+				<div id="treeview7" class="test"></div>
+			</div>-->
+
+			<div class="col-sm-4">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>使用链接</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="buttons.html#">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<a href="buttons.html#">选项1</a>
+								</li>
+								<li>
+									<a href="buttons.html#">选项2</a>
+								</li>
+							</ul>
+							<a class="close-link">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div id="treeview10" class="test"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>事件</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="buttons.html#">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<a href="buttons.html#">选项1</a>
+								</li>
+								<li>
+									<a href="buttons.html#">选项2</a>
+								</li>
+							</ul>
+							<a class="close-link">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="col-sm-6">
+							<div id="treeview11" class="test"></div>
+						</div>
+						<div class="col-sm-6">
+							<h5>事件输出：</h5>
+							<hr>
+							<div id="event_output"></div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="selectBox">
+				<input type="hidden" name="productInp" id="" value="" class="productInp"/>
+				<div class="productType"></div>
+				
+				<div class="selectBox-bd">
+					<div id="treeview12" class="test"></div>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

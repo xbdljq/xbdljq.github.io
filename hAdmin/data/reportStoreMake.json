@@ -1,0 +1,31 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"page": 1,
+		"page_size": 5,
+		"count": 200,
+		"page_count": 1,
+		"list": [
+			{
+				"orderDate": "2018/1/6",
+				"orderId": "00308987",
+				"username": "王威",
+				"money": 200.00,
+				"bank_card": "",
+				"explain": "",
+				"status": 0,
+				"remark": null
+			}, {
+				"orderDate": "2018/1/6",
+				"orderId": "00308987",
+				"username": "王威",
+				"money": 100.00,
+				"bank_card": "",
+				"explain": "",
+				"status": 0,
+				"remark": null
+			}
+		]
+	}
+}

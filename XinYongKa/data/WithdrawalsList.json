@@ -1,0 +1,108 @@
+{
+	"data": [
+		{
+			"Id": 34,
+			"UserId": 56,
+			"UserName": "筱迩",
+			"Phone": "13824493902",
+			"Status": 1,
+			"StatusName": "未审核",
+			"Commission": 3.11,
+			"Remark": "",
+			"CreateDate": "2018-01-23 16:29:50"
+		}, {
+			"Id": 33,
+			"UserId": 56,
+			"UserName": "筱迩",
+			"Phone": "13824493902",
+			"Status": 4,
+			"StatusName": "驳回",
+			"Commission": 4.00,
+			"Remark": "不行",
+			"CreateDate": "2018-01-19 12:23:19"
+		}, {
+			"Id": 32,
+			"UserId": 56,
+			"UserName": "筱迩",
+			"Phone": "13824493902",
+			"Status": 4,
+			"StatusName": "驳回",
+			"Commission": 2.00,
+			"Remark": "不行",
+			"CreateDate": "2018-01-19 12:22:39"
+		}, {
+			"Id": 31,
+			"UserId": 56,
+			"UserName": "筱迩",
+			"Phone": "13824493902",
+			"Status": 3,
+			"StatusName": "发放",
+			"Commission": 3.00,
+			"Remark": "",
+			"CreateDate": "2018-01-19 11:24:23"
+		}, {
+			"Id": 30,
+			"UserId": 30,
+			"UserName": "zhangqf123456",
+			"Phone": "",
+			"Status": 1,
+			"StatusName": "未审核",
+			"Commission": 3.00,
+			"Remark": "",
+			"CreateDate": "2018-01-10 14:39:03"
+		}, {
+			"Id": 29,
+			"UserId": 30,
+			"UserName": "zhangqf123456",
+			"Phone": "",
+			"Status": 4,
+			"StatusName": "驳回",
+			"Commission": 4.00,
+			"Remark": "不够钱哦",
+			"CreateDate": "2018-01-10 12:29:31"
+		}, {
+			"Id": 28,
+			"UserId": 30,
+			"UserName": "zhangqf123456",
+			"Phone": "",
+			"Status": 4,
+			"StatusName": "驳回",
+			"Commission": 4.00,
+			"Remark": "不行啦",
+			"CreateDate": "2018-01-10 12:29:01"
+		}, {
+			"Id": 27,
+			"UserId": 30,
+			"UserName": "zhangqf123456",
+			"Phone": "",
+			"Status": 4,
+			"StatusName": "驳回",
+			"Commission": 4.00,
+			"Remark": "不行不行",
+			"CreateDate": "2018-01-10 12:28:22"
+		}, {
+			"Id": 26,
+			"UserId": 30,
+			"UserName": "zhangqf123456",
+			"Phone": "",
+			"Status": 3,
+			"StatusName": "发放",
+			"Commission": 6.00,
+			"Remark": "",
+			"CreateDate": "2018-01-10 12:26:58"
+		}, {
+			"Id": 25,
+			"UserId": 31,
+			"UserName": "A00-众鑫财富",
+			"Phone": "18978001243",
+			"Status": 1,
+			"StatusName": "未审核",
+			"Commission": 1.00,
+			"Remark": "",
+			"CreateDate": "2018-01-08 18:15:27"
+		}
+	],
+	"count": 34,
+	"msg": "获取成功",
+	"code": 0
+}

@@ -1,0 +1,153 @@
+@font-face {
+	font-family: 'iconfont';  /* project id 518414 */
+	src: url('//at.alicdn.com/t/font_518414_072lo6256v8cl3di.eot');
+	src: url('//at.alicdn.com/t/font_518414_072lo6256v8cl3di.eot?#iefix') format('embedded-opentype'),
+	url('//at.alicdn.com/t/font_518414_072lo6256v8cl3di.woff') format('woff'),
+	url('//at.alicdn.com/t/font_518414_072lo6256v8cl3di.ttf') format('truetype'),
+	url('//at.alicdn.com/t/font_518414_072lo6256v8cl3di.svg#iconfont') format('svg');
+}
+[class*="icon-"] {
+	font-family:"iconfont" !important;
+	font-size:16px;font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: "微软雅黑";
+}
+.container {
+    min-width: 1200px;
+    position: relative;
+    height: 100%;
+	background: url(../image/login/background.png) no-repeat center;
+	background-size: cover;
+}
+.content {
+    position: absolute;
+    left: 15%;
+    top: 40%;
+    margin-top: -177px;
+}
+.logo {
+	width: 246px;
+	height: 260px;
+	background: url(../image/login/logo.png) no-repeat center;
+	background-size: cover;
+	margin: auto;
+}
+.desc {
+	font-size: 48px;
+	font-weight: bold;
+	color: #fff;
+	margin-top: 30px;
+    letter-spacing: 10px;
+	user-select: none;
+}
+.login-form {
+	position: absolute;
+	padding: 40px 20px;
+	left: 15%;
+    top: 40%;
+	margin-top: -177px;
+    border-radius: 8px;
+    background-color: #d3eafd;
+}
+.login-form-item {
+	position: relative;
+	padding: 5px;
+    margin-bottom: 10px;
+  	width: 340px;
+    box-sizing: border-box;
+}
+.login-label {
+    position: absolute;
+    font-size: 20px;
+	color: #bbb;
+    line-height: 42px;
+    margin-left: 7px;
+}
+.login-input {
+    font-size: 14px;
+ 	color: #555;
+    padding: 12px 15px 12px 35px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #bbb;
+	outline: none;
+	border-radius: 4px;
+}
+.login-input:focus, .login-input:hover {
+	border-color: #1e9fff;
+}
+.login-error {
+	font-size: 12px;
+    color: #fc4343;
+    line-height: 14px;
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    /*display: none;*/
+}
+.login-code>* {
+    float: left;
+}
+.login-code .login-input{
+    width: 201px;
+    padding-left: 10px;
+}
+.login-code:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.verify-code {
+    width: 77px;
+    height: 42px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 0 7px;
+	background: no-repeat center;
+    background-size: contain;
+}
+.code-btn {
+	font-size: 12px;
+    text-decoration: none;
+    color: #1e9fff;
+    cursor: pointer;
+	font-weight: 600;
+    user-select: none;
+    margin: 12px 0;
+}
+.login-remember {
+    width: 18px;
+    height: 18px;
+}
+.login-remember + * {
+	vertical-align: top;    
+	font-size: 14px;
+    color: #555;
+    line-height: 24px;
+}
+.login-btn {
+	width: 100%;
+    height: 42px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 42px;
+    cursor: pointer;
+    display: block;
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+	letter-spacing: 10px;
+    color: #fff;
+	background-image: linear-gradient(270deg, #2196f3 0%, #70bffd 100%), linear-gradient( #46d2bb, #46d2bb);
+    box-shadow: 0 5px 10px 0px rgba(38, 135, 213, 0.6);
+}

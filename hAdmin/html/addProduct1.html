@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.stepUl a {
+				cursor: default;
+				height: 50px;
+				font-size: 16px;
+				margin-right: 30px;
+			}
+			
+			.stepUl .btn-primary {
+				background: #2184be;
+				color: #fff;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品列表</li>
+				<li>/</li>
+				<li>添加商品</li>
+			</ul>
+
+			<div class="leWrapper">
+				<ul class="stepUl flexBox">
+					<li class="">
+						<a href="javascript:;" class="btn btn-primary btn-lg"> 第一步：选择商城与分类</a>
+					</li>
+					<li class="">
+						<a href="javascript:;" class="btn btn-default btn-lg second"> 第二步：编辑商品信息</a>
+					</li>
+				</ul>
+
+				<form id="signupForm" onkeydown="if(event.keyCode==13)return false;">
+					<ul class="formUl">
+						<li class="flexBox formLi">
+							<label for="product_type">请选择商城</label>
+							<div>
+								<select name="type" id="product_type" class="{required:true}">
+									<option value="">请选择</option>
+									<option value="0">百业惠商城</option>
+									<option value="1">惠万家商城</option>
+								</select>
+								<label for="product_type" class="error"></label>
+							</div>
+						</li>
+						<li class="flexBox formLi TypeLi">
+							<label for="product_category_name">请选择二级分类</label>
+							<div>
+								<select name="cid" id="product_category_name" class="{required:true}">
+									<option value="">请选择</option>
+								</select>
+								<label for="product_category_name" class="error"></label>
+							</div>
+						</li>
+						<li class="flexBox formLi">
+							<label></label>
+							<div>
+								<button type="submit" class="btn btn-default">保存,并跳到下一步</button>
+							</div>
+						</li>
+
+					</ul>
+
+				</form>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$(".TypeLi").hide();
+				//第一步：选择商城--获取分类
+				$("#product_type").on("change", function() {
+					var _val = $(this).val();
+					if(_val == "") {
+						$(".TypeLi").hide()
+					} else {
+						commonGet("../data/productType.json?type=" + _val, function(result) {
+							var data = result.data.list;
+							$("#product_category_name").empty().append('<option value="">请选择</option>')
+							for(var i = 0; i < data.length; i++) {
+								var p = $(' <option value="oneRank">' + data[i].category_name + '</option>');
+								$("#product_category_name").append(p)
+								if(data[i].sub_category.length > 0) {
+									var items = data[i].sub_category;
+									for(var j = 0; j < items.length; j++) {
+										var _p = $(' <option value="' + items[j].category_id + '">&nbsp;&nbsp;&nbsp;&nbsp;' + items[j].category_name + '</option>');
+										$("#product_category_name").append(_p)
+									}
+								}
+							}
+							$(".TypeLi").show()
+						})
+					}
+
+				})
+
+				$("#signupForm").validate({
+					submitHandler: function(form) {
+						if($("#product_category_name").val() == "oneRank") {
+							layer.alert("请选择二级分类")
+							return false;
+						}
+						var data = $("#signupForm").serialize();
+						location.href = "addProduct2.html?pid=0&" + data
+					}
+				});
+			})
+		</script>
+
+	</body>
+
+</html>

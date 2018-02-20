@@ -1,0 +1,180 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"page": 1,
+		"page_size": 65535,
+		"count": 10,
+		"page_count": 1,
+		"list": [
+			{
+				"category_id": 20,
+				"category_name": "个护化妆",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180129110234183.png",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180129110234183.png",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 59,
+						"category_name": "温碧泉",
+						"category_image": "http://localhost//Upload/Image/ProductCategory/180127104418515.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 67,
+						"category_name": "SK-II",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103446737.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 21,
+				"category_name": "鞋镜箱包",
+				"category_icon": "http://buyear.elevo.cn//Upload/Image/ProductCategory/180127102124262.jpg",
+				"category_image": "http://buyear.elevo.cn//Upload/Image/ProductCategory/180127102124262.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 25,
+						"category_name": "鞋子",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127101552760.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 26,
+						"category_name": "鞋子",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104526035.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 22,
+				"category_name": "服装",
+				"category_icon": null,
+				"category_image": null,
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 68,
+						"category_name": "UNIQLO",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103616966.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 69,
+						"category_name": "ochery",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103644135.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 70,
+						"category_name": "ONLY",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103701375.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 35,
+				"category_name": "餐厨日用",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180124170303063.jpg",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180124170303063.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 74,
+						"category_name": "lumimarc",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104057652.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 75,
+						"category_name": "Glasslock",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104016676.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 76,
+						"category_name": "lock",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104120417.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 38,
+				"category_name": "项链",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180129120025792.jpg",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180129120025792.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": [
+					{
+						"category_id": 42,
+						"category_name": "9千足金",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104148218.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 43,
+						"category_name": "9.5铂金",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104156777.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 44,
+						"category_name": "周生生",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127104246341.png",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 46,
+				"category_name": "分类名称好长",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180125152629283.jpg",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180125152629283.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": []
+			}, {
+				"category_id": 79,
+				"category_name": "@@@",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180129154545087.jpg",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180129154545087.jpg",
+				"category_type": 0,
+				"category_sort": 0,
+				"sub_category": []
+			}, {
+				"category_id": 61,
+				"category_name": "个护化妆",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180127105514062.jpg",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180127105514062.jpg",
+				"category_type": 0,
+				"category_sort": 1,
+				"sub_category": [
+					{
+						"category_id": 72,
+						"category_name": "SK-II",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103851424.jpg",
+						"category_sort": 0
+					}, {
+						"category_id": 73,
+						"category_name": "温碧泉",
+						"category_image": "http://localhost/Upload/Image/ProductCategory/180127103912662.jpg",
+						"category_sort": 0
+					}
+				]
+			}, {
+				"category_id": 62,
+				"category_name": "鞋镜箱包",
+				"category_icon": "http://buyear.elevo.cn/",
+				"category_image": "http://buyear.elevo.cn/",
+				"category_type": 0,
+				"category_sort": 2,
+				"sub_category": []
+			}, {
+				"category_id": 78,
+				"category_name": "图片测试",
+				"category_icon": "http://localhost/Upload/Image/ProductCategory/180129113408973.png",
+				"category_image": "http://localhost/Upload/Image/ProductCategory/180129113408973.png",
+				"category_type": 0,
+				"category_sort": 4,
+				"sub_category": []
+			}
+		]
+	}
+}

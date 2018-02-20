@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="shortcut icon" href="img/ico.png">
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+		
+		
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		
+
+		<script>
+			$(function() {
+			})
+		</script>
+		<style>
+			.userHead img{
+				width: 100px;
+				height: 100px;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+				border: 1px solid red;
+				margin-right: 20px;
+			}
+			.userHead span{
+				margin-left: 20px;
+			}
+			.pageUl{
+				margin-top: 20px;
+				border-top: 2px solid #DDDDDD;
+				border-bottom: 2px solid #DDDDDD;
+			}
+			.pageUl> li{
+				border-bottom: 1px solid #DDDDDD;
+				padding: 15px 20px;
+			}
+			.pageUl> li:nth-last-of-type(1){
+				border-bottom: none;
+			}
+			.pageLi>div:nth-of-type(1){
+				width: 100px;
+				margin-right: 20px;
+			}
+			.pageLi>div:nth-of-type(3){
+				width: 180px;
+				margin-left: 20px;
+			}
+			.pageLi>div:nth-of-type(3) span{
+				margin: 0 5px;
+			}
+			.pageLi>div:nth-of-type(3) i{
+				margin-right: 10px;
+			}
+			.yellow{
+				color: #fea22c;
+			}
+			.green{
+				color: #52b765;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>个人中心</li>
+				<li>/</li>
+				<li>账户管理</li>
+			</ul>
+
+			<div class="leWrapper">
+				<ul class="flexBox userHead">
+					<li>
+						<img src="../../img/webuploader.png" />
+					</li>
+					<li>
+						<p>老王 <span>00123456</span></p>
+						<p> 消费来源 <span>laowang</span></p>
+						<p>手机号 <span>18819229912</span></p>
+					</li>
+				</ul>
+				<div>
+					<ul class="pageUl">
+						<li class="flexBox pageLi">
+							<div>电子邮件</div>
+							<div class="flex1">绑定后，可用于接受百业惠推送的消息通知及余额变动提醒</div>
+							<div>
+								<span class="yellow"><i class="fa fa-exclamation-circle"></i>未设置</span>|
+                            	<span><a href="/User/MdifyMail">设置</a></span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>登录密码</div>
+							<div class="flex1">安全性高的密码可以使账号更安全，建议您定期更换密码。</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已设置</span>|
+                            	<span><a href="/User/MdifyMail">修改</a></span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>安全密码</div>
+							<div class="flex1">在账户资金变动，修改账户信息时需要输入的密码，建议您定期更换密码。</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已设置</span>|
+                            	<span><a href="/User/MdifyMail">修改</a></span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>实名认证</div>
+							<div class="flex1">
+								您已绑定身份证
+								<span class="green">44******20</span>
+								，认证后的账号不能修改认证信息。
+							</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已设置</span>|
+                            	<span>不可修改</span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>特殊认证</div>
+							<div class="flex1">
+								您已绑定证件号
+								<span class="green">44******20</span>
+								，认证后的账号不能修改认证信息。
+							</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已设置</span>|
+                            	<span>不可修改</span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>收货地址</div>
+							<div class="flex1">设置准确的收货地址，便于货物顺利到达。</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已设置</span>|
+								<span><a href="/User/MdifyMail">修改</a></span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>银行卡管理</div>
+							<div class="flex1">请绑定农业银行卡，并仔细核对账号，用于账户资金提现。</div>
+							<div>
+								<span class="yellow"><i class="fa fa-exclamation-circle"></i>未设置</span>|
+								<span><a href="/User/MdifyMail">设置</a></span>
+							</div>
+						</li>
+						<li class="flexBox pageLi">
+							<div>附属账号</div>
+							<div class="flex1">附属账号用于购物</div>
+							<div>
+								<span class="green"><i class="fa fa-check-circle"></i>已申请</span>|
+                            	<span><a href="/User/MdifyMail">现金积分兑换</a></span>
+							</div>
+						</li>
+						
+					</ul>
+					
+				</div>
+				
+				
+			
+			</div>
+		</div>
+	</body>
+
+</html>

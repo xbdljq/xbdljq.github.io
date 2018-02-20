@@ -1,0 +1,12 @@
+{
+	"data": {
+		"Id": 34,
+		"UserName": "筱迩",
+		"Commission": 3.11,
+		"CreateDate": "2018-01-23 16:29:50",
+		"Remark": ""
+	},
+	"count": 0,
+	"msg": "获取成功",
+	"code": 0
+}

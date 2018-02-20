@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+			$(function() {
+				var datas = [{
+						title: '',
+						field: '',
+						checkbox: true
+					},
+					{
+						title: '下单日期',
+						field: 'orderDate'
+					},
+					{
+						title: '订单号',
+						field: 'orderId'
+					},
+					{
+						title: '订单金额',
+						field: 'money'
+					},
+					{
+						title: '下单人',
+						field: 'username'
+					},
+					{
+						title: '操作',
+						field: '',
+						formatter: function(value, row, index) { //自定义显示可以写标签哦~
+							var str = "";
+							str += '<a href="#" mce_href="#" onclick="tabFun(\'通过\',\'/AdminApi/Audit/RechargePass\',' + row.orderId + ')">通过</a>';
+							str += '<a href="#" mce_href="#" onclick="tabFun(\'拒绝\',\'/AdminApi/Audit/RechargeReject\',' + row.orderId + ')">拒绝</a> ';
+							return str;
+						}
+					}
+				]
+				//ele要生成表格的id名，url要请求数据的地址，pagination是否显示分页，queryfun搜索参数集合，arrs生成的列集合
+				createTable("table_server", "../data/reportStoreMake.json", true, queryParams, datas)
+
+			})
+
+			//列表搜索条件
+			function queryParams(params) {
+				return {
+					page: params.offset / params.limit + 1
+				};
+			}
+
+			//删除
+			function tabFun(txt, url, id) {
+				layer.confirm("您确定要" + txt + "吗？", {
+						btn: ['确定', '取消']
+					},
+					function() {
+						var arr = [];
+						var data;
+						if(id == 0) {
+							var v = $("#table_server").bootstrapTable('getAllSelections');
+							if(v.length > 0) {
+								for(var i = 0; i < v.length; i++) {
+									arr.push(v[i].id)
+								}
+								data = {
+									ids: arr
+								}
+								commonPost(url, data, function(result) {
+									layer.alert(result.msg, function() {
+
+										location.reload();
+									})
+								})
+							} else {
+								layer.alert("请选择操作选项");
+								return false;
+							}
+						} else {
+							arr.push(id);
+							data = {
+								ids: arr
+							}
+							commonPost(url, data, function(result) {
+								layer.alert(result.msg, function() {
+									location.reload();
+								})
+							})
+						}
+					},
+					function() {}
+				);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>报表管理</li>
+				<li>/</li>
+				<li>体验店</li>
+				<li>/</li>
+				<li>店补</li>
+			</ul>
+
+			<div class="leWrapper">
+				<form id="searchForm">
+					<ul class="flexBox searchFormUl ">
+						<li>
+							<button type="button" class="btn btn-default agreeAll" onclick="tabFun('通过', '/AdminApi/Audit/RechargePass', 0)">批量通过</button>
+						</li>
+						<li>
+							<button type="button" class="btn btn-default refuseAll" onclick="tabFun('拒绝', '/AdminApi/Audit/RechargeReject', 0)">批量拒绝</button>
+						</li>
+					</ul>
+				</form>
+				<table id="table_server" data-height="300" class="tableList"></table>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

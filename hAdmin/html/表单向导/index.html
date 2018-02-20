@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>jQeury.steps Demos</title>
+
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="jquery.steps.css">
+		<script src="../../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="modernizr-2.6.2.min.js"></script>		
+		<script src="jquery.steps.min.js"></script>
+		<script>
+			$(function() {
+				$("#wizard").steps({
+					headerTag: "h2",
+					bodyTag: "section",
+					transitionEffect: "slideLeft"
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+
+		<div class="content">
+			<h1>Basic Demo</h1>
+
+			<div id="wizard">
+				<h2>First Step</h2>
+				<section>
+		
+					<div>我是第一步</div>
+				</section>
+
+				<h2>Second Step</h2>
+				<section>
+			
+					<div>我是第2222步222222222</div>
+				</section>
+
+				<h2>Third Step</h2>
+				<section>
+				
+					<div>我是第33333333步</div>
+				</section>
+
+				<h2>Forth Step</h2>
+				<section>
+				
+					<div>我是第44444444444444步</div>
+				</section>
+			</div>
+		</div>
+	</body>
+
+</html>

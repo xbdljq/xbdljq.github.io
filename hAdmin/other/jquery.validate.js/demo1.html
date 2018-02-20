@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+
+		<link href="../../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../../css/plugins/style.css" rel="stylesheet">
+		<link href="../../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<!-- 全局js -->
+
+		<script src="../../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../../../pages/js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				$("#commentForm").validate();
+				$.validator.setDefaults({
+					submitHandler: function() {
+						alert("提交事件!");
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>验证插件</li>
+				<li>/</li>
+				<li>demo1</li>
+			</ul>
+
+			<div class="leWrapper">
+				<form class="cmxform" id="commentForm" method="get" action="xx">
+					<fieldset>
+						<legend>输入您的名字，邮箱，URL，备注。</legend>
+						<div>这是官方给出的例子，将要验证的字段直接写在行间内，缺点验证方法有限</div>
+						<p>
+							<label for="cname">Name (必需, 最小两个字母)</label>
+							<input id="cname" name="name" minlength="2" type="text" required>
+						</p>
+						<p>
+							<label for="cemail">E-Mail (必需)</label>
+							<input id="cemail" type="email" name="email" required email>
+						</p>
+						<p>
+							<label for="curl">URL (可选)</label>
+							<input id="curl" type="url" name="url">
+						</p>
+						<p>
+							<label for="ccomment">备注 (必需)</label>
+							<textarea id="ccomment" name="comment" required></textarea>
+						</p>
+						<p>
+							<input class="submit" type="submit" value="Submit">
+						</p>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+	</body>
+
+</html>

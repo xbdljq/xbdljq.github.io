@@ -1,0 +1,11 @@
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-12-14 18:33:27
+ * @version $Id$
+ */
+body .layui-layer {
+	width: 280px;
+	margin-top: -140px;
+	margin-left: -240px
+}

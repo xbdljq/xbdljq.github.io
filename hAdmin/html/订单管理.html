@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/paging.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+
+				$("#page").paging({
+					pageNo: 1, //默认加载页
+					totalPage: 19, //总页数
+					totalSize: 300, //总条数
+					callback: function(num) { //点击页数后的回调函数
+						//alert(num)
+						console.log(num)
+					}
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>订单管理</li>
+				<li>/</li>
+				<li>订单列表</li>
+			</ul>
+
+			<div class="leWrapper">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#" data-toggle="tab" data-id="0">所有订单(121)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="1">等待付款(121)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="2">等待发货(121)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="2">已发货(12)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="2">退款中(12)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="2">交易成功(12)</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tab" data-id="2">交易关闭(12)</a>
+					</li>
+
+				</ul>
+				<div id="myTabContent" class="tab-content" style="padding: 40px 20px 20px 20px;">
+					<form id="searchForm">
+						<ul class="flexBox searchFormUl ">
+							<li>
+								<label>商城</label>
+								<select>
+									<option value="">百业惠商城</option>
+									<option value="">惠万家商城</option>
+								</select>
+							</li>
+							<li>
+								<label>订单状态</label>
+								<select>
+									<option value="">全部</option>
+									<option value="">待付款</option>
+									<option value="">待发货</option>
+									<option value="">已发货</option>
+									<option value="">已完成</option>
+								</select>
+							</li>
+							<li>
+								<label>关键字</label>
+								<input type="text" name="" id="" value="" placeholder="ID/发票编号/客户姓名" />
+							</li>
+							<li>
+								<label>时间段</label>
+								<input type="text" id="startTime" name="startTime" readonly="readonly" placeholder="开始时间">
+								<span>---</span>
+								<input type="text" id="endTime" name="endTime" readonly="readonly" placeholder="结束时间">
+							</li>
+
+							<li>
+								<button type="button" class="btn btn-default" onclick="searchFun()">搜索</button>
+							</li>
+						</ul>
+					</form>
+					<div class="tableHeader" id="tableHeader">
+						<ul class="clearfix tableHUl">
+							<li style="width:24%;">商品信息</li>
+							<li style="width:12%">单价</li>
+							<li style="width:12%">数量</li>
+							<li style="width:12%;">售后</li>
+							<li style="width:10%;">实付金额</li>
+							<li style="width:10%;">收货人</li>
+							<li style="width:10%;">上一级</li>
+							<li style="width:10%;">操作</li>
+						</ul>
+						<div class="controlBtns">
+							<input type="checkbox" id="selAll" class="allselect">全选
+							<button type="button" class="btn btn-default">批量删除</button>
+							<button type="button" class="btn btn-default">批量备注</button>
+							<button type="button" class="btn btn-default">选中商品导出EXCEL</button>
+							<button type="button" class="btn btn-default">全部导出EXCEL</button>
+
+						</div>
+					</div>
+					<div class="list_content">
+						<ul class="">
+							<li class="list-table">
+
+								<div class="ibox">
+									<div class="ibox-title ">
+										<input type="checkbox" name="select" value="171206104242814" class="selectItem">
+										<span>订单编号：171206104242814</span>
+										<span>2017/12/6 10:42:42</span>
+										<span> 买家：筱迩</span>
+										<span> 营销类型：秒杀</span>
+										<span>供应商：平台</span>
+										<div class="ibox-tools">
+											lallalal
+										</div>
+									</div>
+									<div class="ibox-content">
+										<ul class="orderUl flexBox">
+											<li class="orderLi">
+												<ul class="itemOrderUlL flexBox">
+													<li>
+														<a href="#" class="flexBox">
+															<img src="http://120.24.41.226:13336/image/show?fid=%2fImages%2fClient%2f1%2f3%2fCommon%2f20171204153722223.jpeg*100&amp;isCache=False" class="proImg">
+															<div>生日蛋糕-重量</div>
+														</a>
+													</li>
+													<li>15.00</li>
+													<li>1</li>
+													<li>交易完成</li>
+												</ul>
+												<ul class="itemOrderUlL flexBox">
+													<li>
+														<a href="#" class="flexBox">
+															<img src="http://120.24.41.226:13336/image/show?fid=%2fImages%2fClient%2f1%2f3%2fCommon%2f20171204153722223.jpeg*100&amp;isCache=False" class="proImg">
+															<div>生日蛋糕-重量</div>
+														</a>
+													</li>
+													<li>15.00</li>
+													<li>1</li>
+													<li>交易完成</li>
+												</ul>
+											</li>
+											<li class="orderLi">
+												<ul class="itemOrderUlR flexBox">
+													<li>
+														<p>8.00</p>
+														<p>(含运费￥0.00)</p>
+													</li>
+													<li>
+														<p>弓长</p>
+														<p>13822222222</p>
+													</li>
+													<li>
+														<p>13822222222</p>
+													</li>
+													<li>
+														<button type="button" class="btn btn-default">查看详情</button>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+
+								</div>
+
+							</li>
+							<li class="list-table">
+
+								<div class="ibox">
+									<div class="ibox-title ">
+										<input type="checkbox" name="select" value="171206104242814" class="selectItem">
+										<span>订单编号：171206104242814</span>
+										<span>2017/12/6 10:42:42</span>
+										<span> 买家：筱迩</span>
+										<span> 营销类型：秒杀</span>
+										<span>供应商：平台</span>
+										<div class="ibox-tools">
+											lallalal
+										</div>
+									</div>
+									<div class="ibox-content">
+										<ul class="orderUl flexBox">
+											<li class="orderLi">
+												<ul class="itemOrderUlL flexBox">
+													<li>
+														<a href="#" class="flexBox">
+															<img src="http://120.24.41.226:13336/image/show?fid=%2fImages%2fClient%2f1%2f3%2fCommon%2f20171204153722223.jpeg*100&amp;isCache=False" class="proImg">
+															<div>生日蛋糕-重量</div>
+														</a>
+													</li>
+													<li>15.00</li>
+													<li>1</li>
+													<li>交易完成</li>
+												</ul>
+												<ul class="itemOrderUlL flexBox">
+													<li>
+														<a href="#" class="flexBox">
+															<img src="http://120.24.41.226:13336/image/show?fid=%2fImages%2fClient%2f1%2f3%2fCommon%2f20171204153722223.jpeg*100&amp;isCache=False" class="proImg">
+															<div>生日蛋糕-重量</div>
+														</a>
+													</li>
+													<li>15.00</li>
+													<li>1</li>
+													<li>交易完成</li>
+												</ul>
+											</li>
+											<li class="orderLi">
+												<ul class="itemOrderUlR flexBox">
+													<li>
+														<p>8.00</p>
+														<p>(含运费￥0.00)</p>
+													</li>
+													<li>
+														<p>弓长</p>
+														<p>13822222222</p>
+													</li>
+													<li>
+														<p>13822222222</p>
+													</li>
+													<li>
+														<button type="button" class="btn btn-default">查看详情</button>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+
+								</div>
+
+							</li>
+
+						</ul>
+						<div id="page" class="page_div"></div>
+					</div>
+
+					<!--内容结束-->
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

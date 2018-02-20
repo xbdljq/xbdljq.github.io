@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>订单管理</li>
+				<li>/</li>
+				<li>订单列表</li>
+				<li>/</li>
+				<li>订单详情</li>
+			</ul>
+
+			<div class="leWrapper">
+
+				<style>
+					.countUl {
+						text-align: right;
+						margin-top: 20px;
+						font-weight: bold;
+					}
+					
+					.logistics {
+						padding: 15px 20px;
+					}
+					
+					.logistics .logistics-head {
+						line-height: 1.5;
+						font-size: 16px;
+						font-weight: 600;
+						padding: 10px;
+					}
+					
+					.logistics .logistics-body {
+						padding: 10px;
+					}
+					
+					.logistics .logistics-item {
+						height: 32px;
+						line-height: 2.5;
+						font-size: 0;
+					}
+					
+					.logistics .logistics-item>* {
+						display: inline-block;
+						vertical-align: middle;
+						font-size: 13px;
+					}
+					
+					.logistics .logistics-item .pointer {
+						position: relative;
+						top: 12px;
+						width: 2px;
+						height: inherit;
+						background: #eee;
+					}
+					
+					.logistics .logistics-item .pointer:before {
+						content: '';
+						width: 8px;
+						height: 8px;
+						background: #ddd;
+						border-radius: 50%;
+						display: block;
+						margin-left: -3px;
+					}
+					
+					.logistics .logistics-item .date {
+						padding: 0 50px 0 25px;
+						font-weight: 600;
+					}
+					
+					.logistics .logistics-item .time {
+						padding-right: 15px;
+					}
+					
+					.logistics .logistics-item:last-child .pointer {
+						background: transparent;
+					}
+					
+					.logistics .logistics-item:first-child .pointer:before {
+						background: #1916a1;
+					}
+				</style>
+
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#tab1" data-toggle="tab">订单基本详情</a>
+					</li>
+					<li>
+						<a href="#tab3" data-toggle="tab">订单物流跟踪</a>
+					</li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="tab1">
+
+						<ul class="formUl bothLi clearfix">
+							<li class="flexBox formLi ">
+								<label for="">订单ID</label>
+								<div>180130111558352</div>
+							</li>
+							<li class="flexBox formLi ">
+								<label for="">状态</label>
+								<div>已发货</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">客户</label>
+								<div>张晓陌</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">收货人</label>
+								<div>芳芳芳</div>
+							</li>
+
+							<li class="flexBox formLi">
+								<label for="">收货人联系电话</label>
+								<div>13587676767</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">物流单号</label>
+								<div>180130111558352</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">时间</label>
+								<div>2017-3-3</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="">支付方式</label>
+								<div>线下支付</div>
+							</li>
+
+							<li class="flexBox formLi flexStrat" style="width: 100%;">
+								<label for="">地址</label>
+								<div>
+									<span>广东省广州市番禺区市桥街道12号</span>
+									<div>
+										<button type="button" class="btn btn-default addAddress" onclick="editAddress('898899')">编辑地址</button>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+						<table id="table_server" class="tableList"></table>
+
+						<ul class="countUl">
+							<li>总运费：0</li>
+							<li>总计：<span class="pya_total">1000</span></li>
+						</ul>
+					</div>
+
+					<div class="tab-pane fade" id="tab3" style="padding-bottom:100px"></div>
+				</div>
+
+				<div class="layerForm">
+					<form id="signupForm">
+						<ul class="formUl">
+							<li class="flexBox formLi">
+								<label for="name">*收货人</label>
+								<div>
+									<input type="text" id="" name="name" class="{required:true}" maxlength="15" placeholder="请输入" value="" />
+								</div>
+							</li>
+							<li class="flexBox formLi">
+								<label for="tel">*手机号码</label>
+								<div>
+									<input type="text" id="" name="tel" class="{required:true,isPhone:true}" maxlength="11" placeholder="请输入" value="" />
+								</div>
+							</li>
+
+							<li class="flexBox formLi flexStrat">
+								<label for="">*所在地区</label>
+								<!-- 表示必须选中一个 -->
+								<div>
+									<select name="province" id="province" class="addressSelectBox" style="width:100px">
+										<option value="">请选择省</option>
+									</select>
+									<select name="city" id="city" class="addressSelectBox" style="width:100px">
+										<option value="">请选择市</option>
+									</select>
+									<select name="area" id="area" class="{required:true} addressSelectBox" style="width:100px">
+										<option value="">请选择区</option>
+									</select>
+									<div><label for="area" class="error"></label></div>
+								</div>
+							</li>
+
+							<li class="flexBox formLi flexStrat">
+								<label for="addressDetail">*详细地址</label>
+								<div>
+									<textarea name="addressDetail" style="width: 300px;" class="{required:true}" maxlength="50" placeholder="请输入详细地址"></textarea>
+									<div><label for="addressDetail" class="error"></label></div>
+								</div>
+
+							</li>
+							<li class="flexBox formLi flexStrat">
+								<label for="is_default">是否默认</label>
+								<div>
+									<input type="radio" id="" value="0" name="is_default" checked />否
+									<input type="radio" id="" value="1" name="is_default" />是
+
+								</div>
+							</li>
+
+						</ul>
+					</form>
+				</div>
+				<script>
+					var orderid;
+					var addAddressHtml
+					$(function() {
+						//orderid = GetQueryString("oid");
+						orderid = "180130111558352";
+
+						//加载省
+						areaFun(0, "#province", "../data/GetProvinces.json", function() {
+							//新增地址弹框内容
+							addAddressHtml = $(".layerForm").html();
+							$(".layerForm").empty();
+						})
+
+						var datas = [{
+								title: '商品信息',
+								field: '',
+								formatter: function(value, row, index) {
+									var str = "";
+									str += '<img src="' + row.product_icon + '" class="tableImg" />'
+									str += row.product_name;
+									return str;
+								}
+							},
+							{
+								title: '数量',
+								field: 'quantity'
+							},
+							{
+								title: '小计',
+								field: 'total'
+							}
+
+						]
+						$("#table_server").bootstrapTable({
+							url: "../data/orderDetail1.json?orderid=" + orderid,
+							method: 'get',
+							dataType: "json",
+							undefinedText: "", //当数据为 undefined 时显示的字符
+							responseHandler: function(res) {
+
+								return {
+									"page": 1,
+									"total": 2, //总页数
+									"rows": res.data.products //数据
+								};
+							},
+							search: false, //显示搜索框
+							data_local: "zh-US", //表格汉化
+							sidePagination: "server", //服务端处理分页
+							columns: datas
+						});
+
+					})
+					//编辑地址
+					function editAddress(id) {
+						layerFun();
+						commonGet("../data/getOneAddress.json?id=" + id, function(result) {
+							$("[name='name']").val(result.data.username)
+							$("[name='tel']").val(result.data.mobile)
+							$("[name='province']").val(result.data.province_id);
+							$("[name='addressDetail']").val(result.data.address)
+							$("[name='is_default'][value='" + result.data.is_default + "']").attr("checked", "checked")
+							//加载市
+							areaFun(result.data.province_id, "#city", "../data/GetCity.json", function() {
+								$("#city").val(result.data.city_id)
+							})
+							//加载区
+							areaFun(result.data.city_id, "#area", "../data/GetArea.json", function() {
+								$("#area").val(result.data.region_id)
+							})
+						})
+						//选择省
+						$("#province").on("change",function(){
+							//加载市
+							areaFun($("#province").val(), "#city", "../data/GetCity.json", function() {
+								$("#city").val("");
+								$("#area").val("")
+							})
+						})
+						//选择市
+						$("#city").on("change",function(){
+							//加载市
+							areaFun($("#area").val(), "#city", "../data/GetArea.json", function() {
+								$("#area").val("")
+							})
+						})
+						
+					}
+					//加载省市或区
+					function areaFun(id, ele, url, callback) {
+						var _url;
+						if(id == 0) {
+							_url = url;
+						} else {
+							_url = url + "?id=" + id
+						}
+						commonGet(_url, function(result) {
+							var data = result.data;
+							$(ele).empty().append('<option value="">请选择</option>')
+							for(var i = 0; i < data.length; i++) {
+								var p = $('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+								$(ele).append(p);
+							}
+							typeof callback === "function" && callback();
+						})
+					}
+
+					function layerFun() {
+						layer.open({
+							type: 1,
+							area: ['600px', '500px'],
+							shadeClose: true, //点击遮罩关闭
+							title: "修改地址",
+							content: addAddressHtml,
+							offset: "15%",
+							btn: ['保存', '取消'],
+							yes: function() {
+								$("#signupForm").validate({
+									submitHandler: function(form) {
+										console.log($("#signupForm").serialize());
+										var data = $("#signupForm").serialize();
+										commonPost("qwqwqw", data, function(result) {
+											layer.alert(result.msg, function() {
+												location.href = location.href;
+											})
+										})
+									}
+								});
+								$("#signupForm").submit();
+							},
+							btn2: function() {
+								layer.closeAll();
+							}
+						});
+					}
+				</script>
+
+				<script>
+					$(function() {
+						commonGet('../data/orderDetail2.json?orderid=' + orderid, function(resp) {
+							var res = "";
+							res += '<div class="logistics">';
+							res += '<div class="logistics-head">';
+							res += '<div>物流公司：' + resp.data.express_name + '</div>';
+							res += '<div>物流单号：' + resp.data.express_order + '</div>';
+							res += '</div>';
+							res += '</div>';
+							res += '<div class="logistics-body">';
+							res += '';
+
+							$.each(resp.data.express_message_list, function() {
+								res += '<div class="logistics-item">';
+								res += '<span class="pointer"></span>'
+								res += '<span class="date">' + this.express_date + '</span>'
+								res += '<span class="time">' + this.express_time + '</span>'
+								res += '<span>' + this.express_message + '</span>'
+								res += '</div>';
+							})
+							res += '</div></div>'
+							$('#tab3').append(res)
+						})
+					})
+				</script>
+
+			</div>
+		</div>
+	</body>
+
+</html>

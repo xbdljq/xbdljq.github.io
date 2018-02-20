@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link href="../js/plugins/layui-2.2.45/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="../css/index.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/plugins/layui-2.2.45/layui.js" type="text/javascript" charset="utf-8"></script>
+		<link href="../css/login.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="container">
+			<!--<div class="content">
+				<div class="logo"></div>
+				<div class="desc">后台管理系统</div>
+			</div>-->
+			<form id="loginForm" class="login-form">
+				<div class="login-form-item">
+					<i class="login-label icon-user">&#xe81f;</i>
+					<input type="text" name="account" class="login-input" placeholder="请输入用户名" autocomplete="off">
+					<span class="login-error"></span>
+				</div>
+				<div class="login-form-item">
+					<i class="login-label icon-pwd">&#xe6cb;</i>
+					<input type="password" name="psw" class="login-input" placeholder="请输入密码" autocomplete="off">
+					<span class="login-error"></span>
+				</div>
+				<div class="login-form-item login-code">
+					<input type="text" name="code" class="login-input" placeholder="请输入验证码" maxlength="4" autocomplete="off">
+					<div id="login_code" class="verify-code" style="background-image: url(/Admin/AdminHome/GetCode);"></div>
+					<a id="changeCode" class="code-btn">换一张</a>
+					<span class="login-error"></span>
+				</div>
+				<div class="login-form-item">
+					<input type="checkbox" name="remember" class="login-remember">
+					<span>记住用户名</span>
+				</div>
+				<div class="login-form-item">
+					<span class="login-btn">登录</span>
+				</div>
+			</form>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		// 处理login出现在iframe中的问题
+		window.top !== window && (window.top.location.href = location.href)
+		layui.config({
+			base: '../js/export'
+		}).extend({
+			http: '/http',
+			tips: '/tips',
+		})
+		layui.use(['jquery', 'http'], function($, http) {
+			// 用户名赋默认值
+			var account = localStorage.getItem('account'),
+				loginForm = $('#loginForm')
+			if(account) {
+				$('[name="account"]').val(account)
+				$('[name="remember"]').attr('checked', true)
+			}
+
+			// 更换验证码
+			$('#changeCode').on('click', function() {
+				$('#login_code').css('background-image', 'url(/Admin/AdminHome/GetCode?id=' + getRand() + ')')
+			})
+
+			// 登录
+			$('.login-btn').on('click', function() {
+				var submit = true,
+					accountError = '',
+					pswError = '',
+					codeError = '',
+					data = getFormData()
+				if(!data.account) {
+					accountError = '用户名不能为空'
+					submit = false
+				}
+				$('[name="account"]').next('.login-error').html(accountError)
+
+				if(!data.psw) {
+					pswError = '密码不能为空'
+					submit = false
+				}
+				$('[name="psw"]').next('.login-error').html(pswError)
+
+				if(!data.code) {
+					codeError = '验证码不能为空'
+					submit = false
+				} else if(data.code.length != 4) {
+					codeError = '验证码必须是4位'
+					submit = false
+				}
+				$('[name="code"]').nextAll('.login-error').html(codeError)
+
+				if(submit) {
+					// 记住用户名
+					localStorage.setItem('account', data.remember ? data.account : '')
+					// 登录
+					http.post('/Admin/AdminHome/Login', data, function(resp) {
+						location.href = '/Admin/AdminHome/Index'
+					}, function(resp) {
+						resp && resp.code != 0 && $('#changeCode').click()
+					})
+				}
+
+				return false
+			})
+
+			// 获取登录表单数据
+			function getFormData() {
+				var obj = {}
+				$.each(loginForm.serializeArray(), function() {
+					obj[this.name] = this.value
+				})
+				return obj
+			}
+
+			// 随机6位数字
+			function getRand() {
+				var num = ''
+				for(var i = 0; i < 6; i++) {
+					num += Math.floor(Math.random() * 10)
+				}
+				return num
+			}
+
+			//给form添加一个keydown事件，登录
+			$('#loginForm').on('keydown', function(e) {
+				e.keyCode === 13 && this.querySelector('.login-btn').click()
+			})
+		})
+	</script>
+
+</html>

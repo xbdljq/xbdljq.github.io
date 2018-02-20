@@ -1,0 +1,470 @@
+/*清除浮动*/
+
+.clearfix:after {
+	content: "";
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+.hid{
+    display:none;
+}
+.show{
+    display:block;
+}
+
+
+/*表单样式*/
+
+
+/*flex盒子*/
+
+.flexBox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	-webkit-align-items: center;
+}
+
+.flexCenter {
+	align-items: center;
+	-webkit-align-items: center;
+}
+.flexWarp{
+	flex-wrap: wrap;
+}
+
+.flexStrat {
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+}
+
+.paddingTop8 {
+	padding-top: 8px;
+}
+
+.flex1 {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+
+.bothLi {
+	padding-top: 20px;
+}
+
+.bothLi li {
+	float: left;
+	width: 50%;
+}
+
+.formUl {
+	padding-top: 20px;
+}
+
+.formLi {
+	padding: 10px 0;
+	box-sizing: border-box;
+	color: #696969;
+	font-family: "microsoft yahei";
+	font-size: 14px;
+	color: #696969;
+	min-height: 54px;
+}
+
+.formLi>label {
+	width: 130px;
+	text-align: right;
+	margin-right: 20px;
+	margin-bottom: 0px;
+}
+
+.lineHeight34 {
+	line-height: 34px;
+}
+
+select {
+	border: 1px solid #E7EAEC;
+	width: 192px;
+	height: 34px;
+	line-height: 34px;
+	box-sizing: border-box;
+	color: #696969;
+	font-family: "microsoft yahei";
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	outline: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],.inputText {
+	border: 1px solid #E7EAEC;
+	width: 192px;
+	height: 34px;
+	line-height: 34px;
+	box-sizing: border-box;
+	padding: 0 5px;
+	background-color: #FFFFFF !important;
+	font-size: 14px;
+	font-family: "microsoft yahei";
+	outline: none;
+	margin-right: 5px;
+	color: #696969;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.formLi input[type="radio"],
+.formLi input[type="checkbox"] {
+	margin-left: 30px;
+}
+
+.formLi input[type="radio"]:nth-of-type(1),
+.formLi input[type="checkbox"]:nth-of-type(1) {
+	margin-left: 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	margin-right: 5px !important;
+	vertical-align: -2px;
+}
+
+textarea {
+	border: 1px solid #E7EAEC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	width: 400px;
+	outline: none;
+	box-sizing: border-box;
+	padding: 8px 5px;
+	color: #696969;
+}
+
+
+/*button {
+    height: 34px;
+    padding: 0 15px;
+    background-color: #3399ff;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+}*/
+
+.saveBtn {
+	margin: 20px 0;
+}
+
+
+/*错误提示的样式*/
+
+input.error {
+	border: 1px solid red;
+}
+
+form label.error {
+	background: url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+	padding-left: 1px;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	font-weight: bold;
+	color: #EA5200;
+	font-size: 12px;
+	display: none;
+}
+
+
+/*//校验成功时的class值必须为valid*/
+
+label.valid {
+	background: url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+
+.minInfo {
+	color: red;
+	font-size: 12px;
+}
+
+
+/*面包屑*/
+
+.crumbs {
+	background-color: #F0F3F4;
+	/*margin-bottom: 10px;*/
+	font-family: "microsoft yahei";
+	font-size: 14px;
+	box-sizing: border-box;
+	margin-left: 0;
+	padding: 20px 0 10px 0;
+	margin-bottom: 0;
+}
+
+.crumbs li {
+	margin: 0 5px;
+	display: inline-block;
+}
+
+
+/*面包屑结束*/
+
+
+/*子页面大体使用的类*/
+
+.wrapper {
+	background-color: #FFFFFF;
+	padding-bottom: 20px;
+}
+
+.leWrapper {
+	overflow: auto;
+	box-sizing: border-box;
+	margin-top: 20px;
+	margin-left: 20px;
+	padding-right: 20px;
+}
+
+
+/*子页面大体使用的类结束*/
+
+
+/*弹框*/
+
+.leLayer {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.leLayerCon {
+	background-color: #FFFFFF;
+	width: 500px;
+	height: 600px;
+	margin-left: -20% !important;
+}
+
+.leLayer .leLayerFt {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	background-color: #FFFFFF;
+	opacity: 1;
+	font-size: 14px;
+}
+
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.imgTd p {
+	margin: 0;
+	line-height: 1.8;
+}
+
+.imgTd img {
+	width: 50px;
+	height: 50px;
+}
+
+.imgTd>div:nth-of-type(1) {
+	margin-right: 10px;
+	width: 50px;
+	height: 50px;
+}
+
+
+/*列表相关自定义样式*/
+
+
+/*列表头部的搜索模块*/
+
+.searchFormUl {
+	flex-wrap: wrap;
+	font-size: 14px;
+}
+
+.searchFormUl label {
+	margin-right: 10px;
+	color: #363636;
+	font-size: 14px;
+	font-weight: initial;
+}
+
+.searchFormUl input[type="text"],
+.searchFormUl select {
+	height: 30px;
+	line-height: 30px;
+}
+
+.searchFormUl>li {
+	margin: 0 30px 20px 0;
+}
+
+
+/*列表头部的搜索模块结束*/
+
+
+/*.fixed-table-toolbar {
+    margin-bottom: 10px;
+}*/
+
+
+/*.fixed-table-toolbar input[type="text"] {
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+    }*/
+
+.fixed-table-pagination .pagination-detail {
+	display: none;
+}
+
+.tableList a {
+	margin-right: 15px;
+}
+
+
+/*表单样式结束*/
+/*与上传图片相关的样式*/
+ #uploadForm{
+        position:relative;
+        
+    }
+#uploadForm input[type='file']{
+        position:absolute;
+        top:0;
+        left:0;
+        opacity:0;
+    }
+    .fileImg{
+			position: relative;
+			box-sizing: border-box;
+			width: 80px;
+			height: 80px;
+            margin-right:20px;
+            display:none; 
+		}
+		
+		.fileImg img{
+			width: 100%;
+			height: 100%;
+		}
+		.delImg{
+			position: absolute;
+			right: -10px;
+			top: -10px;
+			width: 20px;
+			height: 20px;
+			background-color: #D9534F;
+			color: #FFFFFF;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+			text-align: center;
+			font-size: 22px;
+			font-weight: bold;
+			line-height: 0.8;
+			cursor: pointer;
+		}
+
+
+         .fixed-table-header{
+            background-color:#eee !important;
+        }
+
+
+/*分页插件的样式*/
+/*分页的样式*/
+
+
+/*
+			  * 外面盒子样式---自己定义
+			  */
+
+.page_div {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 15px;
+	font-family: "microsoft yahei";
+	color: #666666;
+	margin-right: 10px;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+
+
+/*
+			 * 页数按钮样式
+			 */
+
+.page_div a {
+	min-width: 30px;
+	height: 28px;
+	border: 1px solid #dce0e0!important;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 28px;
+	color: #666666;
+	font-size: 13px;
+	display: inline-block;
+}
+
+#firstPage,
+#lastPage {
+	width: 50px;
+	color: #0073A9;
+	border: 1px solid #0073A9!important;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	color: #0073A9;
+	border: 1px solid #0073A9!important;
+}
+
+.page_div .current {
+	background-color: #0073A9;
+	border-color: #0073A9;
+	color: #FFFFFF;
+}
+
+.totalPages {
+	margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #0073A9;
+	margin: 0 5px;
+}
+/*分页结束*/
+.tableImg{
+    width:60px;
+    margin-right:20px;
+    display: inline-block;
+}

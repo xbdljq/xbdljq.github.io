@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+			var layerFormHtml;
+			$(function() {
+				layerFormHtml = $(".layerForm").html();
+				$(".layerForm").remove();
+
+				laydate.render({
+					elem: '#startTime',
+					done: function(value, date, endDate) {
+						//日期选择后的事件
+					}
+				});
+				laydate.render({
+					elem: '#endTime',
+					done: function(value, date, endDate) {
+						//日期选择后的事件
+					}
+				});
+
+				$(".nowTime").text(getNowTime())
+				$(".add").on("click", function() {
+					layerFun("url", "添加")
+				})
+
+				var datas = [
+					{title: '下单日期',field: 'orderDate'},
+					{title: '订单号',field: 'orderId'},
+					{title: '订单金额',field: 'money'},
+					{title: '下单人',field: 'username'},
+					{
+						title: '操作',
+						field: '',
+						formatter: function(value, row, index) { //自定义显示可以写标签哦~
+							var str = "";							
+							str += '<a href="#" mce_href="#" onclick="edit(\'' + row.loginName + '\')">删除</a>';
+							str += '<a href="#" mce_href="#" onclick="detail(\'' + row.loginName + '\')">修改</a>';
+							return str;
+						}
+					}
+				]
+				//ele要生成表格的id名，url要请求数据的地址，pagination是否显示分页，queryfun搜索参数集合，arrs生成的列集合
+				createTable("table_server", "../data/reportStoreMake.json", true, queryParams, datas)
+
+			})
+
+			//列表搜索条件
+			function queryParams(params) {
+				var temp = $("#searchForm").serializeJsonObject();
+				temp["page"] = params.offset / params.limit + 1;
+				console.log(temp)
+				return temp;
+			}
+			//列表搜索事件
+			function searchFun() {
+				 var startTime = $("#startTime").val();
+                var endTime = $("#endTime").val();
+                if (startTime != "" && endTime != "") {
+                    if (new Date(startTime).getTime() > new Date(endTime).getTime()) {
+                        layer.alert("开始时间不能在结束之间之后")
+                        return false;
+                    }
+                }
+				
+				$('#table_server').bootstrapTable('refresh');
+			}
+			//弹框事件
+			function layerFun(url, title) {
+				layer.open({
+					type: 1,
+					area: ['500px', '400px'],
+					shadeClose: true, //点击遮罩关闭
+					title: title,
+					content: layerFormHtml,
+					offset: "15%",
+					btn: ['保存', '取消'],
+					yes: function() {
+						//提交表单
+
+						$("#signupForm").validate({
+							submitHandler: function(form) {
+								console.log($("#signupForm").serialize());
+								var data = $("#signupForm").serializeArray();
+								commonPost(url, data, function(result) {
+									layer.alert(result.msg, function() {
+										location.reload();
+									})
+								})
+							}
+						});
+						$("#signupForm").submit();
+
+					},
+					btn2: function() {
+						layer.closeAll();
+					}
+				});
+			}
+			//编辑
+			function edit() {
+				layerFun(as, "编辑")
+			}
+			//删除
+			function del(id) {
+				layer.confirm('您确定要删除该项吗', {
+					btn: ['确定', '取消'] //按钮
+				}, function() {
+					var data = {
+						orderId: id,
+					}
+					commonPost("/Admin/ShopBespeak/DeleteOrderItem", data, function(result) {
+						layer.alert(result.Msg, function() {
+							location.reload();
+						})
+					})
+				}, function() {});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>报表管理</li>
+				<li>/</li>
+				<li>体验店</li>
+				<li>/</li>
+				<li>店补</li>
+			</ul>
+
+			<div class="leWrapper">
+				<!--阻止浏览器的默认enter键提交表单事件-->
+				<form id="searchForm" onkeydown="if(event.keyCode==13)return false;">
+					<ul class="flexBox searchFormUl ">
+						<li>
+							<label>下单日期</label>
+							<input type="text" id="startTime" name="startTime" readonly="readonly" placeholder="开始时间">
+							<span>---</span>
+							<input type="text" id="endTime" name="endTime" readonly="readonly" placeholder="结束时间">
+						</li>
+						<li>
+							<label>订单状态</label>
+							<select name="status">
+								<option value="">请选择</option>
+								<option value="">待付款</option>
+								<option value="">待发货</option>
+								<option value="">已发货</option>
+								<option value="">已完成</option>
+								<option value="">请选择</option>
+							</select>
+						</li>
+
+						<li>
+							<label>订单号</label>
+							<input type="text" name="orderId" id="" value="" placeholder="请输入" />
+						</li>
+						<li>
+							<button type="button" class="btn btn-default" onclick="searchFun()">搜索</button>
+						</li>
+						<li>
+							<button type="button" class="btn btn-default add">添加</button>
+						</li>
+					</ul>
+				</form>
+				<table id="table_server" data-height="300" class="tableList"></table>
+
+			</div>
+		</div>
+		<div class="layerForm">
+			<form id="signupForm">
+				<input type="hidden" id="" name="id" value="0" />
+				<ul class="formUl">
+					<li class="flexBox formLi">
+						<label for="">开户行名称</label>
+						<div>
+							<input type="text" id="" name="bank_name" maxlength="20" class="{required:true}" placeholder="目前只支持农业银行" />
+						</div>
+
+					</li>
+					<li class="flexBox formLi flexStrat">
+						<label for="bank_no" class="paddingTop8">开户行卡号</label>
+						<div>
+							<input type="text" id="" name="bank_no" maxlength="20" class="{required:true,isNum:true}" placeholder="请输入" />
+							<div><label for="bank_no" class="error"></label></div>
+						</div>
+					</li>
+					<li class="flexBox formLi flexStrat">
+						<label for="username" class="paddingTop8">姓名</label>
+						<div>
+							<input type="text" id="" name="username" maxlength="15" class="{required:true}" placeholder="请输入" />
+							<div><label for="username" class="error"></label></div>
+						</div>
+					</li>
+					<li class="flexBox formLi flexStrat">
+						<label for="is_default">是否默认</label>
+						<div>
+							<input type="radio" id="" value="0" name="is_default" checked />否
+							<input type="radio" id="" value="1" name="is_default" />是
+						</div>
+					</li>
+
+				</ul>
+			</form>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,66 @@
+{
+	"code": 0,
+	"msg": "提交成功！",
+	"data": {
+		"brands": [
+			{
+				"brand_id": 7,
+				"brand_name": "好宝宝"
+			}
+		],
+		"skus": [
+			{
+				"sku_id": 15,
+				"sku_name": "颜色",
+				"sku_value": [
+					{
+						"sku_value_id": 42,
+						"sku_value_value": "红色"
+					}, {
+						"sku_value_id": 46,
+						"sku_value_value": "黄色"
+					}, {
+						"sku_value_id": 63,
+						"sku_value_value": "蓝色"
+					}, {
+						"sku_value_id": 64,
+						"sku_value_value": "绿色"
+					}
+				]
+			}, {
+				"sku_id": 16,
+				"sku_name": "图案",
+				"sku_value": [
+					{
+						"sku_value_id": 43,
+						"sku_value_value": "小猪佩奇"
+					}, {
+						"sku_value_id": 44,
+						"sku_value_value": "小黄人"
+					}, {
+						"sku_value_id": 45,
+						"sku_value_value": "哆啦A梦"
+					}
+				]
+			}, {
+				"sku_id": 28,
+				"sku_name": "尺寸",
+				"sku_value": [
+					{
+						"sku_value_id": 69,
+						"sku_value_value": "S"
+					}, {
+						"sku_value_id": 70,
+						"sku_value_value": "M"
+					}, {
+						"sku_value_id": 71,
+						"sku_value_value": "L"
+					}, {
+						"sku_value_id": 72,
+						"sku_value_value": "XL"
+					}
+				]
+			}
+		]
+	}
+}

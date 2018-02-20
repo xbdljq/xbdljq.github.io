@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+		<link href="../css/plugins/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/plugins/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../css/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+		<link href="../js/plugins/layer/laydate/skins/default/laydate.css" rel="stylesheet" type="text/css" />
+
+		<link href="../css/plugins/style.css" rel="stylesheet">
+		<link href="../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="../css/common/orderList.css" />
+
+		<!-- 全局js -->
+
+		<script src="../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../js/plugins/bootstrap.min.js"></script>
+
+		<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<!--模拟传统的浏览器滚动条(竖向)-->
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/layer/layer.min.js"></script>
+		<script src="../js/plugins/layer/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<!--网页自动加载进度条插件-->
+		<script src="../js/plugins/pace/pace.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/common/hAdmin.js"></script>
+		<script src="../js/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugins/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				if(window != top)
+					top.location.href = location.href;
+
+				//判断页面之前是否已记住了账号密码
+				if(typeof $.cookie('username') != "undefined"){
+					$("#username").val($.cookie('username'))
+					$("#pwd").val($.cookie('pwd'))
+				}
+				$("#form2").validate({
+					submitHandler: function(form) {
+						if(!$(".agreeBox").is(":checked")) {
+							layer.alert("请阅读并同意《注册协议》")
+							return false;
+						}
+						console.log($("#form2").serialize());
+						var data = $("#form2").serializeArray();
+						commonPost(url, data, function(result) {
+							if($("#agreeBox").is(":checked")) {
+	
+								$.cookie('username', '1', {
+										expires: 1,
+										path: '/'
+									});
+								}
+								if($.cookie('username') == "null" || typeof $.cookie('username') == "undefined") {
+									
+									$.cookie('password', '1', {
+										expires: 1,
+										path: '/'
+									});
+								}
+								
+							}
+
+							layer.alert(result.msg, function() {
+								location.href = location.href;
+							})
+						})
+					}
+				});
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>商品列表</li>
+				<li>/</li>
+				<li>添加商品</li>
+			</ul>
+
+			<div class="leWrapper">
+				<form id="form2">
+					<ul class="formUl">
+						<li class="flexBox formLi">
+							<label for="phone">手机号</label>
+							<div>
+								<input type="text" id="username" name="phone" class="{required:true,isPhone:true}" maxlength="11" placeholder="请输入" />
+							</div>
+						</li>
+						<li class="flexBox formLi">
+							<label for="pwd">密码</label>
+							<div>
+								<input type="password" id="pwd" name="pwd" class="{required:true,rangelength:[6,20],isPwd:true}" maxlength="20" placeholder="请输入" />
+								<label for="pwd" class="error"></label>
+							</div>
+						</li>
+
+						<li class="flexBox formLi">
+							<label for=""></label>
+							<div>
+								<input type="checkbox" value="1" class="agreeBox">记住账号与密码
+							</div>
+						</li>
+						<li class="flexBox formLi">
+							<label for=""></label>
+							<div>
+								<button type="submit" class="btn btn-default">保存</button>
+							</div>
+						</li>
+					</ul>
+				</form>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

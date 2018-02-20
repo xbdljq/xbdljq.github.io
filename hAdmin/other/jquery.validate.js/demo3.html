@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common/reset.css" />
+
+		<link href="../../css/plugins/animate.css" rel="stylesheet">
+
+		<link href="../../css/plugins/style.css" rel="stylesheet">
+		<link href="../../css/common/leCommon.css" rel="stylesheet" type="text/css" />
+
+		<!-- 全局js -->
+
+		<script src="../../js/plugins/jquery2.1.4.min.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../../../pages/js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/plugins/check/additional-methods.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/check/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/common/Common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			input.error {
+				border: 1px solid red;
+			}
+			
+			form label.error {
+				background: url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+				padding-left: 16px;
+				padding-bottom: 2px;
+				font-weight: bold;
+				color: #EA5200;
+				font-size: 12px;
+				display: none;
+			}
+			/*//校验成功时的class值必须为valid*/
+			
+			label.valid {
+				background: url("./demo/images/checked.gif") no-repeat 0px 0px;
+			}
+		</style>
+		<script>
+			$(function() {
+				$("#signupForm").validate({
+					submitHandler: function(form) {
+						console.log($("#signupForm").serialize());
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<ul class="crumbs flex_box">
+				<li>验证插件</li>
+				<li>/</li>
+				<li>demo3</li>
+			</ul>
+
+			<div class="leWrapper">
+				<form id="signupForm" action="/Admin/ShopBasicSet/SetDistribution" method="post">
+					<div>
+						这里引入了额外的两个js，弥补了原有的缺点，即验证的方法可随意自定义添加，个人偏向于将验证写在行间里， 于是对验证写在行间的方式进行了改良。
+					</div>
+					<div class="q">
+						<label for="myname">用户名：</label>
+						<input id="myname" name="myname" class="{isInt:true,required:true}" />%
+						<label for="myname" class="error">请输入</label>
+					</div>
+					<p>
+						<label for="email">E-Mail：</label>
+						<input id="email" name="email" class="required email" />
+					</p>
+					<p>
+						<label for="password">登陆密码：</label>
+						<input id="password" name="password" type="password" class="{minlength:5,required:true}" />%
+					</p>
+					<p>
+						<label for="confirm_password">确认密码：</label>
+						<input id="confirm_password" name="confirm_password" type="password" class="{required:true,minlength:5,equalTo:'#password'}" />
+					</p>
+					<p>
+						<label for="confirm_password">性别：</label>
+						<!-- 表示必须选中一个 -->
+						<input type="radio" id="gender_male" value="m" name="gender" class="{required:true}" />男
+						<input type="radio" id="gender_female" value="f" name="gender" />女
+					</p>
+					<p>
+						<label for="confirm_password">爱好：</label>
+						<!-- checkbox的minlength表示必须选中的最小个数,maxlength表示最大的选中个数,rangelength:[2,3]表示选中个数区间  -->
+						<input type="checkbox" id="spam_email" value="email" name="spam[]" class="{required:true, minlength:2}" />游泳
+						<input type="checkbox" id="spam_phone" value="phone" name="spam[]" />篮球
+						<input type="checkbox" id="spam_mail" value="mail" name="spam[]" />看书
+					</p>
+					<p>
+						<label for="confirm_password">城市：</label>
+						<select id="jungle" name="jungle" title="Please select something!" class="{required:true}">
+							<option value=""></option>
+							<option value="1">厦门</option>
+							<option value="2">泉州</option>
+							<option value="3">Oi</option>
+						</select>
+					</p>
+
+					<div class="btnBox">
+
+						<button type="submit" class="btn btn-w-s btn-white saveBtn">保存</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</body>
+
+</html>
